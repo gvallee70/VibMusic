@@ -21,6 +21,7 @@
 		BEF751AE2953EC7E005CAB8A /* AccessoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751AD2953EC7E005CAB8A /* AccessoriesView.swift */; };
 		BEF751B02953ECEA005CAB8A /* CharacteristicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */; };
 		BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B12953ED9A005CAB8A /* ServicesView.swift */; };
+		BEF751B42954D227005CAB8A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B32954D226005CAB8A /* RootView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		BEF751AD2953EC7E005CAB8A /* AccessoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoriesView.swift; sourceTree = "<group>"; };
 		BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacteristicsView.swift; path = ../CharacteristicsView.swift; sourceTree = "<group>"; };
 		BEF751B12953ED9A005CAB8A /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServicesView.swift; path = ../ServicesView.swift; sourceTree = "<group>"; };
+		BEF751B32954D226005CAB8A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				BE8A006B294B538F00C97144 /* Assets.xcassets */,
 				BE8A006D294B538F00C97144 /* Preview Content */,
 				BEF75194295371C4005CAB8A /* Tuner.swift */,
+				BEF751B32954D226005CAB8A /* RootView.swift */,
 			);
 			path = VibMusic;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 				BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */,
 				BEF751AE2953EC7E005CAB8A /* AccessoriesView.swift in Sources */,
 				BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */,
+				BEF751B42954D227005CAB8A /* RootView.swift in Sources */,
 				BEF751AC2953EBB3005CAB8A /* HomeView.swift in Sources */,
 				BEF751B02953ECEA005CAB8A /* CharacteristicsView.swift in Sources */,
 				BEF751A72953D483005CAB8A /* Ambiance.swift in Sources */,

@@ -24,9 +24,9 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate, HMAccessoryB
     
     @Published var readingData: Bool = false
        
-    @Published var powerState: Bool!
-    @Published var hueValue: Int!
-    @Published var brightnessValue: Int!
+    @Published var powerState: Bool?
+    @Published var hueValue: Int?
+    @Published var brightnessValue: Int?
 
     override init(){
         super.init()
@@ -163,4 +163,6 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate, HMAccessoryB
             self.readingData = false
         })
     }
+    
+
 }

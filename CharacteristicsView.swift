@@ -13,11 +13,13 @@ struct CharacteristicsView: View {
     var accessoryId: UUID
     var homeId: UUID
     @ObservedObject var model: HomeStore
-    
+    @StateObject var conductor = TunerConductor()
+
     @State private var hueSlider: Float = 0
     @State private var brightnessSlider: Float = 0
     @State private var powerStateIsOn: Bool = true
-    
+    @State private var modifyCharacteristicManuallyIsDisabled: Bool = true
+
     var body: some View {
         List {
 //            Section(header: HStack {
@@ -62,9 +64,19 @@ struct CharacteristicsView: View {
                     } maximumValueLabel: {
                         Text("100")
                     } onEditingChanged: { _ in
-                        model.setCharacteristicValue(characteristicID: model.characteristics.first(where: {$0.localizedDescription == "Brightness"})?.uniqueIdentifier, value: Int(brightnessSlider))
+                        let brightnessCharacteristicID = model.characteristics.first(where: {$0.localizedDescription == "Brightness"})?.uniqueIdentifier
+                        
+                        model.setCharacteristicValue(characteristicID: brightnessCharacteristicID, value: Int(brightnessSlider))
+                    
                     }
                 }
+            }
+            .disabled(modifyCharacteristicManuallyIsDisabled)
+            
+            Button(role: modifyCharacteristicManuallyIsDisabled ? .cancel : .destructive) {
+                modifyCharacteristicManuallyIsDisabled = !modifyCharacteristicManuallyIsDisabled
+            } label: {
+                Text(modifyCharacteristicManuallyIsDisabled ? "Modifier manuellement" : "Arrêter modification manuelle")
             }
         }
             .onAppear {
@@ -76,6 +88,24 @@ struct CharacteristicsView: View {
                     self.brightnessSlider = Float(brightness)
                     self.hueSlider = Float(hue)
                 }
-        }
+            }
+            .onChange(of: conductor.data.amplitude) { newValue in
+                if self.modifyCharacteristicManuallyIsDisabled {
+                    brightnessSlider = Float(conductor.brightnessRegressionDict[round(newValue * 10) / 10.0] ?? 0)
+
+                    model.setCharacteristicValue(characteristicID: model.characteristics.first(where: {$0.localizedDescription == "Brightness"})?.uniqueIdentifier, value:  brightnessSlider)
+                }
+            }
+        
+        HStack {
+            Text("Amplitude")
+            Spacer()
+            Text("\(conductor.data.amplitude, specifier: "%0.1f")")
+        }.padding()
+            .onAppear {
+                self.conductor.homeViewModel = self.model
+                self.conductor.start()
+            }
+
     }
 }
