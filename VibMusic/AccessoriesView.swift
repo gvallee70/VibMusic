@@ -29,5 +29,14 @@ struct AccessoriesView: View {
         }.onAppear(){
             model.findAccessories(homeId: homeId)
         }
+        
+        Button {
+            model.addAccessory(to: homeId)
+        } label: {
+            Image(systemName: "plus")
+            Text("Ajouter un accessoire")
+        }
+        .padding()
+
     }
 }
