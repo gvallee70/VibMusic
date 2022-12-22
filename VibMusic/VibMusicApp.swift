@@ -11,7 +11,8 @@ import SwiftUI
 struct VibMusicApp: App {
     var body: some Scene {
         WindowGroup {
-            TunerView(conductor: TunerConductor())
+            //TunerView(conductor: TunerConductor())
+            HomeView(model: HomeStore())
         }
     }
 }
