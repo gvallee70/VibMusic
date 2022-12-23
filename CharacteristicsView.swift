@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import HomeKit
+import AudioKitUI
 
 struct CharacteristicsView: View {
     
@@ -13,12 +14,12 @@ struct CharacteristicsView: View {
     var accessoryId: UUID
     var homeId: UUID
     @ObservedObject var model: HomeStore
-    @StateObject var conductor = TunerConductor()
+    @StateObject var audioKitViewModel = TunerConductor()
 
     @State private var hueSlider: Float = 0
     @State private var brightnessSlider: Float = 0
     @State private var powerStateIsOn: Bool = true
-    @State private var modifyCharacteristicManuallyIsDisabled: Bool = true
+    @State private var soundDetectionIsOn: Bool = UserDefaults.standard.bool(forKey: "soundDetectionIsOn")
 
     var body: some View {
         List {
@@ -35,7 +36,7 @@ struct CharacteristicsView: View {
 //
 //            }
             Section(header: HStack {
-                Text("\(model.services.first(where: {$0.uniqueIdentifier == serviceId})?.name ?? "No Service Name Found") Characteristics Control")
+                Text("Contrôle des paramètres pour \(model.services.first(where: {$0.uniqueIdentifier == serviceId})?.name ?? "le service")")
             }) {
                 Toggle("Power", isOn: $powerStateIsOn)
                     .onChange(of: powerStateIsOn) { value in
@@ -71,41 +72,48 @@ struct CharacteristicsView: View {
                     }
                 }
             }
-            .disabled(modifyCharacteristicManuallyIsDisabled)
+            .disabled(self.soundDetectionIsOn)
             
-            Button(role: modifyCharacteristicManuallyIsDisabled ? .cancel : .destructive) {
-                modifyCharacteristicManuallyIsDisabled = !modifyCharacteristicManuallyIsDisabled
+            Button(role: self.soundDetectionIsOn ? .cancel : .destructive) {
+                self.soundDetectionIsOn.toggle()
+                UserDefaults.standard.set(self.soundDetectionIsOn, forKey: "soundDetectionIsOn")
             } label: {
-                Text(modifyCharacteristicManuallyIsDisabled ? "Modifier manuellement" : "Arrêter modification manuelle")
+                Text(self.soundDetectionIsOn ? "Modifier manuellement" : "Arrêter modification manuelle")
             }
         }
-            .onAppear {
-                model.findCharacteristics(serviceId: serviceId, accessoryId: accessoryId, homeId: homeId)
-                model.readCharacteristicValues(serviceId: serviceId)
-                
-                if let powerState = model.powerState, let brightness = model.brightnessValue, let hue = model.hueValue {
-                    self.powerStateIsOn = powerState
-                    self.brightnessSlider = Float(brightness)
-                    self.hueSlider = Float(hue)
-                }
+        .onAppear {
+            model.findCharacteristics(serviceId: serviceId, accessoryId: accessoryId, homeId: homeId)
+            model.readCharacteristicValues(serviceId: serviceId)
+            
+            if let powerState = model.powerState, let brightness = model.brightnessValue, let hue = model.hueValue {
+                self.powerStateIsOn = powerState
+                self.brightnessSlider = Float(brightness)
+                self.hueSlider = Float(hue)
             }
-            .onChange(of: conductor.data.amplitude) { newValue in
-                if self.modifyCharacteristicManuallyIsDisabled {
-                    brightnessSlider = Float(conductor.brightnessRegressionDict[round(newValue * 10) / 10.0] ?? 0)
+            
+        }
+        .onChange(of: audioKitViewModel.data.amplitude) { newValue in
+            if self.soundDetectionIsOn {
+                brightnessSlider = Float(audioKitViewModel.brightnessRegressionDict[round(newValue * 10) / 10.0] ?? 0)
 
-                    model.setCharacteristicValue(characteristicID: model.characteristics.first(where: {$0.localizedDescription == "Brightness"})?.uniqueIdentifier, value:  brightnessSlider)
-                }
+                model.setCharacteristicValue(characteristicID: model.characteristics.first(where: {$0.localizedDescription == "Brightness"})?.uniqueIdentifier, value:  brightnessSlider)
             }
+        }
         
         HStack {
-            Text("Amplitude")
+            Text("Amplitude du son")
             Spacer()
-            Text("\(conductor.data.amplitude, specifier: "%0.1f")")
-        }.padding()
-            .onAppear {
-                self.conductor.homeViewModel = self.model
-                self.conductor.start()
-            }
+            Text("\(audioKitViewModel.data.amplitude, specifier: "%0.1f")/1")
+        }
+        .padding(.horizontal)
+        .onAppear {
+            self.audioKitViewModel.homeViewModel = self.model
+            self.audioKitViewModel.start()
+        }
+        
+        NodeOutputView(audioKitViewModel.tappableNodeB)
+            .clipped()
+            .frame(height: 50)
 
     }
 }

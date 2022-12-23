@@ -17,7 +17,7 @@ struct ServicesView: View {
     var body: some View {
         List {
             Section(header: HStack {
-                Text("My Services")
+                Text("Mes services pour \(model.accessories.first(where: {$0.uniqueIdentifier == accessoryId})?.name ?? "l'accessoire")")
             }) {
                 ForEach(model.services, id: \.uniqueIdentifier) { service in
                     NavigationLink(value: service){

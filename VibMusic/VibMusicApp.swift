@@ -11,9 +11,11 @@ import SwiftUI
 struct VibMusicApp: App {
     @Environment(\.scenePhase) var scenePhase
 
+    let audioKitViewModel = TunerConductor()
+    
     var body: some Scene {
         WindowGroup {
-            RootView(model: HomeStore())
+            RootView(deviceToUse: audioKitViewModel.initialDevice, model: HomeStore(), audioKitViewModel: audioKitViewModel)
         }
 //        .onChange(of: scenePhase) { newPhase in
 //                        if newPhase == .active {

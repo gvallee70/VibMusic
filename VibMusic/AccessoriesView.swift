@@ -16,7 +16,7 @@ struct AccessoriesView: View {
     var body: some View {
         List {
             Section(header: HStack {
-                Text("My Accessories")
+                Text("Mes accessoires pour \(model.homes.first(where: {$0.uniqueIdentifier == homeId})?.name ?? "la maison")")
             }) {
                 ForEach(model.accessories, id: \.uniqueIdentifier) { accessory in
                     NavigationLink(value: accessory){

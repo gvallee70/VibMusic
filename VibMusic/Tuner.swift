@@ -15,8 +15,6 @@ import SwiftUI
 struct TunerData {
     var pitch: Float = 0.0
     var amplitude: Float = 0.0
-    var noteNameWithSharps = "-"
-    var noteNameWithFlats = "-"
 }
 
 class TunerConductor: ObservableObject, HasAudioEngine {
@@ -61,15 +59,25 @@ class TunerConductor: ObservableObject, HasAudioEngine {
                 self.update(pitch[0], amp[0])
             }
         }
-        
         tracker.start()
     }
 
+    func getDevices() -> [Device] {
+        AudioEngine.inputDevices.compactMap { $0 }
+    }
+
+    func setInputDevice(to device: Device) {
+        do {
+            try AudioEngine.setInputDevice(device)
+        } catch let err {
+            print(err)
+        }
+    }
+    
     func update(_ pitch: AUValue, _ amp: AUValue) {
         // Reduces sensitivity to background noise to prevent random / fluctuating data.
         guard amp > 0.1 else { return }
 
-        
         data.pitch = pitch
         data.amplitude = amp
        
@@ -127,11 +135,7 @@ struct TunerView: View {
                 Text("\(20.0 * log10(conductor.data.amplitude), specifier: "%0.1f")")
             }.padding()
 
-            HStack {
-                Text("Note Name")
-                Spacer()
-                Text("\(conductor.data.noteNameWithSharps) / \(conductor.data.noteNameWithFlats)")
-            }.padding()
+        
 
             InputDevicePicker(device: conductor.initialDevice)
 

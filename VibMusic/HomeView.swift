@@ -15,7 +15,7 @@ struct HomeView: View {
     var body: some View {
         List {
             Section(header: HStack {
-                Text("My Homes")
+                Text("Mes maisons")
             }) {
                 ForEach(model.homes, id: \.uniqueIdentifier) { home in
                     NavigationLink(value: home){
