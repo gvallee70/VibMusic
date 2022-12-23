@@ -10,9 +10,8 @@ import AudioKitUI
 
 struct CharacteristicsView: View {
     
-    var serviceId: UUID
-    var accessoryId: UUID
-    var homeId: UUID
+    var service: HMService
+   
     @ObservedObject var model: HomeStore
     @StateObject var audioKitViewModel = TunerConductor()
 
@@ -36,11 +35,11 @@ struct CharacteristicsView: View {
 //
 //            }
             Section(header: HStack {
-                Text("Contrôle des paramètres pour \(model.services.first(where: {$0.uniqueIdentifier == serviceId})?.name ?? "le service")")
+                Text("Contrôle des paramètres pour \(service.name)")
             }) {
                 Toggle("Power", isOn: $powerStateIsOn)
                     .onChange(of: powerStateIsOn) { value in
-                        model.setCharacteristicValue(characteristicID: model.characteristics.first(where: {$0.localizedDescription == "Power State"})?.uniqueIdentifier, value: value)
+                        model.setCharacteristicValue(characteristic: self.model.characteristics.first(where: {$0.localizedDescription == "Power State"}), value: value)
                     }
                 
                 VStack {
@@ -52,7 +51,7 @@ struct CharacteristicsView: View {
                     } maximumValueLabel: {
                         Text("360")
                     } onEditingChanged: { _ in
-                        model.setCharacteristicValue(characteristicID: model.characteristics.first(where: {$0.localizedDescription == "Hue"})?.uniqueIdentifier, value: Int(hueSlider))
+                        model.setCharacteristicValue(characteristic: self.model.characteristics.first(where: {$0.localizedDescription == "Hue"}), value: Int(hueSlider))
                     }
                 }
             
@@ -65,9 +64,9 @@ struct CharacteristicsView: View {
                     } maximumValueLabel: {
                         Text("100")
                     } onEditingChanged: { _ in
-                        let brightnessCharacteristicID = model.characteristics.first(where: {$0.localizedDescription == "Brightness"})?.uniqueIdentifier
+                        let brightnessCharacteristic = model.characteristics.first(where: {$0.localizedDescription == "Brightness"})
                         
-                        model.setCharacteristicValue(characteristicID: brightnessCharacteristicID, value: Int(brightnessSlider))
+                        model.setCharacteristicValue(characteristic: brightnessCharacteristic, value: Int(brightnessSlider))
                     
                     }
                 }
@@ -89,8 +88,8 @@ struct CharacteristicsView: View {
         }
         .navigationTitle("Paramètres du service")
         .onAppear {
-            model.findCharacteristics(serviceId: serviceId, accessoryId: accessoryId, homeId: homeId)
-            model.readCharacteristicValues(serviceId: serviceId)
+            self.model.findCharacteristics(from: self.service)
+            self.model.readCharacteristicValues(service: self.service)
             
             if let powerState = model.powerState, let brightness = model.brightnessValue, let hue = model.hueValue {
                 self.powerStateIsOn = powerState
@@ -103,7 +102,7 @@ struct CharacteristicsView: View {
             if self.soundDetectionIsOn {
                 brightnessSlider = Float(audioKitViewModel.brightnessRegressionDict[round(newValue * 10) / 10.0] ?? 0)
                 
-                model.setCharacteristicValue(characteristicID: model.characteristics.first(where: {$0.localizedDescription == "Brightness"})?.uniqueIdentifier, value:  brightnessSlider)
+                model.setCharacteristicValue(characteristic: model.characteristics.first(where: {$0.localizedDescription == "Brightness"}), value:  brightnessSlider)
             }
         }
     }

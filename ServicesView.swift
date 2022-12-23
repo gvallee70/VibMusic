@@ -10,27 +10,25 @@ import HomeKit
 
 struct ServicesView: View {
     
-    var accessoryId: UUID
-    var homeId: UUID
+    var accessory: HMAccessory
+
     @ObservedObject var model: HomeStore
 
     var body: some View {
         List {
             Section(header: HStack {
-                Text("Mes services pour \(model.accessories.first(where: {$0.uniqueIdentifier == accessoryId})?.name ?? "l'accessoire")")
+                Text("Mes services pour \(accessory.name)")
             }) {
                 ForEach(model.services, id: \.uniqueIdentifier) { service in
-                    NavigationLink(value: service){
+                    NavigationLink(destination: CharacteristicsView(service: service, model: self.model)) {
                         Text("\(service.name)")
-                    }.navigationDestination(for: HMService.self) {
-                        CharacteristicsView(serviceId: $0.uniqueIdentifier, accessoryId: self.accessoryId, homeId: self.homeId, model: self.model)
                     }
                 }
             }
         }
         .navigationTitle("Services")
         .onAppear(){
-            model.findServices(accessoryId: self.accessoryId, homeId: self.homeId)
+            model.findServices(from: self.accessory)
         }
     }
 }

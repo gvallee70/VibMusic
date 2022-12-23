@@ -17,11 +17,8 @@ struct HomeView: View {
             Section(header: HStack {
             }) {
                 ForEach(model.homes, id: \.uniqueIdentifier) { home in
-                    NavigationLink(value: home){
+                    NavigationLink(destination: AccessoriesView(home: home, model: self.model)) {
                         Text("\(home.name)")
-                    }
-                    .navigationDestination(for: HMHome.self){
-                        AccessoriesView(homeId: $0.uniqueIdentifier, model: model)
                     }
                 }
             }

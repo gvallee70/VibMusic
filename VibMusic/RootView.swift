@@ -25,11 +25,8 @@ struct RootView: View {
                 Section(header: HStack {
                     Text("Gestion")
                 }) {
-                    NavigationLink(value: "HomeView"){
+                    NavigationLink(destination: HomeView(model: self.model)) {
                         Text("Mon HomeKit")
-                    }
-                    .navigationDestination(for: String.self) {_ in
-                        HomeView(model: self.model)
                     }
                 }
                 Section(header: HStack {

@@ -77,8 +77,8 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate, HMAccessoryB
         print(accessory)
     }
     
-    func addAccessory(to homeId: UUID) {
-        self.selectedHome = homes.first(where: {$0.uniqueIdentifier == homeId})
+    func addAccessory(to home: HMHome) {
+        self.selectedHome = home
         
         self.accessoryBrowser = .init()
         self.accessoryBrowser.delegate = self
@@ -86,79 +86,60 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate, HMAccessoryB
     }
     
     
-    func findAccessories(homeId: UUID) {
-        guard let home = homes.first(where: {$0.uniqueIdentifier == homeId}) else {
-                print("ERROR: No Accessory not found!")
-                return
-            }
+    func findAccessories(from home: HMHome) {
         self.selectedHome = home
-        accessories = home.accessories
-        }
+        self.accessories = home.accessories
+    }
     
-    func findServices(accessoryId: UUID, homeId: UUID){
-            guard let accessoryServices = homes.first(where: {$0.uniqueIdentifier == homeId})?.accessories.first(where: {$0.uniqueIdentifier == accessoryId})?.services else {
-                print("ERROR: No Services found!")
-                return
-            }
-            services = accessoryServices
-        }
+    func findServices(from accessory: HMAccessory) {
+        self.services = accessory.services
+    }
     
-    func findCharacteristics(serviceId: UUID, accessoryId: UUID, homeId: UUID){
-           guard let serviceCharacteristics = homes.first(where: {$0.uniqueIdentifier == homeId})?.accessories.first(where: {$0.uniqueIdentifier == accessoryId})?.services.first(where: {$0.uniqueIdentifier == serviceId})?.characteristics else {
-               print("ERROR: No Services found!")
-               return
-           }
-           characteristics = serviceCharacteristics
-       }
+    func findCharacteristics(from service: HMService) {
+        self.characteristics = service.characteristics
+    }
     
-    func readCharacteristicValues(serviceId: UUID){
-           guard let characteristicsToRead = services.first(where: {$0.uniqueIdentifier == serviceId})?.characteristics else {
-               print("ERROR: Characteristic not found!")
-               return
-           }
-          readingData = true
-           for characteristic in characteristicsToRead {
-               characteristic.readValue(completionHandler: {_ in
-                   print("DEBUG: reading characteristic value: \(characteristic.localizedDescription)")
-                   if characteristic.localizedDescription == "Power State" {
-                       self.powerState = characteristic.value as? Bool
-                   }
-                   if characteristic.localizedDescription == "Hue" {
-                       self.hueValue = characteristic.value as? Int
-                   }
-                   if characteristic.localizedDescription == "Brightness" {
-                       self.brightnessValue = characteristic.value as? Int
-                   }
-                   self.readingData = false
-               })
-           }
-       }
-    
-    func setCharacteristicValue(characteristicID: UUID?, value: Any) {
-            guard let characteristicToWrite = characteristics.first(where: {$0.uniqueIdentifier == characteristicID}) else {
-                print("ERROR: Characteristic not found!")
-                return
-            }
-            characteristicToWrite.writeValue(value, completionHandler: {_ in
-                self.readCharacteristicValue(characteristicID: characteristicToWrite.uniqueIdentifier)
-            })
-        }
-        
-    func readCharacteristicValue(characteristicID: UUID?){
-        guard let characteristicToRead = characteristics.first(where: {$0.uniqueIdentifier == characteristicID}) else {
-            print("ERROR: Characteristic not found!")
-            return
-        }
+    func readCharacteristicValues(service: HMService){
         readingData = true
-        characteristicToRead.readValue(completionHandler: {_ in
-            if characteristicToRead.localizedDescription == "Power State" {
-                self.powerState = characteristicToRead.value as? Bool
+        for characteristic in service.characteristics {
+           characteristic.readValue(completionHandler: {_ in
+               print("DEBUG: reading characteristic value: \(characteristic.localizedDescription)")
+               if characteristic.localizedDescription == "Power State" {
+                   self.powerState = characteristic.value as? Bool
+               }
+               if characteristic.localizedDescription == "Hue" {
+                   self.hueValue = characteristic.value as? Int
+               }
+               if characteristic.localizedDescription == "Brightness" {
+                   self.brightnessValue = characteristic.value as? Int
+               }
+               self.readingData = false
+           })
+           }
+       }
+    
+    func setCharacteristicValue(characteristic: HMCharacteristic?, value: Any) {
+        guard let characteristic = characteristic else { return }
+        
+        characteristic.writeValue(value, completionHandler: {_ in
+            self.readCharacteristicValue(characteristic: characteristic)
+        })
+    }
+        
+    func readCharacteristicValue(characteristic: HMCharacteristic?){
+        guard let characteristic = characteristic else { return }
+    
+        readingData = true
+    
+        characteristic.readValue(completionHandler: {_ in
+            if characteristic.localizedDescription == "Power State" {
+                self.powerState = characteristic.value as? Bool
             }
-            if characteristicToRead.localizedDescription == "Hue" {
-                self.hueValue = characteristicToRead.value as? Int
+            if characteristic.localizedDescription == "Hue" {
+                self.hueValue = characteristic.value as? Int
             }
-            if characteristicToRead.localizedDescription == "Brightness" {
-                self.brightnessValue = characteristicToRead.value as? Int
+            if characteristic.localizedDescription == "Brightness" {
+                self.brightnessValue = characteristic.value as? Int
             }
             self.readingData = false
         })

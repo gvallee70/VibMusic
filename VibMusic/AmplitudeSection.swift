@@ -17,7 +17,7 @@ struct AmplitudeSection: View {
         }) {
             VStack {
                 HStack {
-                    Text("Amplitude du son")
+                    Text("Amplitude du son capté")
                     Spacer()
                     Text("\(audioKitViewModel.data.amplitude, specifier: "%0.1f")")
                 }
@@ -25,6 +25,7 @@ struct AmplitudeSection: View {
                     .clipped()
                     .frame(height: 50)
                     .padding(.horizontal, -20)
+                    .clipShape(Capsule())
             }
         }
     }

@@ -10,36 +10,33 @@ import HomeKit
 
 struct AccessoriesView: View {
     
-    var homeId: UUID
+    var home: HMHome
     @ObservedObject var model: HomeStore
 
     var body: some View {
         List {
-            Section(header: HStack {
-                Text("Mes accessoires pour \(model.homes.first(where: {$0.uniqueIdentifier == homeId})?.name ?? "la maison")")
-            }) {
-                ForEach(model.accessories, id: \.uniqueIdentifier) { accessory in
-                    NavigationLink(value: accessory){
-                        Text("\(accessory.name)")
-                    }.navigationDestination(for: HMAccessory.self) {
-                        ServicesView(accessoryId: $0.uniqueIdentifier, homeId: homeId, model: model)
-                    }
-                }
-            }
-            
             Button {
-                model.addAccessory(to: homeId)
+                model.addAccessory(to: home)
             } label: {
                 HStack {
                     Image(systemName: "plus")
-                    Text("Ajouter un accessoire")
+                    Text("Ajouter un accessoire pour \(home.name)")
                 }
             }
             
+            Section(header: HStack {
+                Text("Mes accessoires pour \(home.name)")
+            }) {
+                ForEach(model.accessories, id: \.uniqueIdentifier) { accessory in
+                    NavigationLink(destination: ServicesView(accessory: accessory, model: self.model)) {
+                        Text("\(accessory.name)")
+                    }
+                }
+            }
         }
         .navigationTitle("Mes accessoires")
         .onAppear(){
-            model.findAccessories(homeId: homeId)
+            model.findAccessories(from: self.home)
         }
 
     }
