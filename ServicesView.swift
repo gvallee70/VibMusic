@@ -27,7 +27,9 @@ struct ServicesView: View {
                     }
                 }
             }
-        }.onAppear(){
+        }
+        .navigationTitle("Services")
+        .onAppear(){
             model.findServices(accessoryId: self.accessoryId, homeId: self.homeId)
         }
     }

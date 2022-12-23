@@ -15,7 +15,6 @@ struct HomeView: View {
     var body: some View {
         List {
             Section(header: HStack {
-                Text("Mes maisons")
             }) {
                 ForEach(model.homes, id: \.uniqueIdentifier) { home in
                     NavigationLink(value: home){
@@ -27,6 +26,6 @@ struct HomeView: View {
                 }
             }
         }
-        
+        .navigationTitle("Mes maisons")
     }
 }

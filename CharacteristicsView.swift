@@ -80,7 +80,14 @@ struct CharacteristicsView: View {
             } label: {
                 Text(self.soundDetectionIsOn ? "Modifier manuellement" : "Arrêter modification manuelle")
             }
+            
+            AmplitudeSection(audioKitViewModel: self.audioKitViewModel)
+                .onAppear {
+                    self.audioKitViewModel.homeViewModel = self.model
+                    self.audioKitViewModel.start()
+                }
         }
+        .navigationTitle("Paramètres du service")
         .onAppear {
             model.findCharacteristics(serviceId: serviceId, accessoryId: accessoryId, homeId: homeId)
             model.readCharacteristicValues(serviceId: serviceId)
@@ -95,25 +102,9 @@ struct CharacteristicsView: View {
         .onChange(of: audioKitViewModel.data.amplitude) { newValue in
             if self.soundDetectionIsOn {
                 brightnessSlider = Float(audioKitViewModel.brightnessRegressionDict[round(newValue * 10) / 10.0] ?? 0)
-
+                
                 model.setCharacteristicValue(characteristicID: model.characteristics.first(where: {$0.localizedDescription == "Brightness"})?.uniqueIdentifier, value:  brightnessSlider)
             }
         }
-        
-        HStack {
-            Text("Amplitude du son")
-            Spacer()
-            Text("\(audioKitViewModel.data.amplitude, specifier: "%0.1f")/1")
-        }
-        .padding(.horizontal)
-        .onAppear {
-            self.audioKitViewModel.homeViewModel = self.model
-            self.audioKitViewModel.start()
-        }
-        
-        NodeOutputView(audioKitViewModel.tappableNodeB)
-            .clipped()
-            .frame(height: 50)
-
     }
 }

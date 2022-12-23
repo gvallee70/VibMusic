@@ -21,21 +21,17 @@ struct RootView: View {
     
     var body: some View {
         NavigationStack(path: $path) {
-            Button(action: {
-                path.append("HomeView")
-            }, label: {
-                Text("Mon HomeKit")
-            })
-            .frame(width: 300, height: 100)
-            .buttonStyle(.bordered)
-            .navigationDestination(for: String.self) {
-                if $0 == "HomeView" {
-                    HomeView(model: model)
-                }
-            }
-            
-            Spacer()
             List {
+                Section(header: HStack {
+                    Text("Gestion")
+                }) {
+                    NavigationLink(value: "HomeView"){
+                        Text("Mon HomeKit")
+                    }
+                    .navigationDestination(for: String.self) {_ in
+                        HomeView(model: self.model)
+                    }
+                }
                 Section(header: HStack {
                     Text("Paramètres de Vib'Music")
                 }) {
@@ -64,7 +60,14 @@ struct RootView: View {
                         UserDefaults.standard.set(soundDetectionIsOn, forKey: "soundDetectionIsOn")
                     }
                 }
+                
+                AmplitudeSection(audioKitViewModel: self.audioKitViewModel)
+                    .onAppear {
+                        self.audioKitViewModel.homeViewModel = self.model
+                        self.audioKitViewModel.start()
+                    }
             }
+            .navigationTitle("Vib'Music")
         }
     }
 }

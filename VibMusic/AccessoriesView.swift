@@ -26,17 +26,21 @@ struct AccessoriesView: View {
                     }
                 }
             }
-        }.onAppear(){
+            
+            Button {
+                model.addAccessory(to: homeId)
+            } label: {
+                HStack {
+                    Image(systemName: "plus")
+                    Text("Ajouter un accessoire")
+                }
+            }
+            
+        }
+        .navigationTitle("Mes accessoires")
+        .onAppear(){
             model.findAccessories(homeId: homeId)
         }
-        
-        Button {
-            model.addAccessory(to: homeId)
-        } label: {
-            Image(systemName: "plus")
-            Text("Ajouter un accessoire")
-        }
-        .padding()
 
     }
 }
