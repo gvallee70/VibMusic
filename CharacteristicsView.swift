@@ -16,6 +16,7 @@ struct CharacteristicsView: View {
     @StateObject var audioKitViewModel = TunerConductor()
 
     @State private var hueSlider: Float = 0
+    @State private var saturationSlider: Float = 0
     @State private var brightnessSlider: Float = 0
     @State private var powerStateIsOn: Bool = true
     @State private var soundDetectionIsOn: Bool = UserDefaults.standard.bool(forKey: "soundDetectionIsOn")
@@ -52,6 +53,19 @@ struct CharacteristicsView: View {
                         Text("360")
                     } onEditingChanged: { _ in
                         model.setCharacteristicValue(characteristic: self.model.characteristics.first(where: {$0.localizedDescription == "Hue"}), value: Int(hueSlider))
+                    }
+                }
+                
+                VStack {
+                    Text("Saturation")
+                    Slider(value: $saturationSlider, in: 0...100, step: 1.0) {
+                        Text("Saturation slider")
+                    } minimumValueLabel: {
+                        Text("\(Int(saturationSlider))")
+                    } maximumValueLabel: {
+                        Text("100")
+                    } onEditingChanged: { _ in
+                        model.setCharacteristicValue(characteristic: self.model.characteristics.first(where: {$0.localizedDescription == "Saturation"}), value: Int(saturationSlider))
                     }
                 }
             
@@ -91,10 +105,11 @@ struct CharacteristicsView: View {
             self.model.findCharacteristics(from: self.service)
             self.model.readCharacteristicValues(service: self.service)
             
-            if let powerState = model.powerState, let brightness = model.brightnessValue, let hue = model.hueValue {
+            if let powerState = model.powerState, let brightness = model.brightnessValue, let hue = model.hueValue, let saturation = model.saturationValue {
                 self.powerStateIsOn = powerState
                 self.brightnessSlider = Float(brightness)
                 self.hueSlider = Float(hue)
+                self.saturationSlider = Float(saturation)
             }
             
         }

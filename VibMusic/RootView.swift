@@ -22,9 +22,12 @@ struct RootView: View {
     var body: some View {
         NavigationStack(path: $path) {
             List {
-                Section(header: HStack {
+                Section(header:
                     Text("Gestion")
-                }) {
+                ) {
+                    NavigationLink(destination: AmbiancesListView(viewModel: AmbiancesViewModel())) {
+                        Text("Mes ambiances")
+                    }
                     NavigationLink(destination: HomeView(model: self.model)) {
                         Text("Mon HomeKit")
                     }

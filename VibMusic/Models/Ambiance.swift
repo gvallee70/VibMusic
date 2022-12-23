@@ -8,15 +8,18 @@
 import Foundation
 import SwiftUI
 
-class Ambiance {
+class Ambiance: Codable {
+    var id = UUID()
     var name: String
-    var lightBrightness: Int
     var lightHue: Int
+    var lightSaturation: Int
+    var lightBrightness: Int
     
-    init(name: String, lightBrightness: Int, lightHue: Int) {
+    init(name: String, lightHue: Int, lightSaturation: Int, lightBrightness: Int) {
         self.name = name
-        self.lightBrightness = lightBrightness
         self.lightHue = lightHue
+        self.lightSaturation = lightSaturation
+        self.lightBrightness = lightBrightness
     }
     
 }

@@ -29,7 +29,7 @@ struct AccessoriesView: View {
             }) {
                 ForEach(model.accessories, id: \.uniqueIdentifier) { accessory in
                     NavigationLink(destination: ServicesView(accessory: accessory, model: self.model)) {
-                        Text("\(accessory.name)")
+                        Text(accessory.name)
                     }
                 }
             }

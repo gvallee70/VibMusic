@@ -5,7 +5,7 @@
 //  Created by Gwendal on 22/12/2022.
 //
 
-import Foundation
+import SwiftUI
 import HomeKit
 import Combine
 
@@ -26,14 +26,16 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate, HMAccessoryB
        
     @Published var powerState: Bool?
     @Published var hueValue: Int?
+    @Published var saturationValue: Int?
     @Published var brightnessValue: Int?
 
     override init(){
         super.init()
-        load()
+        
+        self.initHomeManager()
     }
     
-    func load() {
+    func initHomeManager() {
         if manager == nil {
             manager = .init()
             manager.delegate = self
@@ -110,6 +112,9 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate, HMAccessoryB
                if characteristic.localizedDescription == "Hue" {
                    self.hueValue = characteristic.value as? Int
                }
+               if characteristic.localizedDescription == "Saturation" {
+                   self.saturationValue = characteristic.value as? Int
+               }
                if characteristic.localizedDescription == "Brightness" {
                    self.brightnessValue = characteristic.value as? Int
                }
@@ -137,6 +142,9 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate, HMAccessoryB
             }
             if characteristic.localizedDescription == "Hue" {
                 self.hueValue = characteristic.value as? Int
+            }
+            if characteristic.localizedDescription == "Saturation" {
+                self.saturationValue = characteristic.value as? Int
             }
             if characteristic.localizedDescription == "Brightness" {
                 self.brightnessValue = characteristic.value as? Int

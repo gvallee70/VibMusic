@@ -21,7 +21,7 @@ struct ServicesView: View {
             }) {
                 ForEach(model.services, id: \.uniqueIdentifier) { service in
                     NavigationLink(destination: CharacteristicsView(service: service, model: self.model)) {
-                        Text("\(service.name)")
+                        Text(service.name)
                     }
                 }
             }

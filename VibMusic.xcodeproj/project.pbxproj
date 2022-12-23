@@ -23,6 +23,9 @@
 		BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B12953ED9A005CAB8A /* ServicesView.swift */; };
 		BEF751B42954D227005CAB8A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B32954D226005CAB8A /* RootView.swift */; };
 		BEF751BB29554B37005CAB8A /* AmplitudeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */; };
+		BEF751BD2956174A005CAB8A /* AmbiancesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BC29561749005CAB8A /* AmbiancesListView.swift */; };
+		BEF751BF29561F37005CAB8A /* AmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BE29561F37005CAB8A /* AmbianceView.swift */; };
+		BEF751C129561FE1005CAB8A /* AmbiancesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		BEF751B12953ED9A005CAB8A /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServicesView.swift; path = ../ServicesView.swift; sourceTree = "<group>"; };
 		BEF751B32954D226005CAB8A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeSection.swift; sourceTree = "<group>"; };
+		BEF751BC29561749005CAB8A /* AmbiancesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesListView.swift; sourceTree = "<group>"; };
+		BEF751BE29561F37005CAB8A /* AmbianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbianceView.swift; sourceTree = "<group>"; };
+		BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +94,10 @@
 				BE8A006D294B538F00C97144 /* Preview Content */,
 				BEF75194295371C4005CAB8A /* Tuner.swift */,
 				BEF751B32954D226005CAB8A /* RootView.swift */,
+				BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */,
 				BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */,
+				BEF751BC29561749005CAB8A /* AmbiancesListView.swift */,
+				BEF751BE29561F37005CAB8A /* AmbianceView.swift */,
 			);
 			path = VibMusic;
 			sourceTree = "<group>";
@@ -191,13 +200,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEF751C129561FE1005CAB8A /* AmbiancesViewModel.swift in Sources */,
 				BEF751AA2953EB73005CAB8A /* HomeStore.swift in Sources */,
 				BEF75195295371C4005CAB8A /* Tuner.swift in Sources */,
 				BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */,
+				BEF751BD2956174A005CAB8A /* AmbiancesListView.swift in Sources */,
 				BEF751AE2953EC7E005CAB8A /* AccessoriesView.swift in Sources */,
 				BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */,
 				BEF751B42954D227005CAB8A /* RootView.swift in Sources */,
 				BEF751BB29554B37005CAB8A /* AmplitudeSection.swift in Sources */,
+				BEF751BF29561F37005CAB8A /* AmbianceView.swift in Sources */,
 				BEF751AC2953EBB3005CAB8A /* HomeView.swift in Sources */,
 				BEF751B02953ECEA005CAB8A /* CharacteristicsView.swift in Sources */,
 				BEF751A72953D483005CAB8A /* Ambiance.swift in Sources */,

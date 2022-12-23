@@ -18,7 +18,7 @@ struct HomeView: View {
             }) {
                 ForEach(model.homes, id: \.uniqueIdentifier) { home in
                     NavigationLink(destination: AccessoriesView(home: home, model: self.model)) {
-                        Text("\(home.name)")
+                        Text(home.name)
                     }
                 }
             }
