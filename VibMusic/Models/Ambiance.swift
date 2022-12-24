@@ -8,7 +8,11 @@
 import Foundation
 import SwiftUI
 
-class Ambiance: Codable {
+class Ambiance: Codable, Equatable {
+    static func == (lhs: Ambiance, rhs: Ambiance) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id = UUID()
     var name: String
     var lightHue: Int

@@ -11,9 +11,11 @@ class AmbiancesViewModel: ObservableObject {
     
     @Published var ambiances: [Ambiance] = []
     @Published var storedAmbiances: [Ambiance] = []
+    @Published var currentAmbiance: Ambiance?
     
     init() {
         self.getAmbiances()
+        self.getCurrentAmbiance()
     }
 
     func store(_ ambiance: Ambiance) {
@@ -22,14 +24,53 @@ class AmbiancesViewModel: ObservableObject {
             let encodedAmbiances = try JSONEncoder().encode(self.storedAmbiances)
             
             UserDefaults.standard.set(encodedAmbiances, forKey: "ambiances")
+            self.getAmbiances()
         } catch {
             print("Unable to store ambiance (\(error))")
         }
     }
     
+    func storeCurrentAmbiance(_ ambiance: Ambiance) {
+        do {
+            let encodedAmbiance = try JSONEncoder().encode(ambiance)
+            
+            UserDefaults.standard.set(encodedAmbiance, forKey: "currentAmbiance")
+        } catch {
+            print("Unable to store current ambiance (\(error))")
+        }
+    }
+    
+    func delete(_ ambiance: Ambiance) {
+        do {
+            if let indexToRemove = self.storedAmbiances.firstIndex(of: ambiance) {
+                self.storedAmbiances.remove(at: indexToRemove)
+            }
+
+            let encodedAmbiances = try JSONEncoder().encode(self.storedAmbiances)
+            
+            UserDefaults.standard.set(encodedAmbiances, forKey: "ambiances")
+            self.getAmbiances()
+        } catch {
+            print("Unable to delete ambiance (\(error))")
+        }
+    }
+    
+    
     func getAmbiances() {
+        self.ambiances.removeAll()
+
         self.getStoredAmbiances()
         self.getBasicAmbiances()
+    }
+    
+    func getCurrentAmbiance() {
+        guard let data = UserDefaults.standard.data(forKey: "currentAmbiance") else { return }
+        
+        do {
+            self.currentAmbiance = try JSONDecoder().decode(Ambiance.self, from: data)
+        } catch {
+            print("Unable to retrieve current ambiance (\(error))")
+        }
     }
     
     private func getBasicAmbiances() {

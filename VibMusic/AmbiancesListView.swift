@@ -9,60 +9,36 @@ import SwiftUI
 
 struct AmbiancesListView: View {
     @State private var showAddAmbianceSheet = false
-    @State private var nameTextFieldValue = ""
-    @State private var hueSliderValue = 0.0
-    @State private var saturationSliderValue = 50.0
-    @State private var brightnessSliderValue = 50.0
-
 
     @ObservedObject var viewModel: AmbiancesViewModel
 
     var body: some View {
         List {
-            Button {
-                self.showAddAmbianceSheet.toggle()
-            } label: {
-                HStack {
-                    Image(systemName: "plus")
-                    Text("Ajouter une ambiance")
+            Section {
+                Button {
+                    self.showAddAmbianceSheet.toggle()
+                } label: {
+                    HStack {
+                        Image(systemName: "plus")
+                        Text("Ajouter une ambiance")
+                    }
                 }
-            }
-            .sheet(isPresented: $showAddAmbianceSheet) {
-                List {
-                    TextField("Nom", text: $nameTextFieldValue)
-                    Slider(value: $hueSliderValue, in: 0...360, step: 1.0) {
-                        Text("Hue slider")
-                    } minimumValueLabel: {
-                        Text("\(Int(hueSliderValue))")
-                    } maximumValueLabel: {
-                        Text("360")
+                .sheet(isPresented: $showAddAmbianceSheet) {
+                    List {
+                        AddAmbianceSheetView(viewModel: self.viewModel)
                     }
-                    Slider(value: $saturationSliderValue, in: 0...100, step: 1.0) {
-                        Text("Saturation slider")
-                    } minimumValueLabel: {
-                        Text("\(Int(saturationSliderValue))")
-                    } maximumValueLabel: {
-                        Text("100")
-                    }
-                    Slider(value: $brightnessSliderValue, in: 0...100, step: 1.0) {
-                        Text("Brightness slider")
-                    } minimumValueLabel: {
-                        Text("\(Int(brightnessSliderValue))")
-                    } maximumValueLabel: {
-                        Text("100")
-                    }
-                    Button("Ajouter une ambiance") {
-                        let ambiance = Ambiance(name: nameTextFieldValue, lightHue: Int(hueSliderValue), lightSaturation: Int(saturationSliderValue), lightBrightness: Int(brightnessSliderValue))
+                }
                 
-                        self.viewModel.store(ambiance)
+                Button(role: .destructive) {
+                    //self.showAddAmbianceSheet.toggle()
+                } label: {
+                    HStack {
+                        Image(systemName: "pencil")
+                        Text("Modifier")
                     }
-                    .buttonStyle(.bordered)
-                    .controlSize(.large)
-                    
                 }
             }
-        }
-        ScrollView {
+    
            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
                ForEach(self.viewModel.ambiances, id: \.id) { ambiance in
                    ZStack {
@@ -81,10 +57,11 @@ struct AmbiancesListView: View {
                     }
                    .padding(10)
                }
-           }
+            }
+            .padding(-10)
+            .listRowBackground(Color.clear)
+            .navigationTitle("Mes ambiances")
         }
-        .padding()
-        .navigationTitle("Mes ambiances")
     }
 }
 
