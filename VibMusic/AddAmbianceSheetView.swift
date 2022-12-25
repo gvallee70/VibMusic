@@ -19,7 +19,12 @@ struct AddAmbianceSheetView: View {
     
     var body: some View {
         VStack {
+            Text("Ajouter une ambiance")
+                .font(.title)
+                .padding()
             TextField("Nom", text: $nameTextFieldValue)
+                .font(.title3)
+                .padding(.vertical, 5)
             Slider(value: $hueSliderValue, in: 0...360, step: 1.0) {
                 Text("Hue slider")
             } minimumValueLabel: {
@@ -27,6 +32,8 @@ struct AddAmbianceSheetView: View {
             } maximumValueLabel: {
                 Text("360")
             }
+            .padding(.vertical, 5)
+
             Slider(value: $saturationSliderValue, in: 0...100, step: 1.0) {
                 Text("Saturation slider")
             } minimumValueLabel: {
@@ -34,6 +41,8 @@ struct AddAmbianceSheetView: View {
             } maximumValueLabel: {
                 Text("100")
             }
+            .padding(.vertical, 5)
+
             Slider(value: $brightnessSliderValue, in: 0...100, step: 1.0) {
                 Text("Brightness slider")
             } minimumValueLabel: {
@@ -41,6 +50,8 @@ struct AddAmbianceSheetView: View {
             } maximumValueLabel: {
                 Text("100")
             }
+            .padding(.vertical, 5)
+
             Button("Ajouter une ambiance") {
                 let ambiance = Ambiance(name: nameTextFieldValue, lightHue: Int(hueSliderValue), lightSaturation: Int(saturationSliderValue), lightBrightness: Int(brightnessSliderValue))
         
@@ -49,6 +60,7 @@ struct AddAmbianceSheetView: View {
             }
             .disabled(nameTextFieldValue.isEmpty)
             .buttonStyle(.bordered)
+            .padding()
         }
     }
 }
