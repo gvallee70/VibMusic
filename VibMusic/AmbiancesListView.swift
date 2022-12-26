@@ -10,7 +10,7 @@ import SwiftUI
 struct AmbiancesListView: View {
     @State private var showAddAmbianceSheet = false
     @State private var modifyAmbianceIsEnabled = false
-    @State private var isSelected = false
+    @State private var selectedAmbiance: Ambiance?
     
     @ObservedObject var viewModel: AmbiancesViewModel
 
@@ -49,7 +49,7 @@ struct AmbiancesListView: View {
         ScrollView {
             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
                 ForEach(self.viewModel.ambiances, id: \.id) { ambiance in
-                    NavigationLink(destination: self.modifyAmbianceIsEnabled ? AmbianceView(ambiance: ambiance) : nil) {
+                    NavigationLink(destination: self.modifyAmbianceIsEnabled ? AmbianceView(ambiance: ambiance, viewModel: self.viewModel) : nil) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12)
                                 .frame(height: 100)
@@ -64,26 +64,40 @@ struct AmbiancesListView: View {
                                 }
                             }
                         }
-                        .border(self.isSelected ? .green : .clear , width: 4)
-                        .padding(10)
                         .rotationEffect(.degrees(self.modifyAmbianceIsEnabled ? 1.5 : 0))
                         .overlay(alignment: .topTrailing) {
                             Button(action: {
                                 
                             }, label: {
                                 Image(systemName: "pencil.circle.fill")
-                                    .font(.title)
-                                    .symbolRenderingMode(.palette)
-                                    .foregroundStyle(.white, .blue)
+                                    .font(.title2)
+                                    //.symbolRenderingMode(.palette)
+                                    //.foregroundStyle(.clear, .blue)
+                                    .foregroundColor(.white)
                             })
                             .opacity(self.modifyAmbianceIsEnabled ? 1 : 0)
                             .animation(nil)
+                            
+                            if self.selectedAmbiance == ambiance {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.green, lineWidth: 3)
+                                
+                                
+                            }
                         }
+                        .padding(10)
                     }
+                    .disabled(!self.modifyAmbianceIsEnabled)
                     .simultaneousGesture(TapGesture().onEnded {
-                        self.isSelected = true
+                        if !self.modifyAmbianceIsEnabled {
+                            self.selectedAmbiance = ambiance
+                            self.viewModel.storeCurrentAmbiance(ambiance)
+                        }
                     })
                     .foregroundColor(.white)
+                    .onAppear {
+                        self.selectedAmbiance = self.viewModel.currentAmbiance
+                    }
                 }
             }
             

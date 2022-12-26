@@ -35,6 +35,7 @@ class AmbiancesViewModel: ObservableObject {
             let encodedAmbiance = try JSONEncoder().encode(ambiance)
             
             UserDefaults.standard.set(encodedAmbiance, forKey: "currentAmbiance")
+            self.getCurrentAmbiance()
         } catch {
             print("Unable to store current ambiance (\(error))")
         }
@@ -59,6 +60,12 @@ class AmbiancesViewModel: ObservableObject {
     func getAmbiances() {
         self.ambiances.removeAll()
 
+        self.getCurrentAmbiance()
+        
+        if let currentAmbiance = self.currentAmbiance {
+            self.ambiances.append(currentAmbiance)
+        }
+        
         self.getStoredAmbiances()
         self.getBasicAmbiances()
     }
@@ -68,25 +75,41 @@ class AmbiancesViewModel: ObservableObject {
         
         do {
             self.currentAmbiance = try JSONDecoder().decode(Ambiance.self, from: data)
+            
         } catch {
             print("Unable to retrieve current ambiance (\(error))")
         }
     }
     
     private func getBasicAmbiances() {
-        self.ambiances += [
+        let ambiances = [
             Ambiance(name: "Jazz", lightHue: 5, lightSaturation: 50, lightBrightness: 30),
             Ambiance(name: "Relax", lightHue: 160, lightSaturation: 50, lightBrightness: 50),
             Ambiance(name: "Metal", lightHue: 150, lightSaturation: 20, lightBrightness: 70)
         ]
+        
+        ambiances.forEach { ambiance in
+            if !self.ambiances.contains(ambiance) {
+                self.ambiances.append(ambiance)
+            }
+        }
     }
     
     private func getStoredAmbiances() {
         guard let data = UserDefaults.standard.data(forKey: "ambiances") else { return }
         
         do {
-            self.storedAmbiances = try JSONDecoder().decode([Ambiance].self, from: data)
-            self.ambiances += self.storedAmbiances
+            let storedAmbiances = try JSONDecoder().decode([Ambiance].self, from: data)
+            
+            storedAmbiances.forEach { ambiance in
+                if !self.storedAmbiances.contains(ambiance) {
+                    self.storedAmbiances.append(ambiance)
+                }
+                
+                if !self.ambiances.contains(ambiance) {
+                    self.ambiances.append(ambiance)
+                }
+            }
         } catch {
             print("Unable to retrieve ambiances (\(error))")
         }
