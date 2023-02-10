@@ -12,7 +12,7 @@ struct CharacteristicsView: View {
     
     var service: HMService
    
-    @ObservedObject var model: HomeStore
+    @StateObject var model: HomeStore
     @StateObject var audioKitViewModel = TunerConductor()
 
     @State private var hueSlider: Float = 0
@@ -35,6 +35,20 @@ struct CharacteristicsView: View {
 //                }
 //
 //            }
+            
+            Group {
+                if self.powerStateIsOn && self.brightnessSlider > 70 {
+                    LottieView(filename: "LightbulbOnOff", fromFrame: 40, toFrame: 70)
+                } else if self.powerStateIsOn && (15...70).contains(self.brightnessSlider)  {
+                    LottieView(filename: "LightbulbOnOff", fromFrame: 30, toFrame: 40)
+                } else {
+                    LottieView(filename: "LightbulbOnOff", fromFrame: 0, toFrame: 15)
+                }
+            }
+            .frame(width: 300, height: 150, alignment: .center)
+            .listRowBackground(Color.clear)
+            
+            
             Section(header: HStack {
                 Text("Contrôle des paramètres pour \(service.name)")
             }) {
@@ -91,7 +105,10 @@ struct CharacteristicsView: View {
                 self.soundDetectionIsOn.toggle()
                 UserDefaults.standard.set(self.soundDetectionIsOn, forKey: "soundDetectionIsOn")
             } label: {
-                Text(self.soundDetectionIsOn ? "Modifier manuellement" : "Arrêter modification manuelle")
+                HStack {
+                    Image(systemName: self.soundDetectionIsOn ? "slider.horizontal.3" : "waveform.and.mic")
+                    Text(self.soundDetectionIsOn ? "Modifier manuellement" : "Arrêter modification manuelle")
+                }
             }
             
             AmplitudeSection(audioKitViewModel: self.audioKitViewModel)
@@ -102,7 +119,7 @@ struct CharacteristicsView: View {
         }
         .navigationTitle("Paramètres du service")
         .onAppear {
-            self.model.findCharacteristics(from: self.service)
+            self.model.getCharacteristics(from: self.service)
             self.model.readCharacteristicValues(service: self.service)
             
             if let powerState = model.powerState, let brightness = model.brightnessValue, let hue = model.hueValue, let saturation = model.saturationValue {

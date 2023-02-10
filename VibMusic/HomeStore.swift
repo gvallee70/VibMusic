@@ -9,13 +9,16 @@ import SwiftUI
 import HomeKit
 import Combine
 
-class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate, HMAccessoryBrowserDelegate {
+class HomeStore: NSObject, ObservableObject {
     
     
     @Published var homes: [HMHome] = []
     @Published var selectedHome: HMHome?
 
     @Published var accessories: [HMAccessory] = []
+    @Published var discoveredAccessories: [HMAccessory] = []
+    @Published var accessoryToAdd: HMAccessory?
+    
     @Published var services: [HMService] = []
     @Published var characteristics: [HMCharacteristic] = []
 
@@ -42,62 +45,41 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate, HMAccessoryB
         }
     }
     
-
-    func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
-        print("DEBUG: Updated Homes!")
-        self.homes = self.manager.homes
-    }
     
-    func accessoryBrowser(_ browser: HMAccessoryBrowser, didFindNewAccessory accessory: HMAccessory) {
-        guard let selectedHome = self.selectedHome else {
-            print("ERROR: No selected home!")
-            return
-        }
-        
-        selectedHome.addAccessory(accessory) { err in
-            guard err == nil else {
-                print("ERROR: Can not add accessory!")
-                print(err!.localizedDescription)
-                return
-            }
-
-            selectedHome.assignAccessory(accessory, to: selectedHome.roomForEntireHome()) { err in
-                guard err == nil else {
-                    print("ERROR: Can not assign accessory \(accessory.name)!")
-                    print(err!.localizedDescription)
-                    return
-                }
-                browser.stopSearchingForNewAccessories()
-                //self.findAccessories(homeId: selectedHome.uniqueIdentifier)
-            }
-
-        }
-    }
-    
-    func accessoryBrowser(_ browser: HMAccessoryBrowser, didRemoveNewAccessory accessory: HMAccessory) {
-        print("DID REMOVE")
-        print(accessory)
-    }
-    
-    func addAccessory(to home: HMHome) {
+    func addAccessory(_ accessory: HMAccessory, to home: HMHome) {
         self.selectedHome = home
+        self.accessoryToAdd = accessory
         
-        self.accessoryBrowser = .init()
+        self.discoveredAccessories.removeAll()
+        self.accessoryBrowser.startSearchingForNewAccessories()
+    }
+    
+    func findNewAccessories() {
+        self.discoveredAccessories.removeAll()
+        
+        self.accessoryBrowser = HMAccessoryBrowser()
         self.accessoryBrowser.delegate = self
         self.accessoryBrowser.startSearchingForNewAccessories()
     }
     
-    
-    func findAccessories(from home: HMHome) {
-        self.selectedHome = home
-        self.accessories = home.accessories
+    func stopFindNewAccessories() {
+        self.accessoryBrowser.stopSearchingForNewAccessories()
     }
     
-    func findServices(from accessory: HMAccessory) {
-        self.services = accessory.services
+    
+    func getAccessories(from home: HMHome) {
+        self.accessories = home.accessories.filter({
+            $0.category.categoryType == HMAccessoryCategoryTypeLightbulb
+        })
     }
     
-    func findCharacteristics(from service: HMService) {
+    func getServices(from accessory: HMAccessory) {
+        self.services = accessory.services.filter({
+            $0.serviceType == HMServiceTypeLightbulb
+        })
+    }
+    
+    func getCharacteristics(from service: HMService) {
         self.characteristics = service.characteristics
     }
     
@@ -154,4 +136,52 @@ class HomeStore: NSObject, ObservableObject, HMHomeManagerDelegate, HMAccessoryB
     }
     
 
+}
+
+
+extension HomeStore: HMHomeManagerDelegate {
+    func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
+        print("DEBUG: Updated Homes!")
+        self.homes = self.manager.homes
+    }
+}
+
+extension HomeStore: HMAccessoryBrowserDelegate {
+    func accessoryBrowser(_ browser: HMAccessoryBrowser, didFindNewAccessory accessory: HMAccessory) {
+        
+        if accessory.category.categoryType == HMAccessoryCategoryTypeLightbulb {
+            self.discoveredAccessories.append(accessory)
+        }
+    
+        if self.accessoryToAdd?.uniqueIdentifier == accessory.uniqueIdentifier {
+            guard let selectedHome = self.selectedHome else {
+                print("ERROR: No selected home!")
+                return
+            }
+            
+            selectedHome.addAccessory(accessory) { err in
+                guard err == nil else {
+                    print("ERROR: Can not add accessory!")
+                    print(err!.localizedDescription)
+                    return
+                }
+                
+                selectedHome.assignAccessory(accessory, to: selectedHome.roomForEntireHome()) { err in
+                    guard err == nil else {
+                        print("ERROR: Can not assign accessory \(accessory.name)!")
+                        print(err!.localizedDescription)
+                        return
+                    }
+                    self.accessories.append(accessory)
+                    self.discoveredAccessories.removeAll(where: {$0.uniqueIdentifier == accessory.uniqueIdentifier})
+                    browser.stopSearchingForNewAccessories()
+                }
+            }
+        }
+    }
+    
+    func accessoryBrowser(_ browser: HMAccessoryBrowser, didRemoveNewAccessory accessory: HMAccessory) {
+        print("DID REMOVE")
+        print(accessory)
+    }
 }

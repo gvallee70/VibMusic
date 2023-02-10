@@ -12,7 +12,7 @@ struct ServicesView: View {
     
     var accessory: HMAccessory
 
-    @ObservedObject var model: HomeStore
+    @StateObject var model: HomeStore
 
     var body: some View {
         List {
@@ -28,7 +28,7 @@ struct ServicesView: View {
         }
         .navigationTitle("Services")
         .onAppear(){
-            model.findServices(from: self.accessory)
+            model.getServices(from: self.accessory)
         }
     }
 }

@@ -10,6 +10,10 @@
 		BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A0067294B538D00C97144 /* VibMusicApp.swift */; };
 		BE8A006C294B538F00C97144 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006B294B538F00C97144 /* Assets.xcassets */; };
 		BE8A006F294B538F00C97144 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006E294B538F00C97144 /* Preview Assets.xcassets */; };
+		BEED91592995CD750096EDD5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BEED91582995CD750096EDD5 /* Lottie */; };
+		BEED91602995CEE30096EDD5 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEED915F2995CEE30096EDD5 /* LottieView.swift */; };
+		BEED91622995CFEC0096EDD5 /* NoLightbulbFound.json in Resources */ = {isa = PBXBuildFile; fileRef = BEED91612995CFEC0096EDD5 /* NoLightbulbFound.json */; };
+		BEED91642995E0900096EDD5 /* LightbulbOnOff.json in Resources */ = {isa = PBXBuildFile; fileRef = BEED91632995E0900096EDD5 /* LightbulbOnOff.json */; };
 		BEF75195295371C4005CAB8A /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF75194295371C4005CAB8A /* Tuner.swift */; };
 		BEF7519B29537472005CAB8A /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BEF7519A29537472005CAB8A /* AudioKit */; };
 		BEF7519E2953749C005CAB8A /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = BEF7519D2953749C005CAB8A /* AudioKitEX */; };
@@ -34,14 +38,17 @@
 		BE8A0067294B538D00C97144 /* VibMusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibMusicApp.swift; sourceTree = "<group>"; };
 		BE8A006B294B538F00C97144 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE8A006E294B538F00C97144 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BEED915F2995CEE30096EDD5 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		BEED91612995CFEC0096EDD5 /* NoLightbulbFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = NoLightbulbFound.json; path = ../../../../../../../../../../Downloads/NoLightbulbFound.json; sourceTree = "<group>"; };
+		BEED91632995E0900096EDD5 /* LightbulbOnOff.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LightbulbOnOff.json; path = ../../../../../../../../../../Downloads/LightbulbOnOff.json; sourceTree = "<group>"; };
 		BEF75194295371C4005CAB8A /* Tuner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
 		BEF751A62953D483005CAB8A /* Ambiance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ambiance.swift; sourceTree = "<group>"; };
 		BEF751A82953E2A9005CAB8A /* VibMusic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VibMusic.entitlements; sourceTree = "<group>"; };
 		BEF751A92953EB73005CAB8A /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
 		BEF751AB2953EBB3005CAB8A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BEF751AD2953EC7E005CAB8A /* AccessoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoriesView.swift; sourceTree = "<group>"; };
-		BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacteristicsView.swift; path = ../CharacteristicsView.swift; sourceTree = "<group>"; };
-		BEF751B12953ED9A005CAB8A /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServicesView.swift; path = ../ServicesView.swift; sourceTree = "<group>"; };
+		BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicsView.swift; sourceTree = "<group>"; };
+		BEF751B12953ED9A005CAB8A /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		BEF751B32954D226005CAB8A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeSection.swift; sourceTree = "<group>"; };
 		BEF751BC29561749005CAB8A /* AmbiancesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesListView.swift; sourceTree = "<group>"; };
@@ -55,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEED91592995CD750096EDD5 /* Lottie in Frameworks */,
 				BEF7519B29537472005CAB8A /* AudioKit in Frameworks */,
 				BEF751A1295374AE005CAB8A /* AudioKitUI in Frameworks */,
 				BEF751A4295374C0005CAB8A /* SoundpipeAudioKit in Frameworks */,
@@ -84,23 +92,15 @@
 		BE8A0066294B538D00C97144 /* VibMusic */ = {
 			isa = PBXGroup;
 			children = (
-				BEF751B12953ED9A005CAB8A /* ServicesView.swift */,
-				BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */,
-				BEF751AD2953EC7E005CAB8A /* AccessoriesView.swift */,
-				BEF751AB2953EBB3005CAB8A /* HomeView.swift */,
-				BEF751A92953EB73005CAB8A /* HomeStore.swift */,
 				BEF751A82953E2A9005CAB8A /* VibMusic.entitlements */,
-				BEF751A52953D478005CAB8A /* Models */,
+				BEED915B2995CE430096EDD5 /* Views */,
 				BE8A0067294B538D00C97144 /* VibMusicApp.swift */,
-				BE8A006B294B538F00C97144 /* Assets.xcassets */,
-				BE8A006D294B538F00C97144 /* Preview Content */,
+				BEF751A92953EB73005CAB8A /* HomeStore.swift */,
 				BEF75194295371C4005CAB8A /* Tuner.swift */,
-				BEF751B32954D226005CAB8A /* RootView.swift */,
+				BEF751A52953D478005CAB8A /* Models */,
+				BEED915D2995CEB80096EDD5 /* Assets */,
+				BE8A006D294B538F00C97144 /* Preview Content */,
 				BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */,
-				BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */,
-				BEF751BC29561749005CAB8A /* AmbiancesListView.swift */,
-				BEF751C229565057005CAB8A /* AddAmbianceSheetView.swift */,
-				BEF751BE29561F37005CAB8A /* AmbianceView.swift */,
 			);
 			path = VibMusic;
 			sourceTree = "<group>";
@@ -111,6 +111,57 @@
 				BE8A006E294B538F00C97144 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BEED915A2995CDF10096EDD5 /* HomeKitViews */ = {
+			isa = PBXGroup;
+			children = (
+				BEF751AB2953EBB3005CAB8A /* HomeView.swift */,
+				BEF751AD2953EC7E005CAB8A /* AccessoriesView.swift */,
+				BEF751B12953ED9A005CAB8A /* ServicesView.swift */,
+				BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */,
+			);
+			path = HomeKitViews;
+			sourceTree = "<group>";
+		};
+		BEED915B2995CE430096EDD5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BEF751B32954D226005CAB8A /* RootView.swift */,
+				BEED915C2995CE560096EDD5 /* AmbianceViews */,
+				BEED915A2995CDF10096EDD5 /* HomeKitViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BEED915C2995CE560096EDD5 /* AmbianceViews */ = {
+			isa = PBXGroup;
+			children = (
+				BEF751BE29561F37005CAB8A /* AmbianceView.swift */,
+				BEF751BC29561749005CAB8A /* AmbiancesListView.swift */,
+				BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */,
+				BEF751C229565057005CAB8A /* AddAmbianceSheetView.swift */,
+			);
+			path = AmbianceViews;
+			sourceTree = "<group>";
+		};
+		BEED915D2995CEB80096EDD5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				BEED915E2995CECE0096EDD5 /* Lotties */,
+				BE8A006B294B538F00C97144 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		BEED915E2995CECE0096EDD5 /* Lotties */ = {
+			isa = PBXGroup;
+			children = (
+				BEED915F2995CEE30096EDD5 /* LottieView.swift */,
+				BEED91632995E0900096EDD5 /* LightbulbOnOff.json */,
+				BEED91612995CFEC0096EDD5 /* NoLightbulbFound.json */,
+			);
+			path = Lotties;
 			sourceTree = "<group>";
 		};
 		BEF751A52953D478005CAB8A /* Models */ = {
@@ -142,6 +193,7 @@
 				BEF7519D2953749C005CAB8A /* AudioKitEX */,
 				BEF751A0295374AE005CAB8A /* AudioKitUI */,
 				BEF751A3295374C0005CAB8A /* SoundpipeAudioKit */,
+				BEED91582995CD750096EDD5 /* Lottie */,
 			);
 			productName = VibMusic;
 			productReference = BE8A0064294B538D00C97144 /* VibMusic.app */;
@@ -176,6 +228,7 @@
 				BEF7519C2953749C005CAB8A /* XCRemoteSwiftPackageReference "AudioKitEX" */,
 				BEF7519F295374AE005CAB8A /* XCRemoteSwiftPackageReference "AudioKitUI" */,
 				BEF751A2295374C0005CAB8A /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
+				BEED91572995CD750096EDD5 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = BE8A0065294B538D00C97144 /* Products */;
 			projectDirPath = "";
@@ -192,7 +245,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE8A006F294B538F00C97144 /* Preview Assets.xcassets in Resources */,
+				BEED91642995E0900096EDD5 /* LightbulbOnOff.json in Resources */,
 				BE8A006C294B538F00C97144 /* Assets.xcassets in Resources */,
+				BEED91622995CFEC0096EDD5 /* NoLightbulbFound.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +260,7 @@
 			files = (
 				BEF751C129561FE1005CAB8A /* AmbiancesViewModel.swift in Sources */,
 				BEF751AA2953EB73005CAB8A /* HomeStore.swift in Sources */,
+				BEED91602995CEE30096EDD5 /* LottieView.swift in Sources */,
 				BEF751C329565057005CAB8A /* AddAmbianceSheetView.swift in Sources */,
 				BEF75195295371C4005CAB8A /* Tuner.swift in Sources */,
 				BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */,
@@ -425,6 +481,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BEED91572995CD750096EDD5 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		BEF7519929537472005CAB8A /* XCRemoteSwiftPackageReference "AudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
@@ -460,6 +524,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BEED91582995CD750096EDD5 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BEED91572995CD750096EDD5 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		BEF7519A29537472005CAB8A /* AudioKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BEF7519929537472005CAB8A /* XCRemoteSwiftPackageReference "AudioKit" */;

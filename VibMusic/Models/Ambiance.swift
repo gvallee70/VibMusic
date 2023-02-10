@@ -5,7 +5,6 @@
 //  Created by Gwendal on 22/12/2022.
 //
 
-import Foundation
 import SwiftUI
 
 class Ambiance: Codable, Equatable {

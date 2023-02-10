@@ -28,7 +28,7 @@ struct RootView: View {
                     NavigationLink(destination: AmbiancesListView(viewModel: AmbiancesViewModel())) {
                         Text("Mes ambiances")
                     }
-                    NavigationLink(destination: HomeView(model: self.model)) {
+                    NavigationLink(destination: HomesView(model: self.model)) {
                         Text("Mon HomeKit")
                     }
                 }
