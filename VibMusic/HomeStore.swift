@@ -57,7 +57,7 @@ class HomeStore: NSObject, ObservableObject {
     func findNewAccessories() {
         self.discoveredAccessories.removeAll()
         
-        self.accessoryBrowser = HMAccessoryBrowser()
+        self.accessoryBrowser = .init()
         self.accessoryBrowser.delegate = self
         self.accessoryBrowser.startSearchingForNewAccessories()
     }
@@ -83,28 +83,6 @@ class HomeStore: NSObject, ObservableObject {
         self.characteristics = service.characteristics
     }
     
-    func readCharacteristicValues(service: HMService){
-        readingData = true
-        for characteristic in service.characteristics {
-           characteristic.readValue(completionHandler: {_ in
-               print("DEBUG: reading characteristic value: \(characteristic.localizedDescription)")
-               if characteristic.localizedDescription == "Power State" {
-                   self.powerState = characteristic.value as? Bool
-               }
-               if characteristic.localizedDescription == "Hue" {
-                   self.hueValue = characteristic.value as? Int
-               }
-               if characteristic.localizedDescription == "Saturation" {
-                   self.saturationValue = characteristic.value as? Int
-               }
-               if characteristic.localizedDescription == "Brightness" {
-                   self.brightnessValue = characteristic.value as? Int
-               }
-               self.readingData = false
-           })
-           }
-       }
-    
     func setCharacteristicValue(characteristic: HMCharacteristic?, value: Any) {
         guard let characteristic = characteristic else { return }
         
@@ -112,23 +90,32 @@ class HomeStore: NSObject, ObservableObject {
             self.readCharacteristicValue(characteristic: characteristic)
         })
     }
+       
+    func readCharacteristicValues(service: HMService) {
+        readingData = true
         
+        service.characteristics.forEach { characteristic in
+            self.readCharacteristicValue(characteristic: characteristic)
+        }
+    }
+    
     func readCharacteristicValue(characteristic: HMCharacteristic?){
         guard let characteristic = characteristic else { return }
     
         readingData = true
     
         characteristic.readValue(completionHandler: {_ in
-            if characteristic.localizedDescription == "Power State" {
+            print("DEBUG: reading characteristic value: \(characteristic.localizedDescription)")
+            if characteristic.characteristicType == HMCharacteristicTypePowerState {
                 self.powerState = characteristic.value as? Bool
             }
-            if characteristic.localizedDescription == "Hue" {
+            if characteristic.characteristicType == HMCharacteristicTypeHue {
                 self.hueValue = characteristic.value as? Int
             }
-            if characteristic.localizedDescription == "Saturation" {
+            if characteristic.characteristicType == HMCharacteristicTypeSaturation {
                 self.saturationValue = characteristic.value as? Int
             }
-            if characteristic.localizedDescription == "Brightness" {
+            if characteristic.characteristicType == HMCharacteristicTypeBrightness {
                 self.brightnessValue = characteristic.value as? Int
             }
             self.readingData = false

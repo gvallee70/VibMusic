@@ -9,11 +9,12 @@ import HomeKit
 import AudioKitUI
 
 struct CharacteristicsView: View {
-    
+    @Environment(\.scenePhase) var scenePhase
+
     var service: HMService
    
-    @StateObject var model: HomeStore
-    @StateObject var audioKitViewModel = TunerConductor()
+    @EnvironmentObject var homeStoreViewModel: HomeStore
+    @EnvironmentObject var audioKitViewModel: TunerConductor
 
     @State private var hueSlider: Float = 0
     @State private var saturationSlider: Float = 0
@@ -23,38 +24,43 @@ struct CharacteristicsView: View {
 
     var body: some View {
         List {
-//            Section(header: HStack {
-//                Text("\(model.services.first(where: {$0.uniqueIdentifier == serviceId})?.name ?? "No Service Name Found") Characteristics")
-//            }) {
-//                ForEach(model.characteristics, id: \.uniqueIdentifier) { characteristic in
-//                    NavigationLink(value: characteristic){
-//                        Text("\(characteristic.localizedDescription)")
-//                    }.navigationDestination(for: HMCharacteristic.self) {
-//                        Text($0.metadata?.description ?? "No metadata found")
-//                    }
-//                }
-//
-//            }
-            
-            Group {
-                if self.powerStateIsOn && self.brightnessSlider > 70 {
-                    LottieView(filename: "LightbulbOnOff", fromFrame: 40, toFrame: 70)
-                } else if self.powerStateIsOn && (15...70).contains(self.brightnessSlider)  {
-                    LottieView(filename: "LightbulbOnOff", fromFrame: 30, toFrame: 40)
-                } else {
-                    LottieView(filename: "LightbulbOnOff", fromFrame: 0, toFrame: 15)
+            VStack {
+                Group {
+                    if self.powerStateIsOn && self.brightnessSlider > 70 {
+                        LottieView(filename: "LightbulbOnOff", fromFrame: 50, toFrame: 80)
+                    } else if self.powerStateIsOn && (5...70).contains(self.brightnessSlider)  {
+                        LottieView(filename: "LightbulbOnOff", fromFrame: 30, toFrame: 40)
+                    } else {
+                        LottieView(filename: "LightbulbOnOff", fromFrame: 0, toFrame: 5)
+                    }
+                }
+                .frame(width: 300, height: 200)
+        
+                if self.soundDetectionIsOn {
+                    LottieView(filename: "MicOn")
+                        .frame(width: 200, height: 100)
                 }
             }
-            .frame(width: 300, height: 150, alignment: .center)
             .listRowBackground(Color.clear)
             
+            
+            Button(role: .cancel) {
+                self.soundDetectionIsOn.toggle()
+                UserDefaults.standard.set(self.soundDetectionIsOn, forKey: "soundDetectionIsOn")
+            } label: {
+                HStack {
+                    Image(systemName: self.soundDetectionIsOn ? "slider.horizontal.3" : "waveform.and.mic")
+                    Text("Basculer vers modification \(self.soundDetectionIsOn ? "manuelle" : "automatique")")
+                }
+            }
+           
             
             Section(header: HStack {
                 Text("Contrôle des paramètres pour \(service.name)")
             }) {
                 Toggle("Power", isOn: $powerStateIsOn)
                     .onChange(of: powerStateIsOn) { value in
-                        model.setCharacteristicValue(characteristic: self.model.characteristics.first(where: {$0.localizedDescription == "Power State"}), value: value)
+                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.localizedDescription == "Power State"}), value: value)
                     }
                 
                 VStack {
@@ -66,7 +72,7 @@ struct CharacteristicsView: View {
                     } maximumValueLabel: {
                         Text("360")
                     } onEditingChanged: { _ in
-                        model.setCharacteristicValue(characteristic: self.model.characteristics.first(where: {$0.localizedDescription == "Hue"}), value: Int(hueSlider))
+                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.localizedDescription == "Hue"}), value: Int(hueSlider))
                     }
                 }
                 
@@ -79,7 +85,7 @@ struct CharacteristicsView: View {
                     } maximumValueLabel: {
                         Text("100")
                     } onEditingChanged: { _ in
-                        model.setCharacteristicValue(characteristic: self.model.characteristics.first(where: {$0.localizedDescription == "Saturation"}), value: Int(saturationSlider))
+                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.localizedDescription == "Saturation"}), value: Int(saturationSlider))
                     }
                 }
             
@@ -92,37 +98,27 @@ struct CharacteristicsView: View {
                     } maximumValueLabel: {
                         Text("100")
                     } onEditingChanged: { _ in
-                        let brightnessCharacteristic = model.characteristics.first(where: {$0.localizedDescription == "Brightness"})
+                        let brightnessCharacteristic = homeStoreViewModel.characteristics.first(where: {$0.localizedDescription == "Brightness"})
                         
-                        model.setCharacteristicValue(characteristic: brightnessCharacteristic, value: Int(brightnessSlider))
+                        homeStoreViewModel.setCharacteristicValue(characteristic: brightnessCharacteristic, value: Int(brightnessSlider))
                     
                     }
                 }
             }
             .disabled(self.soundDetectionIsOn)
             
-            Button(role: self.soundDetectionIsOn ? .cancel : .destructive) {
-                self.soundDetectionIsOn.toggle()
-                UserDefaults.standard.set(self.soundDetectionIsOn, forKey: "soundDetectionIsOn")
-            } label: {
-                HStack {
-                    Image(systemName: self.soundDetectionIsOn ? "slider.horizontal.3" : "waveform.and.mic")
-                    Text(self.soundDetectionIsOn ? "Modifier manuellement" : "Arrêter modification manuelle")
-                }
-            }
-            
             AmplitudeSection(audioKitViewModel: self.audioKitViewModel)
                 .onAppear {
-                    self.audioKitViewModel.homeViewModel = self.model
+                    self.audioKitViewModel.homeViewModel = self.homeStoreViewModel
                     self.audioKitViewModel.start()
                 }
         }
         .navigationTitle("Paramètres du service")
         .onAppear {
-            self.model.getCharacteristics(from: self.service)
-            self.model.readCharacteristicValues(service: self.service)
+            self.homeStoreViewModel.getCharacteristics(from: self.service)
+            self.homeStoreViewModel.readCharacteristicValues(service: self.service)
             
-            if let powerState = model.powerState, let brightness = model.brightnessValue, let hue = model.hueValue, let saturation = model.saturationValue {
+            if let powerState = homeStoreViewModel.powerState, let brightness = homeStoreViewModel.brightnessValue, let hue = homeStoreViewModel.hueValue, let saturation = homeStoreViewModel.saturationValue {
                 self.powerStateIsOn = powerState
                 self.brightnessSlider = Float(brightness)
                 self.hueSlider = Float(hue)
@@ -131,10 +127,14 @@ struct CharacteristicsView: View {
             
         }
         .onChange(of: audioKitViewModel.data.amplitude) { newValue in
-            if self.soundDetectionIsOn {
-                brightnessSlider = Float(audioKitViewModel.brightnessRegressionDict[round(newValue * 10) / 10.0] ?? 0)
-                
-                model.setCharacteristicValue(characteristic: model.characteristics.first(where: {$0.localizedDescription == "Brightness"}), value:  brightnessSlider)
+            if scenePhase == .active || scenePhase == .background || scenePhase == .inactive {
+                if self.soundDetectionIsOn {
+                    print(self.brightnessSlider)
+
+                    brightnessSlider = Float(audioKitViewModel.brightnessRegressionDict[round(newValue * 10) / 10.0] ?? 0)
+                    
+                    homeStoreViewModel.setCharacteristicValue(characteristic: homeStoreViewModel.characteristics.first(where: {$0.localizedDescription == "Brightness"}), value:  brightnessSlider)
+                }
             }
         }
     }

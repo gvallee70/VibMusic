@@ -9,15 +9,14 @@ import SwiftUI
 import HomeKit
 
 struct HomesView: View {
-    
-    @StateObject var model: HomeStore
-    
+    @EnvironmentObject var homeStoreViewModel: HomeStore
+
     var body: some View {
         List {
             Section(header: HStack {
             }) {
-                ForEach(model.homes, id: \.uniqueIdentifier) { home in
-                    NavigationLink(destination: AccessoriesView(home: home, model: self.model)) {
+                ForEach(self.homeStoreViewModel.homes, id: \.uniqueIdentifier) { home in
+                    NavigationLink(destination: AccessoriesView(home: home)) {
                         Text(home.name)
                     }
                 }

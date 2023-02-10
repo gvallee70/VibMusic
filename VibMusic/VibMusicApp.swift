@@ -9,24 +9,14 @@ import SwiftUI
 
 @main
 struct VibMusicApp: App {
-    @Environment(\.scenePhase) var scenePhase
+    @StateObject var homeStoreViewModel = HomeStore()
+    @ObservedObject var audioKitViewModel = TunerConductor()
 
-    let audioKitViewModel = TunerConductor()
-    
     var body: some Scene {
         WindowGroup {
-            RootView(deviceToUse: audioKitViewModel.initialDevice, model: HomeStore(), audioKitViewModel: audioKitViewModel)
+            RootView()
+                .environmentObject(self.audioKitViewModel)
+                .environmentObject(self.homeStoreViewModel)
         }
-//        .onChange(of: scenePhase) { newPhase in
-//                        if newPhase == .active {
-//                            print("Active")
-//                        } else if newPhase == .inactive {
-//                            print("Inactive")
-//                        } else if newPhase == .background {
-//                            print("Background")
-//                        }
-//            var conductor = TunerConductor()
-//            conductor.start()
-//                    }
     }
 }

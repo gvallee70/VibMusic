@@ -12,15 +12,15 @@ struct ServicesView: View {
     
     var accessory: HMAccessory
 
-    @StateObject var model: HomeStore
+    @EnvironmentObject var homeStoreViewModel: HomeStore
 
     var body: some View {
         List {
             Section(header: HStack {
                 Text("Mes services pour \(accessory.name)")
             }) {
-                ForEach(model.services, id: \.uniqueIdentifier) { service in
-                    NavigationLink(destination: CharacteristicsView(service: service, model: self.model)) {
+                ForEach(self.homeStoreViewModel.services, id: \.uniqueIdentifier) { service in
+                    NavigationLink(destination: CharacteristicsView(service: service)) {
                         Text(service.name)
                     }
                 }
@@ -28,7 +28,7 @@ struct ServicesView: View {
         }
         .navigationTitle("Services")
         .onAppear(){
-            model.getServices(from: self.accessory)
+            self.homeStoreViewModel.getServices(from: self.accessory)
         }
     }
 }

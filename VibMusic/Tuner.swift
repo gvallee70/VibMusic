@@ -80,6 +80,7 @@ class TunerConductor: ObservableObject, HasAudioEngine {
 
         data.pitch = pitch
         data.amplitude = amp
+        print(data.amplitude)
        
 //        if let homeViewModel = homeViewModel {
 //            homeViewModel.setCharacteristicValue(characteristicID: homeViewModel.characteristics.first(where: {$0.localizedDescription == "Brightness"})?.uniqueIdentifier, value: brightnessRegressionDict[round(data.amplitude * 10) / 10.0] ?? 0)

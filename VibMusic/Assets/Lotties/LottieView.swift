@@ -22,7 +22,8 @@ struct LottieView: UIViewRepresentable {
         animationView.animation = LottieAnimation.named(filename)
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = loopMode
-        animationView.animationSpeed = 0.2
+        animationView.animationSpeed = 0.3
+        animationView.tintColor = .red
         
         if self.fromFrame == 0 && self.toFrame == 0 {
             animationView.play()

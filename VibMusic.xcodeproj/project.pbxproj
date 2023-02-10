@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE13A80D2996A3C600D2533B /* MicOn.json in Resources */ = {isa = PBXBuildFile; fileRef = BE13A80C2996A3C500D2533B /* MicOn.json */; };
+		BE13A80F2996AB3200D2533B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A80E2996AB3200D2533B /* RootView.swift */; };
 		BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A0067294B538D00C97144 /* VibMusicApp.swift */; };
 		BE8A006C294B538F00C97144 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006B294B538F00C97144 /* Assets.xcassets */; };
 		BE8A006F294B538F00C97144 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006E294B538F00C97144 /* Preview Assets.xcassets */; };
@@ -25,7 +27,7 @@
 		BEF751AE2953EC7E005CAB8A /* AccessoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751AD2953EC7E005CAB8A /* AccessoriesView.swift */; };
 		BEF751B02953ECEA005CAB8A /* CharacteristicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */; };
 		BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B12953ED9A005CAB8A /* ServicesView.swift */; };
-		BEF751B42954D227005CAB8A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B32954D226005CAB8A /* RootView.swift */; };
+		BEF751B42954D227005CAB8A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B32954D226005CAB8A /* SettingsView.swift */; };
 		BEF751BB29554B37005CAB8A /* AmplitudeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */; };
 		BEF751BD2956174A005CAB8A /* AmbiancesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BC29561749005CAB8A /* AmbiancesListView.swift */; };
 		BEF751BF29561F37005CAB8A /* AmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BE29561F37005CAB8A /* AmbianceView.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE13A80C2996A3C500D2533B /* MicOn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MicOn.json; path = ../../../../../../../../../../Downloads/MicOn.json; sourceTree = "<group>"; };
+		BE13A80E2996AB3200D2533B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		BE8A0064294B538D00C97144 /* VibMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VibMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8A0067294B538D00C97144 /* VibMusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibMusicApp.swift; sourceTree = "<group>"; };
 		BE8A006B294B538F00C97144 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -41,6 +45,7 @@
 		BEED915F2995CEE30096EDD5 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		BEED91612995CFEC0096EDD5 /* NoLightbulbFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = NoLightbulbFound.json; path = ../../../../../../../../../../Downloads/NoLightbulbFound.json; sourceTree = "<group>"; };
 		BEED91632995E0900096EDD5 /* LightbulbOnOff.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LightbulbOnOff.json; path = ../../../../../../../../../../Downloads/LightbulbOnOff.json; sourceTree = "<group>"; };
+		BEED9165299661DD0096EDD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BEF75194295371C4005CAB8A /* Tuner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
 		BEF751A62953D483005CAB8A /* Ambiance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ambiance.swift; sourceTree = "<group>"; };
 		BEF751A82953E2A9005CAB8A /* VibMusic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VibMusic.entitlements; sourceTree = "<group>"; };
@@ -49,7 +54,7 @@
 		BEF751AD2953EC7E005CAB8A /* AccessoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoriesView.swift; sourceTree = "<group>"; };
 		BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicsView.swift; sourceTree = "<group>"; };
 		BEF751B12953ED9A005CAB8A /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
-		BEF751B32954D226005CAB8A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		BEF751B32954D226005CAB8A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeSection.swift; sourceTree = "<group>"; };
 		BEF751BC29561749005CAB8A /* AmbiancesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesListView.swift; sourceTree = "<group>"; };
 		BEF751BE29561F37005CAB8A /* AmbianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbianceView.swift; sourceTree = "<group>"; };
@@ -92,9 +97,10 @@
 		BE8A0066294B538D00C97144 /* VibMusic */ = {
 			isa = PBXGroup;
 			children = (
+				BEED9165299661DD0096EDD5 /* Info.plist */,
 				BEF751A82953E2A9005CAB8A /* VibMusic.entitlements */,
-				BEED915B2995CE430096EDD5 /* Views */,
 				BE8A0067294B538D00C97144 /* VibMusicApp.swift */,
+				BEED915B2995CE430096EDD5 /* Views */,
 				BEF751A92953EB73005CAB8A /* HomeStore.swift */,
 				BEF75194295371C4005CAB8A /* Tuner.swift */,
 				BEF751A52953D478005CAB8A /* Models */,
@@ -127,7 +133,8 @@
 		BEED915B2995CE430096EDD5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BEF751B32954D226005CAB8A /* RootView.swift */,
+				BE13A80E2996AB3200D2533B /* RootView.swift */,
+				BEF751B32954D226005CAB8A /* SettingsView.swift */,
 				BEED915C2995CE560096EDD5 /* AmbianceViews */,
 				BEED915A2995CDF10096EDD5 /* HomeKitViews */,
 			);
@@ -157,6 +164,7 @@
 		BEED915E2995CECE0096EDD5 /* Lotties */ = {
 			isa = PBXGroup;
 			children = (
+				BE13A80C2996A3C500D2533B /* MicOn.json */,
 				BEED915F2995CEE30096EDD5 /* LottieView.swift */,
 				BEED91632995E0900096EDD5 /* LightbulbOnOff.json */,
 				BEED91612995CFEC0096EDD5 /* NoLightbulbFound.json */,
@@ -247,6 +255,7 @@
 				BE8A006F294B538F00C97144 /* Preview Assets.xcassets in Resources */,
 				BEED91642995E0900096EDD5 /* LightbulbOnOff.json in Resources */,
 				BE8A006C294B538F00C97144 /* Assets.xcassets in Resources */,
+				BE13A80D2996A3C600D2533B /* MicOn.json in Resources */,
 				BEED91622995CFEC0096EDD5 /* NoLightbulbFound.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,8 +275,9 @@
 				BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */,
 				BEF751BD2956174A005CAB8A /* AmbiancesListView.swift in Sources */,
 				BEF751AE2953EC7E005CAB8A /* AccessoriesView.swift in Sources */,
+				BE13A80F2996AB3200D2533B /* RootView.swift in Sources */,
 				BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */,
-				BEF751B42954D227005CAB8A /* RootView.swift in Sources */,
+				BEF751B42954D227005CAB8A /* SettingsView.swift in Sources */,
 				BEF751BB29554B37005CAB8A /* AmplitudeSection.swift in Sources */,
 				BEF751BF29561F37005CAB8A /* AmbianceView.swift in Sources */,
 				BEF751AC2953EBB3005CAB8A /* HomeView.swift in Sources */,
@@ -405,6 +415,7 @@
 				DEVELOPMENT_TEAM = 32437GKU5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VibMusic/Info.plist;
 				INFOPLIST_KEY_NSHomeKitUsageDescription = "L'application a besoin d'accéder à HomeKit pour contrôler la lumière";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow microphone to detect background sound";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -437,6 +448,7 @@
 				DEVELOPMENT_TEAM = 32437GKU5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VibMusic/Info.plist;
 				INFOPLIST_KEY_NSHomeKitUsageDescription = "L'application a besoin d'accéder à HomeKit pour contrôler la lumière";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow microphone to detect background sound";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
