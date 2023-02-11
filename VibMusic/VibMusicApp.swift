@@ -14,10 +14,9 @@ struct VibMusicApp: App {
 
     var body: some Scene {
         WindowGroup {
-            AmbiancesListView()
-//            RootView()
-//                .environmentObject(self.audioKitViewModel)
-//                .environmentObject(self.homeStoreViewModel)
+            RootView()
+                .environmentObject(self.audioKitViewModel)
+                .environmentObject(self.homeStoreViewModel)
         }
     }
 }

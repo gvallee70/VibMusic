@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct AddAmbianceSheetView: View {
+struct ManageAmbianceView: View {
     @Environment(\.dismiss) var dismiss
 
+    @State var ambiance: Ambiance?
     @State private var nameTextFieldValue = ""
     @State private var hueSliderValue = 0.0
     @State private var saturationSliderValue = 50.0
@@ -19,7 +20,7 @@ struct AddAmbianceSheetView: View {
     
     var body: some View {
         VStack {
-            Text("Ajouter une ambiance")
+            Text(self.ambiance == nil ? "Ajouter une ambiance" : "Modifier \(self.ambiance?.name ?? "")")
                 .font(.title)
                 .padding()
             Divider()
@@ -72,8 +73,9 @@ struct AddAmbianceSheetView: View {
             .padding(.vertical, 5)
             
 
-            Button("Ajouter une ambiance") {
-                let ambiance = Ambiance(id: self.viewModel.ambiances.count + 1, name: nameTextFieldValue, lightHue: Int(hueSliderValue), lightSaturation: Int(saturationSliderValue), lightBrightness: Int(brightnessSliderValue))
+            Button(self.ambiance == nil ? "Ajouter une ambiance" : "Modifier \(self.ambiance?.name ?? "")") {
+            
+                let ambiance = Ambiance(id: self.ambiance?.id ?? self.viewModel.ambiances.count + 1, name: nameTextFieldValue, lightHue: Int(hueSliderValue), lightSaturation: Int(saturationSliderValue), lightBrightness: Int(brightnessSliderValue))
         
                 self.viewModel.store(ambiance)
                 self.dismiss()
@@ -82,11 +84,25 @@ struct AddAmbianceSheetView: View {
             .buttonStyle(.bordered)
             .padding()
         }
-    }
-}
-
-struct AddAmbianceSheetView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddAmbianceSheetView(viewModel: AmbiancesViewModel())
+        .onAppear {
+            if let ambiance = self.ambiance {
+                self.nameTextFieldValue = ambiance.name
+                self.hueSliderValue = Double(ambiance.lightHue)
+                self.saturationSliderValue = Double(ambiance.lightSaturation)
+                self.brightnessSliderValue = Double(ambiance.lightBrightness)
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if let ambiance = self.ambiance {
+                    Button {
+                        self.viewModel.delete(ambiance)
+                        self.dismiss()
+                    } label: {
+                        Image(systemName: "trash")
+                    }
+                }
+            }
+        }
     }
 }

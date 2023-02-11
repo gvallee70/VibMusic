@@ -32,7 +32,7 @@
 		BEF751BD2956174A005CAB8A /* AmbiancesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BC29561749005CAB8A /* AmbiancesListView.swift */; };
 		BEF751BF29561F37005CAB8A /* AmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BE29561F37005CAB8A /* AmbianceView.swift */; };
 		BEF751C129561FE1005CAB8A /* AmbiancesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */; };
-		BEF751C329565057005CAB8A /* AddAmbianceSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C229565057005CAB8A /* AddAmbianceSheetView.swift */; };
+		BEF751C329565057005CAB8A /* ManageAmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C229565057005CAB8A /* ManageAmbianceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +59,7 @@
 		BEF751BC29561749005CAB8A /* AmbiancesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesListView.swift; sourceTree = "<group>"; };
 		BEF751BE29561F37005CAB8A /* AmbianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbianceView.swift; sourceTree = "<group>"; };
 		BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesViewModel.swift; sourceTree = "<group>"; };
-		BEF751C229565057005CAB8A /* AddAmbianceSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAmbianceSheetView.swift; sourceTree = "<group>"; };
+		BEF751C229565057005CAB8A /* ManageAmbianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAmbianceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,7 @@
 				BEF751BE29561F37005CAB8A /* AmbianceView.swift */,
 				BEF751BC29561749005CAB8A /* AmbiancesListView.swift */,
 				BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */,
-				BEF751C229565057005CAB8A /* AddAmbianceSheetView.swift */,
+				BEF751C229565057005CAB8A /* ManageAmbianceView.swift */,
 			);
 			path = AmbianceViews;
 			sourceTree = "<group>";
@@ -270,7 +270,7 @@
 				BEF751C129561FE1005CAB8A /* AmbiancesViewModel.swift in Sources */,
 				BEF751AA2953EB73005CAB8A /* HomeStore.swift in Sources */,
 				BEED91602995CEE30096EDD5 /* LottieView.swift in Sources */,
-				BEF751C329565057005CAB8A /* AddAmbianceSheetView.swift in Sources */,
+				BEF751C329565057005CAB8A /* ManageAmbianceView.swift in Sources */,
 				BEF75195295371C4005CAB8A /* Tuner.swift in Sources */,
 				BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */,
 				BEF751BD2956174A005CAB8A /* AmbiancesListView.swift in Sources */,

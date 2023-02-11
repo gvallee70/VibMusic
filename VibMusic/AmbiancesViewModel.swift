@@ -20,7 +20,9 @@ class AmbiancesViewModel: ObservableObject {
 
     func store(_ ambiance: Ambiance) {
         do {
+            self.storedAmbiances.removeAll(where: { $0.id == ambiance.id })
             self.storedAmbiances.append(ambiance)
+            
             let encodedAmbiances = try JSONEncoder().encode(self.storedAmbiances)
             
             UserDefaults.standard.set(encodedAmbiances, forKey: "ambiances")
