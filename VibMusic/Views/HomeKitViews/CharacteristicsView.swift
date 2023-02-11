@@ -29,13 +29,13 @@ struct CharacteristicsView: View {
                     if self.powerStateIsOn {
                         LottieView(filename: "LightbulbOnOff", fromFrame: 60, toFrame: 80)
                         Text("ON")
-                            .font(.title3)
+                            .font(.title2)
                             .bold()
                             .foregroundColor(Color(hue: Double(self.hueSlider)/360, saturation: Double(self.saturationSlider)/100, brightness: Double(self.brightnessSlider)/100))
                     } else {
                         LottieView(filename: "LightbulbOnOff", fromFrame: 0, toFrame: 5)
                         Text("OFF")
-                            .font(.title)
+                            .font(.title2)
                             .bold()
                     }
                 }
