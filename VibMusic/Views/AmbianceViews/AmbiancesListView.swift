@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct AmbiancesListView: View {
-    @State private var showAddAmbianceSheet = false
-    @State private var showModifyAmbianceSheet = false
+    @State private var showManageAmbianceSheet = false
     @State private var isModifyMode = false
     @State private var selectedAmbiance: Ambiance?
     @State private var ambianceToModify: Ambiance?
@@ -20,16 +19,11 @@ struct AmbiancesListView: View {
         List {
             Section {
                 Button {
-                    self.showAddAmbianceSheet.toggle()
+                    self.showManageAmbianceSheet.toggle()
                 } label: {
                     HStack {
                         Image(systemName: "plus")
                         Text("Ajouter une ambiance")
-                    }
-                }
-                .sheet(isPresented: self.$showAddAmbianceSheet) {
-                    List {
-                        ManageAmbianceView(viewModel: self.viewModel)
                     }
                 }
                 
@@ -46,7 +40,7 @@ struct AmbiancesListView: View {
             }
         }
         .scrollIndicators(.hidden)
-        .frame(height: 150)
+        .frame(height: 120)
             
         ScrollView {
             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
@@ -87,9 +81,9 @@ struct AmbiancesListView: View {
                     .padding(10)
                     .disabled(!self.isModifyMode)
                     .simultaneousGesture(TapGesture().onEnded {
-                        if self.isModifyMode && self.selectedAmbiance != ambiance {
+                        if self.isModifyMode && self.selectedAmbiance != ambiance && self.viewModel.storedAmbiances.contains(ambiance) {
                             self.ambianceToModify = ambiance
-                            self.showModifyAmbianceSheet.toggle()
+                            self.showManageAmbianceSheet.toggle()
                         } else {
                             self.selectedAmbiance = ambiance
                             self.viewModel.storeCurrentAmbiance(ambiance)
@@ -98,7 +92,6 @@ struct AmbiancesListView: View {
                     .foregroundColor(.white)
                     .onAppear {
                         self.selectedAmbiance = self.viewModel.currentAmbiance
-                        print(self.viewModel.storedAmbiances)
                     }
                 }
             }
@@ -107,8 +100,10 @@ struct AmbiancesListView: View {
         .listRowBackground(Color.clear)
         .navigationTitle("Mes ambiances")
         .scrollIndicators(.hidden)
-        .sheet(isPresented: self.$showModifyAmbianceSheet, content: {
-            ManageAmbianceView(ambiance: self.ambianceToModify, viewModel: self.viewModel)
-        })
+        .sheet(isPresented: self.$showManageAmbianceSheet) {
+            List {
+                ManageAmbianceView(ambiance: self.$ambianceToModify, viewModel: self.viewModel)
+            }
+        }
     }
 }

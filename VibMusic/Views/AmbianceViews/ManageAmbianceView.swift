@@ -10,7 +10,7 @@ import SwiftUI
 struct ManageAmbianceView: View {
     @Environment(\.dismiss) var dismiss
 
-    @State var ambiance: Ambiance?
+    @Binding var ambiance: Ambiance?
     @State private var nameTextFieldValue = ""
     @State private var hueSliderValue = 0.0
     @State private var saturationSliderValue = 50.0

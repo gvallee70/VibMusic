@@ -11,7 +11,7 @@ import AudioKitUI
 struct CharacteristicsView: View {
     @Environment(\.scenePhase) var scenePhase
 
-    var service: HMService
+    @State var service: HMService
    
     @EnvironmentObject var homeStoreViewModel: HomeStore
     @EnvironmentObject var audioKitViewModel: TunerConductor
@@ -24,20 +24,25 @@ struct CharacteristicsView: View {
 
     var body: some View {
         List {
-            VStack {
-                Group {
-                    if self.powerStateIsOn && self.brightnessSlider > 70 {
-                        LottieView(filename: "LightbulbOnOff", fromFrame: 50, toFrame: 80)
-                    } else if self.powerStateIsOn && (5...70).contains(self.brightnessSlider)  {
-                        LottieView(filename: "LightbulbOnOff", fromFrame: 30, toFrame: 40)
+            VStack(alignment: .center) {
+                VStack(alignment: .center) {
+                    if self.powerStateIsOn {
+                        LottieView(filename: "LightbulbOnOff", fromFrame: 60, toFrame: 80)
+                        Text("ON")
+                            .font(.title3)
+                            .bold()
+                            .foregroundColor(Color(hue: Double(self.hueSlider)/360, saturation: Double(self.saturationSlider)/100, brightness: Double(self.brightnessSlider)/100))
                     } else {
                         LottieView(filename: "LightbulbOnOff", fromFrame: 0, toFrame: 5)
+                        Text("OFF")
+                            .font(.title)
+                            .bold()
                     }
                 }
-                .frame(width: 300, height: 200)
-        
+                .frame(width: 300, height: 200, alignment: .center)
+
                 if self.soundDetectionIsOn {
-                    LottieView(filename: "MicOn")
+                    LottieView(filename: "MicOn", fromFrame: 20, toFrame: 100)
                         .frame(width: 200, height: 100)
                 }
             }
@@ -53,6 +58,7 @@ struct CharacteristicsView: View {
                     Text("Basculer vers modification \(self.soundDetectionIsOn ? "manuelle" : "automatique")")
                 }
             }
+            .disabled(!self.powerStateIsOn)
            
             
             Section(header: HStack {
@@ -116,15 +122,16 @@ struct CharacteristicsView: View {
         .navigationTitle("Paramètres du service")
         .onAppear {
             self.homeStoreViewModel.getCharacteristics(from: self.service)
-            self.homeStoreViewModel.readCharacteristicValues(service: self.service)
+            self.homeStoreViewModel.readCharacteristicValues()
+           
+            self.powerStateIsOn = homeStoreViewModel.powerState
+            self.brightnessSlider = Float(homeStoreViewModel.brightnessValue)
+            self.hueSlider = Float(homeStoreViewModel.hueValue)
+            self.saturationSlider = Float(homeStoreViewModel.saturationValue)
             
-            if let powerState = homeStoreViewModel.powerState, let brightness = homeStoreViewModel.brightnessValue, let hue = homeStoreViewModel.hueValue, let saturation = homeStoreViewModel.saturationValue {
-                self.powerStateIsOn = powerState
-                self.brightnessSlider = Float(brightness)
-                self.hueSlider = Float(hue)
-                self.saturationSlider = Float(saturation)
+            if !self.powerStateIsOn {
+                self.soundDetectionIsOn = false
             }
-            
         }
         .onChange(of: audioKitViewModel.data.amplitude) { newValue in
             if scenePhase == .active || scenePhase == .background || scenePhase == .inactive {

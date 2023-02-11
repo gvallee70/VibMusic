@@ -27,10 +27,10 @@ class HomeStore: NSObject, ObservableObject {
     
     @Published var readingData: Bool = false
        
-    @Published var powerState: Bool?
-    @Published var hueValue: Int?
-    @Published var saturationValue: Int?
-    @Published var brightnessValue: Int?
+    @Published var powerState: Bool = false
+    @Published var hueValue: Int = 0
+    @Published var saturationValue: Int = 0
+    @Published var brightnessValue: Int = 0
 
     override init(){
         super.init()
@@ -91,10 +91,10 @@ class HomeStore: NSObject, ObservableObject {
         })
     }
        
-    func readCharacteristicValues(service: HMService) {
+    func readCharacteristicValues() {
         readingData = true
         
-        service.characteristics.forEach { characteristic in
+        self.characteristics.forEach { characteristic in
             self.readCharacteristicValue(characteristic: characteristic)
         }
     }
@@ -107,16 +107,16 @@ class HomeStore: NSObject, ObservableObject {
         characteristic.readValue(completionHandler: {_ in
             print("DEBUG: reading characteristic value: \(characteristic.localizedDescription)")
             if characteristic.characteristicType == HMCharacteristicTypePowerState {
-                self.powerState = characteristic.value as? Bool
+                self.powerState = characteristic.value as? Bool ?? false
             }
             if characteristic.characteristicType == HMCharacteristicTypeHue {
-                self.hueValue = characteristic.value as? Int
+                self.hueValue = characteristic.value as? Int ?? 0
             }
             if characteristic.characteristicType == HMCharacteristicTypeSaturation {
-                self.saturationValue = characteristic.value as? Int
+                self.saturationValue = characteristic.value as? Int ?? 0
             }
             if characteristic.characteristicType == HMCharacteristicTypeBrightness {
-                self.brightnessValue = characteristic.value as? Int
+                self.brightnessValue = characteristic.value as? Int ?? 0
             }
             self.readingData = false
         })

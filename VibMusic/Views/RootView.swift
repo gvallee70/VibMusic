@@ -25,6 +25,7 @@ struct RootView: View {
                     }
                 }
             }
+            .navigationTitle("Vib'Music")
         }
     }
 }
