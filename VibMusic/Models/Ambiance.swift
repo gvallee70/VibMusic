@@ -12,13 +12,14 @@ class Ambiance: Codable, Equatable {
         return lhs.id == rhs.id
     }
     
-    var id = UUID()
+    var id: Int
     var name: String
     var lightHue: Int
     var lightSaturation: Int
     var lightBrightness: Int
     
-    init(name: String, lightHue: Int, lightSaturation: Int, lightBrightness: Int) {
+    init(id: Int, name: String, lightHue: Int, lightSaturation: Int, lightBrightness: Int) {
+        self.id = id
         self.name = name
         self.lightHue = lightHue
         self.lightSaturation = lightSaturation

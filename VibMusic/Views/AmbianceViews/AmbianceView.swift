@@ -28,9 +28,3 @@ struct AmbianceView: View {
             }
     }
 }
-
-struct AmbianceView_Previews: PreviewProvider {
-    static var previews: some View {
-        AmbianceView(ambiance: Ambiance(name: "Jazz", lightHue: 50, lightSaturation: 20, lightBrightness: 40), viewModel: AmbiancesViewModel())
-    }
-}

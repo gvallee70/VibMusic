@@ -83,9 +83,9 @@ class AmbiancesViewModel: ObservableObject {
     
     private func getBasicAmbiances() {
         let ambiances = [
-            Ambiance(name: "Jazz", lightHue: 5, lightSaturation: 50, lightBrightness: 30),
-            Ambiance(name: "Relax", lightHue: 160, lightSaturation: 50, lightBrightness: 50),
-            Ambiance(name: "Metal", lightHue: 150, lightSaturation: 20, lightBrightness: 70)
+            Ambiance(id: 1, name: "Jazz", lightHue: 5, lightSaturation: 50, lightBrightness: 30),
+            Ambiance(id: 2, name: "Relax", lightHue: 160, lightSaturation: 50, lightBrightness: 50),
+            Ambiance(id: 3, name: "Metal", lightHue: 200, lightSaturation: 13, lightBrightness: 60)
         ]
         
         ambiances.forEach { ambiance in

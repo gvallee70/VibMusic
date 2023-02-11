@@ -12,7 +12,7 @@ struct AmbiancesListView: View {
     @State private var modifyAmbianceIsEnabled = false
     @State private var selectedAmbiance: Ambiance?
     
-    @ObservedObject var viewModel: AmbiancesViewModel
+    @ObservedObject var viewModel = AmbiancesViewModel()
 
     var body: some View {
         List {
@@ -25,7 +25,7 @@ struct AmbiancesListView: View {
                         Text("Ajouter une ambiance")
                     }
                 }
-                .sheet(isPresented: $showAddAmbianceSheet) {
+                .sheet(isPresented: self.$showAddAmbianceSheet) {
                     List {
                         AddAmbianceSheetView(viewModel: self.viewModel)
                     }
@@ -38,13 +38,13 @@ struct AmbiancesListView: View {
                 } label: {
                     HStack {
                         Image(systemName: "pencil")
-                        Text("Modifier")
+                        Text("Modifier une ambiance")
                     }
                 }
             }
         }
         .scrollIndicators(.hidden)
-        .frame(height: 100)
+        .frame(height: 150)
             
         ScrollView {
             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
@@ -53,7 +53,7 @@ struct AmbiancesListView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12)
                                 .frame(height: 100)
-                                .foregroundColor(Color(hue: Double(ambiance.lightHue), saturation: Double(ambiance.lightSaturation), brightness: Double(ambiance.lightBrightness)))
+                                .foregroundColor(Color(hue: Double(ambiance.lightHue)/360, saturation: Double(ambiance.lightSaturation)/100, brightness: Double(ambiance.lightBrightness)/100, opacity: 1.0))
                             VStack {
                                 Text(ambiance.name)
                                     .font(.title)
@@ -64,25 +64,21 @@ struct AmbiancesListView: View {
                                 }
                             }
                         }
-                        .rotationEffect(.degrees(self.modifyAmbianceIsEnabled ? 1.5 : 0))
+                        .rotationEffect(.degrees(self.modifyAmbianceIsEnabled ? 0 : 0))
                         .overlay(alignment: .topTrailing) {
-                            Button(action: {
-                                
-                            }, label: {
-                                Image(systemName: "pencil.circle.fill")
-                                    .font(.title2)
-                                    //.symbolRenderingMode(.palette)
-                                    //.foregroundStyle(.clear, .blue)
-                                    .foregroundColor(.white)
-                            })
-                            .opacity(self.modifyAmbianceIsEnabled ? 1 : 0)
-                            .animation(nil)
-                            
                             if self.selectedAmbiance == ambiance {
                                 RoundedRectangle(cornerRadius: 12)
-                                    .stroke(Color.green, lineWidth: 3)
-                                
-                                
+                                    .stroke(Color.green, lineWidth: 5)
+                            } else {
+                                Button(action: {
+                                    
+                                }, label: {
+                                    Image(systemName: "pencil.circle.fill")
+                                        .font(.title2)
+                                        .foregroundColor(.white)
+                                })
+                                .opacity(self.modifyAmbianceIsEnabled ? 1 : 0)
+                                .animation(nil)
                             }
                         }
                         .padding(10)
@@ -100,18 +96,10 @@ struct AmbiancesListView: View {
                     }
                 }
             }
-            
+            .padding(10)
         }
-        .padding(10)
         .listRowBackground(Color.clear)
         .navigationTitle("Mes ambiances")
         .scrollIndicators(.hidden)
-    }
-}
-
-struct AmbiancesView_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("toto")
-        //AmbiancesListView()
     }
 }

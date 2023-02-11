@@ -21,7 +21,7 @@ struct SettingsView: View {
             Section(header:
                 Text("Gestion")
             ) {
-                NavigationLink(destination: AmbiancesListView(viewModel: AmbiancesViewModel())) {
+                NavigationLink(destination: AmbiancesListView()) {
                     Text("Mes ambiances")
                 }
                 NavigationLink(destination: HomesView()) {

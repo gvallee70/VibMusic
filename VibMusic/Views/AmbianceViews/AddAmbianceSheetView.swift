@@ -22,38 +22,58 @@ struct AddAmbianceSheetView: View {
             Text("Ajouter une ambiance")
                 .font(.title)
                 .padding()
+            Divider()
             TextField("Nom", text: $nameTextFieldValue)
                 .font(.title3)
                 .padding(.vertical, 5)
-            Slider(value: $hueSliderValue, in: 0...360, step: 1.0) {
-                Text("Hue slider")
-            } minimumValueLabel: {
-                Text("\(Int(hueSliderValue))")
-            } maximumValueLabel: {
-                Text("360")
+                      
+            Image(systemName: "lightbulb.fill")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 100)
+                .foregroundColor(Color(hue: hueSliderValue/360, saturation: saturationSliderValue/100, brightness: brightnessSliderValue/100))
+                .padding()
+            
+            Group {
+                Text("HUE")
+                Slider(value: $hueSliderValue, in: 0...360, step: 1.0) {
+                } minimumValueLabel: {
+                    Text("\(Int(hueSliderValue))")
+                } maximumValueLabel: {
+                    Text("360")
+                }
             }
             .padding(.vertical, 5)
+            
+            Divider()
 
-            Slider(value: $saturationSliderValue, in: 0...100, step: 1.0) {
-                Text("Saturation slider")
-            } minimumValueLabel: {
-                Text("\(Int(saturationSliderValue))")
-            } maximumValueLabel: {
-                Text("100")
+            Group {
+                Text("Saturation")
+                Slider(value: $saturationSliderValue, in: 0...100, step: 1.0) {
+                } minimumValueLabel: {
+                    Text("\(Int(saturationSliderValue))")
+                } maximumValueLabel: {
+                    Text("100")
+                }
             }
             .padding(.vertical, 5)
+            
+            Divider()
 
-            Slider(value: $brightnessSliderValue, in: 0...100, step: 1.0) {
-                Text("Brightness slider")
-            } minimumValueLabel: {
-                Text("\(Int(brightnessSliderValue))")
-            } maximumValueLabel: {
-                Text("100")
+            Group {
+                Text("Brightness")
+                Slider(value: $brightnessSliderValue, in: 0...100, step: 1.0) {
+                } minimumValueLabel: {
+                    Text("\(Int(brightnessSliderValue))")
+                } maximumValueLabel: {
+                    Text("100")
+                }
             }
             .padding(.vertical, 5)
+            
 
             Button("Ajouter une ambiance") {
-                let ambiance = Ambiance(name: nameTextFieldValue, lightHue: Int(hueSliderValue), lightSaturation: Int(saturationSliderValue), lightBrightness: Int(brightnessSliderValue))
+                let ambiance = Ambiance(id: self.viewModel.ambiances.count + 1, name: nameTextFieldValue, lightHue: Int(hueSliderValue), lightSaturation: Int(saturationSliderValue), lightBrightness: Int(brightnessSliderValue))
         
                 self.viewModel.store(ambiance)
                 self.dismiss()
