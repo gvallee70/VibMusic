@@ -9,14 +9,13 @@ import SwiftUI
 
 struct ManageAmbianceView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var ambiancesStoreViewModel: AmbiancesViewModel
 
     @Binding var ambiance: Ambiance?
     @State private var nameTextFieldValue = ""
     @State private var hueSliderValue = 0.0
     @State private var saturationSliderValue = 50.0
     @State private var brightnessSliderValue = 50.0
-    
-    @ObservedObject var viewModel: AmbiancesViewModel
     
     var body: some View {
         VStack {
@@ -75,9 +74,9 @@ struct ManageAmbianceView: View {
 
             Button(self.ambiance == nil ? "Ajouter une ambiance" : "Modifier \(self.ambiance?.name ?? "")") {
             
-                let ambiance = Ambiance(id: self.ambiance?.id ?? self.viewModel.ambiances.count + 1, name: nameTextFieldValue, lightHue: Int(hueSliderValue), lightSaturation: Int(saturationSliderValue), lightBrightness: Int(brightnessSliderValue))
+                let ambiance = Ambiance(id: self.ambiance?.id ?? self.ambiancesStoreViewModel.ambiances.count + 1, name: nameTextFieldValue, lightHue: Int(hueSliderValue), lightSaturation: Int(saturationSliderValue), lightBrightness: Int(brightnessSliderValue))
         
-                self.viewModel.store(ambiance)
+                self.ambiancesStoreViewModel.store(ambiance)
                 self.dismiss()
             }
             .disabled(nameTextFieldValue.isEmpty)
@@ -96,7 +95,7 @@ struct ManageAmbianceView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 if let ambiance = self.ambiance {
                     Button {
-                        self.viewModel.delete(ambiance)
+                        self.ambiancesStoreViewModel.delete(ambiance)
                         self.dismiss()
                     } label: {
                         Image(systemName: "trash")

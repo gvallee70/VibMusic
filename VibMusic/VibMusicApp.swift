@@ -11,12 +11,16 @@ import SwiftUI
 struct VibMusicApp: App {
     @ObservedObject var homeStoreViewModel = HomeStore()
     @ObservedObject var audioKitViewModel = TunerConductor()
+    @ObservedObject var ambiancesStoreViewModel = AmbiancesViewModel()
+    @ObservedObject var iphoneSessionDelegate = iPhoneSessionDelegate()
 
     var body: some Scene {
         WindowGroup {
             RootView()
                 .environmentObject(self.audioKitViewModel)
                 .environmentObject(self.homeStoreViewModel)
-        }
+                .environmentObject(self.ambiancesStoreViewModel)
+                .environmentObject(self.iphoneSessionDelegate)
+            }
     }
 }

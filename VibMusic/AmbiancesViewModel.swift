@@ -20,8 +20,12 @@ class AmbiancesViewModel: ObservableObject {
 
     func store(_ ambiance: Ambiance) {
         do {
-            self.storedAmbiances.removeAll(where: { $0.id == ambiance.id })
-            self.storedAmbiances.append(ambiance)
+            
+            if let indexToUpdate = self.storedAmbiances.firstIndex(of: ambiance) {
+                self.storedAmbiances.insert(ambiance, at: indexToUpdate)
+            } else {
+                self.storedAmbiances.append(ambiance)
+            }
             
             let encodedAmbiances = try JSONEncoder().encode(self.storedAmbiances)
             
@@ -61,7 +65,7 @@ class AmbiancesViewModel: ObservableObject {
     
     func getAmbiances() {
         self.ambiances.removeAll()
-
+        
         self.getCurrentAmbiance()
         
         if let currentAmbiance = self.currentAmbiance {
@@ -70,6 +74,13 @@ class AmbiancesViewModel: ObservableObject {
         
         self.getStoredAmbiances()
         self.getBasicAmbiances()
+        
+        self.ambiances = self.ambiances.sorted {
+            if $0 != self.currentAmbiance {
+                return $0.name < $1.name
+            }
+            return false
+        }
     }
     
     func getCurrentAmbiance() {

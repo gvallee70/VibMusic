@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		BE13A80D2996A3C600D2533B /* MicOn.json in Resources */ = {isa = PBXBuildFile; fileRef = BE13A80C2996A3C500D2533B /* MicOn.json */; };
 		BE13A80F2996AB3200D2533B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A80E2996AB3200D2533B /* RootView.swift */; };
+		BE13A8172998F86A00D2533B /* VibMusic_CompanionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8162998F86A00D2533B /* VibMusic_CompanionApp.swift */; };
+		BE13A8192998F86A00D2533B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8182998F86A00D2533B /* RootView.swift */; };
+		BE13A81B2998F86B00D2533B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE13A81A2998F86B00D2533B /* Assets.xcassets */; };
+		BE13A81E2998F86B00D2533B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE13A81D2998F86B00D2533B /* Preview Assets.xcassets */; };
+		BE13A8212998F86B00D2533B /* VibMusic Companion Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BE13A8142998F86A00D2533B /* VibMusic Companion Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BE13A8272998FA3B00D2533B /* iPhoneSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8262998FA3B00D2533B /* iPhoneSessionDelegate.swift */; };
+		BE13A8312998FBDA00D2533B /* VibMusic_Companion_ExtensionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8302998FBDA00D2533B /* VibMusic_Companion_ExtensionExtension.swift */; };
+		BE13A8332998FBDA00D2533B /* VibMusic_Companion_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8322998FBDA00D2533B /* VibMusic_Companion_Extension.swift */; };
+		BE13A8372998FBDA00D2533B /* VibMusic Companion Extension.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = BE13A82E2998FBDA00D2533B /* VibMusic Companion Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BE13A83D2998FC0700D2533B /* WatchConnectivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A83C2998FC0700D2533B /* WatchConnectivityViewModel.swift */; };
+		BE13A83F2998FED800D2533B /* WatchSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A83E2998FED800D2533B /* WatchSessionDelegate.swift */; };
+		BE13A84029993BBF00D2533B /* Ambiance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751A62953D483005CAB8A /* Ambiance.swift */; };
+		BE13A84129993E1500D2533B /* AmbiancesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */; };
+		BE13A842299955BB00D2533B /* AmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BE29561F37005CAB8A /* AmbianceView.swift */; };
 		BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A0067294B538D00C97144 /* VibMusicApp.swift */; };
 		BE8A006C294B538F00C97144 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006B294B538F00C97144 /* Assets.xcassets */; };
 		BE8A006F294B538F00C97144 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006E294B538F00C97144 /* Preview Assets.xcassets */; };
@@ -29,15 +43,69 @@
 		BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B12953ED9A005CAB8A /* ServicesView.swift */; };
 		BEF751B42954D227005CAB8A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B32954D226005CAB8A /* SettingsView.swift */; };
 		BEF751BB29554B37005CAB8A /* AmplitudeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */; };
-		BEF751BD2956174A005CAB8A /* AmbiancesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BC29561749005CAB8A /* AmbiancesListView.swift */; };
+		BEF751BD2956174A005CAB8A /* AmbiancesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BC29561749005CAB8A /* AmbiancesScreen.swift */; };
 		BEF751BF29561F37005CAB8A /* AmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BE29561F37005CAB8A /* AmbianceView.swift */; };
 		BEF751C129561FE1005CAB8A /* AmbiancesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */; };
 		BEF751C329565057005CAB8A /* ManageAmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C229565057005CAB8A /* ManageAmbianceView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BE13A81F2998F86B00D2533B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE8A005C294B538D00C97144 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE13A8132998F86A00D2533B;
+			remoteInfo = "VibMusic Companion Watch App";
+		};
+		BE13A8352998FBDA00D2533B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE8A005C294B538D00C97144 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE13A82D2998FBDA00D2533B;
+			remoteInfo = "VibMusic Companion Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BE13A8252998F86B00D2533B /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				BE13A8212998F86B00D2533B /* VibMusic Companion Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE13A83B2998FBDA00D2533B /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+				BE13A8372998FBDA00D2533B /* VibMusic Companion Extension.appex in Embed ExtensionKit Extensions */,
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		BE13A80C2996A3C500D2533B /* MicOn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MicOn.json; path = ../../../../../../../../../../Downloads/MicOn.json; sourceTree = "<group>"; };
 		BE13A80E2996AB3200D2533B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		BE13A8142998F86A00D2533B /* VibMusic Companion Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VibMusic Companion Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE13A8162998F86A00D2533B /* VibMusic_CompanionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibMusic_CompanionApp.swift; sourceTree = "<group>"; };
+		BE13A8182998F86A00D2533B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		BE13A81A2998F86B00D2533B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE13A81D2998F86B00D2533B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BE13A8262998FA3B00D2533B /* iPhoneSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneSessionDelegate.swift; sourceTree = "<group>"; };
+		BE13A82E2998FBDA00D2533B /* VibMusic Companion Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = "VibMusic Companion Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE13A8302998FBDA00D2533B /* VibMusic_Companion_ExtensionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibMusic_Companion_ExtensionExtension.swift; sourceTree = "<group>"; };
+		BE13A8322998FBDA00D2533B /* VibMusic_Companion_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibMusic_Companion_Extension.swift; sourceTree = "<group>"; };
+		BE13A8342998FBDA00D2533B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE13A83C2998FC0700D2533B /* WatchConnectivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivityViewModel.swift; sourceTree = "<group>"; };
+		BE13A83E2998FED800D2533B /* WatchSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionDelegate.swift; sourceTree = "<group>"; };
 		BE8A0064294B538D00C97144 /* VibMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VibMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8A0067294B538D00C97144 /* VibMusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibMusicApp.swift; sourceTree = "<group>"; };
 		BE8A006B294B538F00C97144 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,13 +124,27 @@
 		BEF751B12953ED9A005CAB8A /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		BEF751B32954D226005CAB8A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeSection.swift; sourceTree = "<group>"; };
-		BEF751BC29561749005CAB8A /* AmbiancesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesListView.swift; sourceTree = "<group>"; };
+		BEF751BC29561749005CAB8A /* AmbiancesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesScreen.swift; sourceTree = "<group>"; };
 		BEF751BE29561F37005CAB8A /* AmbianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbianceView.swift; sourceTree = "<group>"; };
 		BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesViewModel.swift; sourceTree = "<group>"; };
 		BEF751C229565057005CAB8A /* ManageAmbianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAmbianceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BE13A8112998F86A00D2533B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE13A82B2998FBDA00D2533B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE8A0061294B538D00C97144 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,10 +160,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE13A8152998F86A00D2533B /* VibMusic Companion Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				BE13A8162998F86A00D2533B /* VibMusic_CompanionApp.swift */,
+				BE13A8182998F86A00D2533B /* RootView.swift */,
+				BE13A81A2998F86B00D2533B /* Assets.xcassets */,
+				BE13A81C2998F86B00D2533B /* Preview Content */,
+				BE13A83E2998FED800D2533B /* WatchSessionDelegate.swift */,
+			);
+			path = "VibMusic Companion Watch App";
+			sourceTree = "<group>";
+		};
+		BE13A81C2998F86B00D2533B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				BE13A81D2998F86B00D2533B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BE13A82F2998FBDA00D2533B /* VibMusic Companion Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BE13A8302998FBDA00D2533B /* VibMusic_Companion_ExtensionExtension.swift */,
+				BE13A8322998FBDA00D2533B /* VibMusic_Companion_Extension.swift */,
+				BE13A8342998FBDA00D2533B /* Info.plist */,
+				BE13A83C2998FC0700D2533B /* WatchConnectivityViewModel.swift */,
+			);
+			path = "VibMusic Companion Extension";
+			sourceTree = "<group>";
+		};
 		BE8A005B294B538D00C97144 = {
 			isa = PBXGroup;
 			children = (
 				BE8A0066294B538D00C97144 /* VibMusic */,
+				BE13A8152998F86A00D2533B /* VibMusic Companion Watch App */,
+				BE13A82F2998FBDA00D2533B /* VibMusic Companion Extension */,
 				BE8A0065294B538D00C97144 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				BE8A0064294B538D00C97144 /* VibMusic.app */,
+				BE13A8142998F86A00D2533B /* VibMusic Companion Watch App.app */,
+				BE13A82E2998FBDA00D2533B /* VibMusic Companion Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,13 +217,14 @@
 				BEED9165299661DD0096EDD5 /* Info.plist */,
 				BEF751A82953E2A9005CAB8A /* VibMusic.entitlements */,
 				BE8A0067294B538D00C97144 /* VibMusicApp.swift */,
+				BE13A8262998FA3B00D2533B /* iPhoneSessionDelegate.swift */,
 				BEED915B2995CE430096EDD5 /* Views */,
 				BEF751A92953EB73005CAB8A /* HomeStore.swift */,
 				BEF75194295371C4005CAB8A /* Tuner.swift */,
+				BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */,
 				BEF751A52953D478005CAB8A /* Models */,
 				BEED915D2995CEB80096EDD5 /* Assets */,
 				BE8A006D294B538F00C97144 /* Preview Content */,
-				BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */,
 			);
 			path = VibMusic;
 			sourceTree = "<group>";
@@ -145,7 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				BEF751BE29561F37005CAB8A /* AmbianceView.swift */,
-				BEF751BC29561749005CAB8A /* AmbiancesListView.swift */,
+				BEF751BC29561749005CAB8A /* AmbiancesScreen.swift */,
 				BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */,
 				BEF751C229565057005CAB8A /* ManageAmbianceView.swift */,
 			);
@@ -183,6 +301,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BE13A8132998F86A00D2533B /* VibMusic Companion Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE13A8222998F86B00D2533B /* Build configuration list for PBXNativeTarget "VibMusic Companion Watch App" */;
+			buildPhases = (
+				BE13A8102998F86A00D2533B /* Sources */,
+				BE13A8112998F86A00D2533B /* Frameworks */,
+				BE13A8122998F86A00D2533B /* Resources */,
+				BE13A83B2998FBDA00D2533B /* Embed ExtensionKit Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE13A8362998FBDA00D2533B /* PBXTargetDependency */,
+			);
+			name = "VibMusic Companion Watch App";
+			productName = "VibMusic Companion Watch App";
+			productReference = BE13A8142998F86A00D2533B /* VibMusic Companion Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BE13A82D2998FBDA00D2533B /* VibMusic Companion Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE13A8382998FBDA00D2533B /* Build configuration list for PBXNativeTarget "VibMusic Companion Extension" */;
+			buildPhases = (
+				BE13A82A2998FBDA00D2533B /* Sources */,
+				BE13A82B2998FBDA00D2533B /* Frameworks */,
+				BE13A82C2998FBDA00D2533B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VibMusic Companion Extension";
+			productName = "VibMusic Companion Extension";
+			productReference = BE13A82E2998FBDA00D2533B /* VibMusic Companion Extension.appex */;
+			productType = "com.apple.product-type.extensionkit-extension";
+		};
 		BE8A0063294B538D00C97144 /* VibMusic */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE8A0072294B538F00C97144 /* Build configuration list for PBXNativeTarget "VibMusic" */;
@@ -190,10 +344,12 @@
 				BE8A0060294B538D00C97144 /* Sources */,
 				BE8A0061294B538D00C97144 /* Frameworks */,
 				BE8A0062294B538D00C97144 /* Resources */,
+				BE13A8252998F86B00D2533B /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BE13A8202998F86B00D2533B /* PBXTargetDependency */,
 			);
 			name = VibMusic;
 			packageProductDependencies = (
@@ -217,6 +373,12 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					BE13A8132998F86A00D2533B = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
+					BE13A82D2998FBDA00D2533B = {
+						CreatedOnToolsVersion = 14.0.1;
+					};
 					BE8A0063294B538D00C97144 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
@@ -243,11 +405,29 @@
 			projectRoot = "";
 			targets = (
 				BE8A0063294B538D00C97144 /* VibMusic */,
+				BE13A8132998F86A00D2533B /* VibMusic Companion Watch App */,
+				BE13A82D2998FBDA00D2533B /* VibMusic Companion Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BE13A8122998F86A00D2533B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE13A81E2998F86B00D2533B /* Preview Assets.xcassets in Resources */,
+				BE13A81B2998F86B00D2533B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE13A82C2998FBDA00D2533B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE8A0062294B538D00C97144 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,6 +443,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BE13A8102998F86A00D2533B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE13A83F2998FED800D2533B /* WatchSessionDelegate.swift in Sources */,
+				BE13A84029993BBF00D2533B /* Ambiance.swift in Sources */,
+				BE13A842299955BB00D2533B /* AmbianceView.swift in Sources */,
+				BE13A8192998F86A00D2533B /* RootView.swift in Sources */,
+				BE13A84129993E1500D2533B /* AmbiancesViewModel.swift in Sources */,
+				BE13A8172998F86A00D2533B /* VibMusic_CompanionApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE13A82A2998FBDA00D2533B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE13A8332998FBDA00D2533B /* VibMusic_Companion_Extension.swift in Sources */,
+				BE13A8312998FBDA00D2533B /* VibMusic_Companion_ExtensionExtension.swift in Sources */,
+				BE13A83D2998FC0700D2533B /* WatchConnectivityViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE8A0060294B538D00C97144 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -273,10 +476,11 @@
 				BEF751C329565057005CAB8A /* ManageAmbianceView.swift in Sources */,
 				BEF75195295371C4005CAB8A /* Tuner.swift in Sources */,
 				BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */,
-				BEF751BD2956174A005CAB8A /* AmbiancesListView.swift in Sources */,
+				BEF751BD2956174A005CAB8A /* AmbiancesScreen.swift in Sources */,
 				BEF751AE2953EC7E005CAB8A /* AccessoriesView.swift in Sources */,
 				BE13A80F2996AB3200D2533B /* RootView.swift in Sources */,
 				BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */,
+				BE13A8272998FA3B00D2533B /* iPhoneSessionDelegate.swift in Sources */,
 				BEF751B42954D227005CAB8A /* SettingsView.swift in Sources */,
 				BEF751BB29554B37005CAB8A /* AmplitudeSection.swift in Sources */,
 				BEF751BF29561F37005CAB8A /* AmbianceView.swift in Sources */,
@@ -288,7 +492,138 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BE13A8202998F86B00D2533B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE13A8132998F86A00D2533B /* VibMusic Companion Watch App */;
+			targetProxy = BE13A81F2998F86B00D2533B /* PBXContainerItemProxy */;
+		};
+		BE13A8362998FBDA00D2533B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE13A82D2998FBDA00D2533B /* VibMusic Companion Extension */;
+			targetProxy = BE13A8352998FBDA00D2533B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		BE13A8232998F86B00D2533B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"VibMusic Companion Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 32437GKU5J;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "VibMusic Companion";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.gwendalvallee.VibMusic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gwendalvallee.VibMusic.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		BE13A8242998F86B00D2533B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"VibMusic Companion Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 32437GKU5J;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "VibMusic Companion";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.gwendalvallee.VibMusic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gwendalvallee.VibMusic.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		BE13A8392998FBDA00D2533B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 32437GKU5J;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "VibMusic Companion Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "VibMusic Companion Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gwendalvallee.VibMusic.watchkitapp.VibMusic-Companion-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		BE13A83A2998FBDA00D2533B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 32437GKU5J;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "VibMusic Companion Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "VibMusic Companion Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gwendalvallee.VibMusic.watchkitapp.VibMusic-Companion-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 		BE8A0070294B538F00C97144 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -406,6 +741,7 @@
 		BE8A0073294B538F00C97144 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = VibMusic/VibMusic.entitlements;
@@ -439,6 +775,7 @@
 		BE8A0074294B538F00C97144 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = VibMusic/VibMusic.entitlements;
@@ -472,6 +809,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BE13A8222998F86B00D2533B /* Build configuration list for PBXNativeTarget "VibMusic Companion Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE13A8232998F86B00D2533B /* Debug */,
+				BE13A8242998F86B00D2533B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE13A8382998FBDA00D2533B /* Build configuration list for PBXNativeTarget "VibMusic Companion Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE13A8392998FBDA00D2533B /* Debug */,
+				BE13A83A2998FBDA00D2533B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BE8A005F294B538D00C97144 /* Build configuration list for PBXProject "VibMusic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
