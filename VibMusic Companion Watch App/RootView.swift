@@ -16,11 +16,13 @@ struct RootView: View {
     var body: some View {
         VStack {
             if self.watchSessionDelegate.ambiances.isEmpty {
-                Text("Ouvrez l'application iOS pour accéder à la liste des ambiances")
+                Text("Ouvrez l'application Vib'Music sur iOS pour accéder à la liste des ambiances")
             } else {
+                Text("Choisissez une ambiance")
+                    .font(.footnote)
                 ScrollView {
                     ScrollViewReader { proxy in
-                        LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 1)) {
+                        LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
                             ForEach(self.$watchSessionDelegate.ambiances, id: \.id) { ambiance in
                                 AmbianceView(ambiance: ambiance)
                                     .id(ambiance.wrappedValue.id)
@@ -34,19 +36,30 @@ struct RootView: View {
                                         self.selectedAmbiance = ambiance.wrappedValue
                                         self.watchSessionDelegate.sendCurrentAmbianceToIOSApp(ambiance.wrappedValue)
                                     })
-                                    .padding(10)
+                                    .padding(5)
                                     .foregroundColor(.white)
                             }
                         }
                         .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                withAnimation {
+                                    proxy.scrollTo(self.selectedAmbiance?.id)
+                                }
+                            }
                             self.selectedAmbiance = self.watchSessionDelegate.currentAmbiance
                         }
                         .onChange(of: self.watchSessionDelegate.currentAmbiance) { newCurrentAmbiance in
                             self.selectedAmbiance = newCurrentAmbiance
-                            proxy.scrollTo(newCurrentAmbiance?.id)
+
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                withAnimation {
+                                    proxy.scrollTo(newCurrentAmbiance?.id)
+                                }
+                            }
                         }
                     }
                 }
+                .scrollIndicators(.hidden)
             }
         }
     }

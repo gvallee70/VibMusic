@@ -20,7 +20,6 @@ class AmbiancesViewModel: ObservableObject {
 
     func store(_ ambiance: Ambiance) {
         do {
-            
             if let indexToUpdate = self.storedAmbiances.firstIndex(of: ambiance) {
                 self.storedAmbiances.insert(ambiance, at: indexToUpdate)
             } else {
@@ -42,6 +41,7 @@ class AmbiancesViewModel: ObservableObject {
             
             UserDefaults.standard.set(encodedAmbiance, forKey: "currentAmbiance")
             self.getCurrentAmbiance()
+            self.getAmbiances()
         } catch {
             print("Unable to store current ambiance (\(error))")
         }
@@ -75,11 +75,17 @@ class AmbiancesViewModel: ObservableObject {
         self.getStoredAmbiances()
         self.getBasicAmbiances()
         
-        self.ambiances = self.ambiances.sorted {
-            if $0 != self.currentAmbiance {
-                return $0.name < $1.name
+        if let currentAmbiance = self.currentAmbiance {
+            if let indexToUpdate = self.ambiances.firstIndex(of: currentAmbiance) {
+                self.ambiances.remove(at: indexToUpdate)
             }
-            return false
+        }
+
+        
+        self.ambiances = self.ambiances.sorted { $0.name < $1.name }
+        
+        if let currentAmbiance = self.currentAmbiance {
+            self.ambiances.insert(currentAmbiance, at: 0)
         }
     }
     

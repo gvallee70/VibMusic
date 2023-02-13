@@ -17,7 +17,8 @@ struct AmbianceView: View {
                 .foregroundColor(Color(hue: Double(ambiance.lightHue)/360, saturation: Double(ambiance.lightSaturation)/100, brightness: Double(ambiance.lightBrightness)/100, opacity: 1.0))
             VStack {
                 Text(ambiance.name)
-                    .font(.title)
+                    .font(.title3)
+                    .bold()
                     .padding(2)
                 HStack {
                     Image(systemName: ambiance.lightBrightness < 50 ? "light.min" : "light.max")
