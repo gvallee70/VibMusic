@@ -11,10 +11,10 @@ import AudioKitUI
 struct CharacteristicsView: View {
     @Environment(\.scenePhase) var scenePhase
 
-    @State var service: HMService
-   
     @EnvironmentObject var homeStoreViewModel: HomeStore
     @EnvironmentObject var audioKitViewModel: TunerConductor
+    
+    @State var service: HMService
 
     @State private var hueSlider: Float = 0
     @State private var saturationSlider: Float = 0

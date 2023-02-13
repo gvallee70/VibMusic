@@ -12,8 +12,9 @@ struct AccessoriesView: View {
     @Environment(\.colorScheme) var colorScheme
 
     @EnvironmentObject var homeStoreViewModel: HomeStore
-
-    var home: HMHome
+    
+    @State var home: HMHome
+    @State var room: HMRoom
     @State var searchCount = 0
     @State var isSearchingForNewAccessories = false
 
@@ -21,7 +22,7 @@ struct AccessoriesView: View {
         List {
             if !self.homeStoreViewModel.accessories.isEmpty {
                 Section(header: HStack {
-                    Text("Mes ampoules pour \(home.name)")
+                    Text("Mes ampoules dans \(self.room.name)")
                 }) {
                     ForEach(self.homeStoreViewModel.accessories, id: \.uniqueIdentifier) { accessory in
                         NavigationLink(destination: ServicesView(accessory: accessory)) {
@@ -55,14 +56,14 @@ struct AccessoriesView: View {
             
             if !self.homeStoreViewModel.discoveredAccessories.isEmpty {
                 Section(header: HStack {
-                    Text("Ajouter une ampoule à \(self.home.name)")
+                    Text("Ajouter une ampoule à \(self.room.name)")
                     Spacer()
                     ProgressView()
                         .opacity(self.isSearchingForNewAccessories ? 1 : 0)
                 }) {
                     ForEach(self.homeStoreViewModel.discoveredAccessories, id: \.uniqueIdentifier) { accessory in
                         Button {
-                            self.homeStoreViewModel.addAccessory(accessory, to: self.home)
+                            self.homeStoreViewModel.addAccessory(accessory, to: self.home, in: self.room)
                             self.searchCount = 0
                         } label: {
                             Text(accessory.name)
@@ -83,9 +84,9 @@ struct AccessoriesView: View {
                 .listRowBackground(Color.clear)
             }
         }
-        .navigationTitle(self.home.name)
+        .navigationTitle(self.room.name)
         .onAppear {
-            self.homeStoreViewModel.getAccessories(from: self.home)
+            self.homeStoreViewModel.getAccessories(from: self.room)
         }
     }
 }

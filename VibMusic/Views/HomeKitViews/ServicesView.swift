@@ -9,11 +9,10 @@ import SwiftUI
 import HomeKit
 
 struct ServicesView: View {
-    
-    var accessory: HMAccessory
-
     @EnvironmentObject var homeStoreViewModel: HomeStore
-
+    
+    @State var accessory: HMAccessory
+    
     var body: some View {
         List {
             Section(header: HStack {

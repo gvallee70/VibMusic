@@ -56,7 +56,7 @@ struct AmbiancesScreen: View {
                                 } else {
                                     if self.ambiancesStoreViewModel.storedAmbiances.contains(ambiance.wrappedValue) {
                                         Button(action: {
-                                            self.showManageAmbianceSheet.toggle()
+                                            self.showManageAmbianceSheet = true
                                         }, label: {
                                             Image(systemName: "pencil.circle.fill")
                                                 .font(.title2)

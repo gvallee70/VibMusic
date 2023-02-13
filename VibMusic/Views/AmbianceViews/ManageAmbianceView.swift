@@ -114,6 +114,9 @@ struct ManageAmbianceView: View {
                     self.dismiss()
                 }
             }
+            .onDisappear {
+                self.ambiance = nil
+            }
         }
     }
 }

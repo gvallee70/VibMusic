@@ -23,7 +23,7 @@ struct RootView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: SettingsView(deviceToUse: self.audioKitViewModel.initialDevice)) {
+                    NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gear")
                     }
                 }

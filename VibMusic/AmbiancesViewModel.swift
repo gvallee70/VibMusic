@@ -49,9 +49,7 @@ class AmbiancesViewModel: ObservableObject {
     
     func delete(_ ambiance: Ambiance) {
         do {
-            if let indexToRemove = self.storedAmbiances.firstIndex(of: ambiance) {
-                self.storedAmbiances.remove(at: indexToRemove)
-            }
+            self.storedAmbiances.removeAll(where: { $0.id == ambiance.id })
 
             let encodedAmbiances = try JSONEncoder().encode(self.storedAmbiances)
             

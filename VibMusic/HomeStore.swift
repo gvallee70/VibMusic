@@ -15,6 +15,9 @@ class HomeStore: NSObject, ObservableObject {
     @Published var homes: [HMHome] = []
     @Published var selectedHome: HMHome?
 
+    @Published var selectedRoom: HMRoom?
+    @Published var rooms: [HMRoom] = []
+    
     @Published var accessories: [HMAccessory] = []
     @Published var discoveredAccessories: [HMAccessory] = []
     @Published var accessoryToAdd: HMAccessory?
@@ -46,9 +49,28 @@ class HomeStore: NSObject, ObservableObject {
     }
     
     
-    func addAccessory(_ accessory: HMAccessory, to home: HMHome) {
+    func addRoom(_ name: String, to home: HMHome) {
         self.selectedHome = home
-        self.accessoryToAdd = accessory
+        self.selectedHome?.addRoom(withName: name) { room, error in
+            if let error = error {
+                print("Can't add room : \(error.localizedDescription)")
+            } else {
+                self.rooms.append(room!)
+                print("Room \(room!.name) added to \(self.selectedHome!.name)")
+            }
+        }
+    }
+    
+    func addAccessory(_ accessory: HMAccessory, to home: HMHome, in room: HMRoom?) {
+        Task {
+            self.selectedHome = home
+            
+            if let room = room {
+                self.selectedRoom = room
+            }
+            
+            self.accessoryToAdd = accessory
+        }
         
         self.discoveredAccessories.removeAll()
         self.accessoryBrowser.startSearchingForNewAccessories()
@@ -67,8 +89,20 @@ class HomeStore: NSObject, ObservableObject {
     }
     
     
-    func getAccessories(from home: HMHome) {
-        self.accessories = home.accessories.filter({
+    func getRoomsWithLightbulb(from home: HMHome) {
+        self.rooms = home.rooms.filter({
+            $0.accessories.contains(where: {
+                $0.category.categoryType == HMAccessoryCategoryTypeLightbulb
+            })
+        })
+    }
+    
+    func getRooms(from home: HMHome) {
+        self.rooms = home.rooms
+    }
+    
+    func getAccessories(from room: HMRoom) {
+        self.accessories = room.accessories.filter({
             $0.category.categoryType == HMAccessoryCategoryTypeLightbulb
         })
     }
@@ -153,7 +187,7 @@ extension HomeStore: HMAccessoryBrowserDelegate {
                     return
                 }
                 
-                selectedHome.assignAccessory(accessory, to: selectedHome.roomForEntireHome()) { err in
+                selectedHome.assignAccessory(accessory, to: self.selectedRoom ?? selectedHome.roomForEntireHome()) { err in
                     guard err == nil else {
                         print("ERROR: Can not assign accessory \(accessory.name)!")
                         print(err!.localizedDescription)
