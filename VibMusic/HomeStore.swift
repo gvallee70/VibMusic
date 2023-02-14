@@ -387,6 +387,7 @@ extension HomeStore: HMAccessoryBrowserDelegate {
                         return
                     }
                     self.accessories.append(accessory)
+                    self.roomAccessories.append(accessory)
                     self.discoveredAccessories.removeAll(where: {$0.uniqueIdentifier == accessory.uniqueIdentifier})
                     browser.stopSearchingForNewAccessories()
                 }

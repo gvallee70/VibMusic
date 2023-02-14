@@ -75,6 +75,11 @@ struct HomeKitTabView: View {
         }
         .confirmationDialog("Ma pièce", isPresented: self.$showRoomActionDialog) {
             if let selectedRoom = self.selectedRoom {
+                if let currentStoredHome = self.homeStoreViewModel.currentStoredHome {
+                    NavigationLink(destination: AccessoriesView(home: currentStoredHome, room: selectedRoom)) {
+                        Text("Voir les ampoules")
+                    }
+                }
                 if self.homeStoreViewModel.currentStoredRooms.contains(selectedRoom) {
                     Button("Retirer des pièces actives", role: .destructive) {
                         if let currentStoredHome = self.homeStoreViewModel.currentStoredHome {
@@ -89,6 +94,11 @@ struct HomeKitTabView: View {
         }
         .confirmationDialog("Mon ampoule", isPresented: self.$showAccessoryActionDialog) {
             if let selectedAccessory = self.selectedAccessory {
+                if let lightbulbService = selectedAccessory.services.first(where: { $0.serviceType == HMServiceTypeLightbulb }) {
+                    NavigationLink(destination: CharacteristicsView(service: lightbulbService)) {
+                        Text("Modifier les caractéristiques")
+                    }
+                }
                 if self.homeStoreViewModel.currentStoredAccessories.contains(selectedAccessory) {
                     Button("Retirer des ampoules actives", role: .destructive) {
                         if let currentStoredHome = self.homeStoreViewModel.currentStoredHome {
@@ -109,11 +119,5 @@ struct HomeKitTabView: View {
                 self.homeStoreViewModel.getCurrentAccessories()
             }
         }
-    }
-}
-
-struct HomeKitTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeKitTabView()
     }
 }
