@@ -89,13 +89,16 @@ class TunerConductor: ObservableObject, HasAudioEngine {
                 homeViewModel.getAllLightbulbsServices(from: homeViewModel.currentStoredAccessories)
             }
             
-            homeViewModel.lightbulbsServices.forEach({ service in
-                service.characteristics.forEach { characteristic in
-                    if characteristic.characteristicType == HMCharacteristicTypeBrightness {
-                        homeViewModel.setCharacteristicValue(characteristic: characteristic, value: Float(self.brightnessRegressionDict[round(data.amplitude * 10) / 10.0] ?? 0))
+            if UserDefaults.standard.bool(forKey: "soundDetectionIsOn") {
+                homeViewModel.lightbulbsServices.forEach({ service in
+                    service.characteristics.forEach { characteristic in
+                        if characteristic.characteristicType == HMCharacteristicTypeBrightness {
+                            homeViewModel.setCharacteristicValue(characteristic: characteristic, value: Float(self.brightnessRegressionDict[round(data.amplitude * 10) / 10.0] ?? 0))
+                        }
                     }
-                }
-            })
+                })
+
+            }
         }
         print(data.amplitude)
     }

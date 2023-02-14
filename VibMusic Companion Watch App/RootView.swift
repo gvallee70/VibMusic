@@ -11,7 +11,7 @@ import WatchConnectivity
 struct RootView: View {
     @ObservedObject var watchSessionDelegate = WatchSessionDelegate()
     @State private var selectedAmbiance: Ambiance?
-    
+    @State var ambiances = [Ambiance]()
     var body: some View {
         VStack {
             if self.watchSessionDelegate.ambiances.isEmpty {
@@ -22,7 +22,7 @@ struct RootView: View {
                 ScrollView {
                     ScrollViewReader { proxy in
                         LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
-                            ForEach(self.$watchSessionDelegate.ambiances, id: \.id) { ambiance in
+                            ForEach(self.$ambiances, id: \.id) { ambiance in
                                 AmbianceView(ambiance: ambiance)
                                     .id(ambiance.wrappedValue.id)
                                     .overlay(alignment: .topTrailing) {
@@ -40,6 +40,7 @@ struct RootView: View {
                             }
                         }
                         .onAppear {
+                            self.ambiances = self.watchSessionDelegate.ambiances
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 withAnimation {
                                     proxy.scrollTo(self.selectedAmbiance?.id)
@@ -55,6 +56,9 @@ struct RootView: View {
                                     proxy.scrollTo(newAmbiance?.id)
                                 }
                             }
+                        }
+                        .onReceive(self.watchSessionDelegate.$ambiances) { ambiances in
+                            self.ambiances = ambiances
                         }
                     }
                 }

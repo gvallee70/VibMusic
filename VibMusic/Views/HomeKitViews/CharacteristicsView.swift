@@ -16,22 +16,18 @@ struct CharacteristicsView: View {
     
     @State var service: HMService
 
-    @State private var hueSlider: Float = 0
-    @State private var saturationSlider: Float = 0
-    @State private var brightnessSlider: Float = 0
-    @State private var powerStateIsOn: Bool = true
     @State private var soundDetectionIsOn: Bool = UserDefaults.standard.bool(forKey: "soundDetectionIsOn")
 
     var body: some View {
         List {
             VStack(alignment: .center) {
                 VStack(alignment: .center) {
-                    if self.powerStateIsOn {
+                    if self.homeStoreViewModel.powerState {
                         LottieView(filename: "LightbulbOnOff", fromFrame: 60, toFrame: 80)
                         Text("ON")
                             .font(.title2)
                             .bold()
-                            .foregroundColor(Color(hue: Double(self.hueSlider)/360, saturation: Double(self.saturationSlider)/100, brightness: Double(self.brightnessSlider)/100))
+                            .foregroundColor(Color(hue: self.homeStoreViewModel.hueValue/360, saturation: self.homeStoreViewModel.saturationValue/100, brightness: self.homeStoreViewModel.brightnessValue/100))
                     } else {
                         LottieView(filename: "LightbulbOnOff", fromFrame: 0, toFrame: 5)
                         Text("OFF")
@@ -47,71 +43,58 @@ struct CharacteristicsView: View {
                 }
             }
             .listRowBackground(Color.clear)
-            
-            
-            Button(role: .cancel) {
-                self.soundDetectionIsOn.toggle()
-                UserDefaults.standard.set(self.soundDetectionIsOn, forKey: "soundDetectionIsOn")
-            } label: {
-                HStack {
-                    Image(systemName: self.soundDetectionIsOn ? "slider.horizontal.3" : "waveform.and.mic")
-                    Text("Basculer vers modification \(self.soundDetectionIsOn ? "manuelle" : "automatique")")
-                }
-            }
-            .disabled(!self.powerStateIsOn)
-           
+        
             
             Section(header: HStack {
                 Text("Contrôle des paramètres pour \(service.name)")
             }) {
-                Toggle("Power", isOn: $powerStateIsOn)
-                    .onChange(of: powerStateIsOn) { value in
+                Toggle("Power", isOn: self.$homeStoreViewModel.powerState)
+                    .onChange(of: self.homeStoreViewModel.powerState) { value in
                         homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypePowerState}), value: value)
                     }
                 
                 VStack {
                     Text("HUE")
-                    Slider(value: $hueSlider, in: 0...360, step: 1.0) {
+                    Slider(value: self.$homeStoreViewModel.hueValue, in: 0...360, step: 1.0) {
                         Text("Hue slider")
                     } minimumValueLabel: {
-                        Text("\(Int(hueSlider))")
+                        Text("\(Int(self.homeStoreViewModel.hueValue))")
                     } maximumValueLabel: {
                         Text("360")
                     } onEditingChanged: { _ in
-                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeHue}), value: Int(hueSlider))
+                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeHue}), value: Int(self.homeStoreViewModel.hueValue))
                     }
                 }
                 
                 VStack {
                     Text("Saturation")
-                    Slider(value: $saturationSlider, in: 0...100, step: 1.0) {
+                    Slider(value: self.$homeStoreViewModel.saturationValue, in: 0...100, step: 1.0) {
                         Text("Saturation slider")
                     } minimumValueLabel: {
-                        Text("\(Int(saturationSlider))")
+                        Text("\(Int(self.homeStoreViewModel.saturationValue))")
                     } maximumValueLabel: {
                         Text("100")
                     } onEditingChanged: { _ in
-                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeSaturation}), value: Int(saturationSlider))
+                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeSaturation}), value: Int(self.homeStoreViewModel.saturationValue))
                     }
                 }
             
                 VStack {
                     Text("Brightness")
-                    Slider(value: $brightnessSlider, in: 0...100, step: 1.0) {
+                    Slider(value: self.$homeStoreViewModel.brightnessValue, in: 0...100, step: 1.0) {
                         Text("Brightness slider")
                     } minimumValueLabel: {
-                        Text("\(Int(brightnessSlider))")
+                        Text("\(Int(self.homeStoreViewModel.brightnessValue))")
                     } maximumValueLabel: {
                         Text("100")
                     } onEditingChanged: { _ in
                         let brightnessCharacteristic = homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeBrightness})
                         
-                        homeStoreViewModel.setCharacteristicValue(characteristic: brightnessCharacteristic, value: Int(brightnessSlider))
+                        homeStoreViewModel.setCharacteristicValue(characteristic: brightnessCharacteristic, value: Int(self.homeStoreViewModel.brightnessValue))
                     
                     }
                 }
             }
-            .disabled(self.soundDetectionIsOn)
             
             AmplitudeSection(audioKitViewModel: self.audioKitViewModel)
                 .onAppear {
@@ -124,23 +107,15 @@ struct CharacteristicsView: View {
             self.homeStoreViewModel.getCharacteristics(from: self.service)
             self.homeStoreViewModel.readCharacteristicValues()
            
-            self.powerStateIsOn = homeStoreViewModel.powerState
-            self.brightnessSlider = Float(homeStoreViewModel.brightnessValue)
-            self.hueSlider = Float(homeStoreViewModel.hueValue)
-            self.saturationSlider = Float(homeStoreViewModel.saturationValue)
-            
-            if !self.powerStateIsOn {
-                self.soundDetectionIsOn = false
-            }
+            self.soundDetectionIsOn = UserDefaults.standard.bool(forKey: "soundDetectionIsOn")
+
         }
         .onChange(of: audioKitViewModel.data.amplitude) { newValue in
             if scenePhase == .active || scenePhase == .background || scenePhase == .inactive {
                 if self.soundDetectionIsOn {
-                    print(self.brightnessSlider)
-
-                    brightnessSlider = Float(audioKitViewModel.brightnessRegressionDict[round(newValue * 10) / 10.0] ?? 0)
+                    self.homeStoreViewModel.brightnessValue = Double(audioKitViewModel.brightnessRegressionDict[round(newValue * 10) / 10.0] ?? 0)
                     
-                    homeStoreViewModel.setCharacteristicValue(characteristic: homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeBrightness}), value:  brightnessSlider)
+                    homeStoreViewModel.setCharacteristicValue(characteristic: homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeBrightness}), value:  self.homeStoreViewModel.brightnessValue)
                 }
             }
         }

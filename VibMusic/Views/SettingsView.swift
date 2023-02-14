@@ -18,7 +18,7 @@ struct SettingsView: View {
     var body: some View {
         List {
             Section(header:
-                        Text("Gestion")
+                Text("Gestion")
             ) {
                 NavigationLink(destination: AmbiancesScreen()) {
                     Text("Mes ambiances")

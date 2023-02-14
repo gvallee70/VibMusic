@@ -36,9 +36,9 @@ class HomeStore: NSObject, ObservableObject {
     @Published var readingData: Bool = false
        
     @Published var powerState: Bool = false
-    @Published var hueValue: Int = 0
-    @Published var saturationValue: Int = 0
-    @Published var brightnessValue: Int = 0
+    @Published var hueValue: Double = 0
+    @Published var saturationValue: Double = 0
+    @Published var brightnessValue: Double = 0
 
     override init(){
         super.init()
@@ -227,13 +227,13 @@ class HomeStore: NSObject, ObservableObject {
                 self.powerState = characteristic.value as? Bool ?? false
             }
             if characteristic.characteristicType == HMCharacteristicTypeHue {
-                self.hueValue = characteristic.value as? Int ?? 0
+                self.hueValue = Double(characteristic.value as? Int ?? 0)
             }
             if characteristic.characteristicType == HMCharacteristicTypeSaturation {
-                self.saturationValue = characteristic.value as? Int ?? 0
+                self.saturationValue = Double(characteristic.value as? Int ?? 0)
             }
             if characteristic.characteristicType == HMCharacteristicTypeBrightness {
-                self.brightnessValue = characteristic.value as? Int ?? 0
+                self.brightnessValue = Double(characteristic.value as? Int ?? 0)
             }
             self.readingData = false
         })

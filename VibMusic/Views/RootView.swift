@@ -52,9 +52,6 @@ struct RootView: View {
                     self.homeStoreViewModel.getAllLightbulbsServicesForAllRooms(from: currentStoredHome)
                 }
             }
-            .onChange(of: self.iphoneSessionDelegate.currentAmbiance) { newCurrentAmbiance in
-                self.ambiancesStoreViewModel.storeCurrentAmbiance(newCurrentAmbiance!)
-            }
         }
     }
 }
