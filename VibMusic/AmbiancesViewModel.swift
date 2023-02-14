@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import HomeKit
 
 class AmbiancesViewModel: ObservableObject {
     
@@ -13,6 +14,8 @@ class AmbiancesViewModel: ObservableObject {
     @Published var storedAmbiances: [Ambiance] = []
     @Published var currentAmbiance: Ambiance?
     
+    @Published var homeStoreViewModel: HomeStore?
+
     init() {
         self.getAmbiances()
         self.getCurrentAmbiance()
@@ -42,6 +45,37 @@ class AmbiancesViewModel: ObservableObject {
             UserDefaults.standard.set(encodedAmbiance, forKey: "currentAmbiance")
             self.getCurrentAmbiance()
             self.getAmbiances()
+            
+            guard let homeStoreViewModel = self.homeStoreViewModel else {
+                return
+            }
+            
+            if let currentStoredHome = homeStoreViewModel.currentStoredHome {
+                if homeStoreViewModel.currentStoredRooms.isEmpty {
+                    homeStoreViewModel.getAllLightbulbsServicesForAllRooms(from: currentStoredHome)
+                } else if homeStoreViewModel.currentStoredAccessories.isEmpty {
+                    homeStoreViewModel.getAllLightbulbsServices(from: homeStoreViewModel.currentStoredRooms)
+                } else {
+                    homeStoreViewModel.getAllLightbulbsServices(from: homeStoreViewModel.currentStoredAccessories)
+                }
+                
+                homeStoreViewModel.lightbulbsServices.forEach({ service in
+                    service.characteristics.forEach { characteristic in
+                        if characteristic.characteristicType == HMCharacteristicTypeBrightness {
+                            homeStoreViewModel.setCharacteristicValue(characteristic: characteristic, value: ambiance.lightBrightness)
+                        }
+                        
+                        if characteristic.characteristicType == HMCharacteristicTypeHue {
+                            homeStoreViewModel.setCharacteristicValue(characteristic: characteristic, value: ambiance.lightHue)
+                        }
+                        
+                        if characteristic.characteristicType == HMCharacteristicTypeSaturation {
+                            homeStoreViewModel.setCharacteristicValue(characteristic: characteristic, value: ambiance.lightSaturation)
+                        }
+                    }
+                })
+            }
+
         } catch {
             print("Unable to store current ambiance (\(error))")
         }

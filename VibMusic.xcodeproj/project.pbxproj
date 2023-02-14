@@ -17,12 +17,13 @@
 		BE13A8272998FA3B00D2533B /* iPhoneSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8262998FA3B00D2533B /* iPhoneSessionDelegate.swift */; };
 		BE13A83F2998FED800D2533B /* WatchSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A83E2998FED800D2533B /* WatchSessionDelegate.swift */; };
 		BE13A84029993BBF00D2533B /* Ambiance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751A62953D483005CAB8A /* Ambiance.swift */; };
-		BE13A84129993E1500D2533B /* AmbiancesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */; };
 		BE13A842299955BB00D2533B /* AmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BE29561F37005CAB8A /* AmbianceView.swift */; };
 		BE13A8462999B93400D2533B /* RoomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8452999B93400D2533B /* RoomsView.swift */; };
 		BE13A848299AE60E00D2533B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A847299AE60D00D2533B /* HomeView.swift */; };
 		BE13A84A299B064300D2533B /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A849299B064300D2533B /* RoomView.swift */; };
 		BE13A84C299B10D400D2533B /* AccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A84B299B10D400D2533B /* AccessoryView.swift */; };
+		BE13A84E299B21AD00D2533B /* HomeKitTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A84D299B21AD00D2533B /* HomeKitTabView.swift */; };
+		BE13A850299B228D00D2533B /* AmbiancesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A84F299B228D00D2533B /* AmbiancesTabView.swift */; };
 		BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A0067294B538D00C97144 /* VibMusicApp.swift */; };
 		BE8A006C294B538F00C97144 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006B294B538F00C97144 /* Assets.xcassets */; };
 		BE8A006F294B538F00C97144 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006E294B538F00C97144 /* Preview Assets.xcassets */; };
@@ -97,6 +98,8 @@
 		BE13A847299AE60D00D2533B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BE13A849299B064300D2533B /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		BE13A84B299B10D400D2533B /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
+		BE13A84D299B21AD00D2533B /* HomeKitTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeKitTabView.swift; sourceTree = "<group>"; };
+		BE13A84F299B228D00D2533B /* AmbiancesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesTabView.swift; sourceTree = "<group>"; };
 		BE8A0064294B538D00C97144 /* VibMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VibMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8A0067294B538D00C97144 /* VibMusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibMusicApp.swift; sourceTree = "<group>"; };
 		BE8A006B294B538F00C97144 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -224,7 +227,9 @@
 			isa = PBXGroup;
 			children = (
 				BE13A80E2996AB3200D2533B /* RootView.swift */,
+				BE13A84D299B21AD00D2533B /* HomeKitTabView.swift */,
 				BEF751B32954D226005CAB8A /* SettingsView.swift */,
+				BE13A84F299B228D00D2533B /* AmbiancesTabView.swift */,
 				BEED915C2995CE560096EDD5 /* AmbianceViews */,
 				BEED915A2995CDF10096EDD5 /* HomeKitViews */,
 				BE13A847299AE60D00D2533B /* HomeView.swift */,
@@ -397,7 +402,6 @@
 				BE13A84029993BBF00D2533B /* Ambiance.swift in Sources */,
 				BE13A842299955BB00D2533B /* AmbianceView.swift in Sources */,
 				BE13A8192998F86A00D2533B /* RootView.swift in Sources */,
-				BE13A84129993E1500D2533B /* AmbiancesViewModel.swift in Sources */,
 				BE13A8172998F86A00D2533B /* VibMusic_CompanionApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE13A850299B228D00D2533B /* AmbiancesTabView.swift in Sources */,
 				BEF751C129561FE1005CAB8A /* AmbiancesViewModel.swift in Sources */,
 				BEF751AA2953EB73005CAB8A /* HomeStore.swift in Sources */,
 				BEED91602995CEE30096EDD5 /* LottieView.swift in Sources */,
@@ -414,6 +419,7 @@
 				BEF75195295371C4005CAB8A /* Tuner.swift in Sources */,
 				BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */,
 				BEF751BD2956174A005CAB8A /* AmbiancesScreen.swift in Sources */,
+				BE13A84E299B21AD00D2533B /* HomeKitTabView.swift in Sources */,
 				BEF751AE2953EC7E005CAB8A /* AccessoriesView.swift in Sources */,
 				BE13A80F2996AB3200D2533B /* RootView.swift in Sources */,
 				BE13A8462999B93400D2533B /* RoomsView.swift in Sources */,

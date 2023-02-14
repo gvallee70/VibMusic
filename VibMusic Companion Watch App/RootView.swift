@@ -11,7 +11,6 @@ import WatchConnectivity
 struct RootView: View {    
     @ObservedObject var watchSessionDelegate = WatchSessionDelegate()
     @State private var selectedAmbiance: Ambiance?
-    @ObservedObject var ambiancesStoreViewModel = AmbiancesViewModel()
     
     var body: some View {
         VStack {

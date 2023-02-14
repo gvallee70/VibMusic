@@ -17,7 +17,7 @@ struct RoomView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                .frame(width: 130, height: 130)
+                .frame(maxWidth: 130, maxHeight: 130)
                 .opacity(0.9)
                 .overlay {
                     if self.homeStoreViewModel.currentStoredRooms.contains(self.room) {

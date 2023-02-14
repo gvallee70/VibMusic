@@ -66,7 +66,7 @@ struct CharacteristicsView: View {
             }) {
                 Toggle("Power", isOn: $powerStateIsOn)
                     .onChange(of: powerStateIsOn) { value in
-                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.localizedDescription == "Power State"}), value: value)
+                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypePowerState}), value: value)
                     }
                 
                 VStack {
@@ -78,7 +78,7 @@ struct CharacteristicsView: View {
                     } maximumValueLabel: {
                         Text("360")
                     } onEditingChanged: { _ in
-                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.localizedDescription == "Hue"}), value: Int(hueSlider))
+                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeHue}), value: Int(hueSlider))
                     }
                 }
                 
@@ -91,7 +91,7 @@ struct CharacteristicsView: View {
                     } maximumValueLabel: {
                         Text("100")
                     } onEditingChanged: { _ in
-                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.localizedDescription == "Saturation"}), value: Int(saturationSlider))
+                        homeStoreViewModel.setCharacteristicValue(characteristic: self.homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeSaturation}), value: Int(saturationSlider))
                     }
                 }
             
@@ -104,7 +104,7 @@ struct CharacteristicsView: View {
                     } maximumValueLabel: {
                         Text("100")
                     } onEditingChanged: { _ in
-                        let brightnessCharacteristic = homeStoreViewModel.characteristics.first(where: {$0.localizedDescription == "Brightness"})
+                        let brightnessCharacteristic = homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeBrightness})
                         
                         homeStoreViewModel.setCharacteristicValue(characteristic: brightnessCharacteristic, value: Int(brightnessSlider))
                     
@@ -140,7 +140,7 @@ struct CharacteristicsView: View {
 
                     brightnessSlider = Float(audioKitViewModel.brightnessRegressionDict[round(newValue * 10) / 10.0] ?? 0)
                     
-                    homeStoreViewModel.setCharacteristicValue(characteristic: homeStoreViewModel.characteristics.first(where: {$0.localizedDescription == "Brightness"}), value:  brightnessSlider)
+                    homeStoreViewModel.setCharacteristicValue(characteristic: homeStoreViewModel.characteristics.first(where: {$0.characteristicType == HMCharacteristicTypeBrightness}), value:  brightnessSlider)
                 }
             }
         }

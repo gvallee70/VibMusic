@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import WatchConnectivity
+import HomeKit
 
 struct RootView: View {
     @EnvironmentObject var homeStoreViewModel: HomeStore
@@ -15,10 +15,19 @@ struct RootView: View {
     @EnvironmentObject var iphoneSessionDelegate: iPhoneSessionDelegate
 
     @State private var path = NavigationPath()
-
+    
     var body: some View {
         NavigationStack(path: self.$path) {
-            VStack {
+            TabView {
+                HomeKitTabView()
+                    .tabItem {
+                        Label("HomeKit", systemImage: "homekit")
+                    }
+
+                AmbiancesTabView()
+                    .tabItem {
+                        Label("Ambiances", systemImage: "lightbulb.circle.fill")
+                    }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -27,10 +36,20 @@ struct RootView: View {
                     }
                 }
             }
-            .navigationTitle("Vib'Music")
+            .navigationTitle("Bienvenue")
             .onAppear {
                 self.iphoneSessionDelegate.sendAmbiancesToWatchApp(ambiances: self.ambiancesStoreViewModel.ambiances)
                 self.iphoneSessionDelegate.sendCurrentAmbianceToWatchApp(self.ambiancesStoreViewModel.currentAmbiance)
+                self.homeStoreViewModel.getCurrentHome()
+                self.homeStoreViewModel.getCurrentRooms()
+                self.homeStoreViewModel.getCurrentAccessories()
+                self.ambiancesStoreViewModel.homeStoreViewModel = self.homeStoreViewModel
+                self.audioKitViewModel.homeViewModel = self.homeStoreViewModel
+                self.audioKitViewModel.start()
+                
+                if let currentStoredHome = self.homeStoreViewModel.currentStoredHome {
+                    self.homeStoreViewModel.getAllLightbulbsServicesForAllRooms(from: currentStoredHome)
+                }
             }
             .onChange(of: self.iphoneSessionDelegate.currentAmbiance) { newCurrentAmbiance in
                 self.ambiancesStoreViewModel.storeCurrentAmbiance(newCurrentAmbiance!)

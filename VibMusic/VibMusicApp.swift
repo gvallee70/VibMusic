@@ -21,6 +21,7 @@ struct VibMusicApp: App {
                 .environmentObject(self.homeStoreViewModel)
                 .environmentObject(self.ambiancesStoreViewModel)
                 .environmentObject(self.iphoneSessionDelegate)
+            
             }
     }
 }

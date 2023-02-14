@@ -11,6 +11,7 @@ import AudioKitUI
 import AudioToolbox
 import SoundpipeAudioKit
 import SwiftUI
+import HomeKit
 
 struct TunerData {
     var pitch: Float = 0.0
@@ -74,6 +75,28 @@ class TunerConductor: ObservableObject, HasAudioEngine {
 
         data.pitch = pitch
         data.amplitude = amp
+        
+        guard let homeViewModel = self.homeViewModel else {
+            return
+        }
+        
+        if let currentStoredHome = homeViewModel.currentStoredHome {
+            if homeViewModel.currentStoredRooms.isEmpty {
+                homeViewModel.getAllLightbulbsServicesForAllRooms(from: currentStoredHome)
+            } else if homeViewModel.currentStoredAccessories.isEmpty {
+                homeViewModel.getAllLightbulbsServices(from: homeViewModel.currentStoredRooms)
+            } else {
+                homeViewModel.getAllLightbulbsServices(from: homeViewModel.currentStoredAccessories)
+            }
+            
+            homeViewModel.lightbulbsServices.forEach({ service in
+                service.characteristics.forEach { characteristic in
+                    if characteristic.characteristicType == HMCharacteristicTypeBrightness {
+                        homeViewModel.setCharacteristicValue(characteristic: characteristic, value: Float(self.brightnessRegressionDict[round(data.amplitude * 10) / 10.0] ?? 0))
+                    }
+                }
+            })
+        }
         print(data.amplitude)
     }
 }

@@ -15,8 +15,10 @@ struct AccessoriesView: View {
     
     @State var home: HMHome
     @State var room: HMRoom
-    @State var searchCount = 0
-    @State var isSearchingForNewAccessories = false
+    @State private var searchCount = 0
+    @State private var isSearchingForNewAccessories = false
+    @State private var showAccessoryActionDialog = false
+    @State private var selectedAccessory: HMAccessory?
 
     var body: some View {
         List {
@@ -26,16 +28,11 @@ struct AccessoriesView: View {
                 }) {
                     LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
                         ForEach(self.homeStoreViewModel.accessories, id: \.uniqueIdentifier) { accessory in
-                            ZStack {
-                                if let lightbulbService = accessory.services.first(where: { $0.serviceType == HMServiceTypeLightbulb }) {
-                                    NavigationLink(destination: CharacteristicsView(service: lightbulbService)) {
-                                        EmptyView()
-                                    }
-                                    .opacity(0)
-                               
-                                    AccessoryView(accessory: accessory)
-                                    .padding(10)
-                                }
+                            AccessoryView(accessory: accessory)
+                            .padding(10)
+                            .onTapGesture {
+                                self.selectedAccessory = accessory
+                                self.showAccessoryActionDialog.toggle()
                             }
                         }
                     }
@@ -95,8 +92,37 @@ struct AccessoriesView: View {
             }
         }
         .navigationTitle("\(self.room.name) \(self.homeStoreViewModel.currentStoredRooms.contains(self.room) ? "(active)" : "")")
+        .confirmationDialog("Mon ampoule", isPresented: self.$showAccessoryActionDialog) {
+            if let selectedAccessory = self.selectedAccessory {
+                if let lightbulbService = selectedAccessory.services.first(where: { $0.serviceType == HMServiceTypeLightbulb }) {
+                    NavigationLink(destination: CharacteristicsView(service: lightbulbService)) {
+                        Text("Modifier les caractéristiques")
+                    }
+                }
+                
+                if self.homeStoreViewModel.currentStoredAccessories.contains(selectedAccessory) {
+                    Button("Retirer des ampoules actives", role: .destructive) {
+                        self.homeStoreViewModel.removeFromCurrentAccessories(selectedAccessory)
+                    }
+                } else {
+                    if self.homeStoreViewModel.currentStoredRooms.contains(self.room) {
+                        Button("Ajouter aux ampoules actives") {
+                            self.homeStoreViewModel.addCurrentAccessory(selectedAccessory)
+                        }
+                    }
+                    Button("Supprimer \(selectedAccessory.name) de \(self.home.name)", role: .destructive) {
+                        self.homeStoreViewModel.deleteAccessory(selectedAccessory, home: self.home, room: self.room)
+                    }
+                }
+                
+                Button("Annuler", role: .cancel) { }
+            }
+        } message: {
+            Text("Choisir une action pour \(self.selectedAccessory?.name ?? "cette ampoule")")
+        }
         .onAppear {
             self.homeStoreViewModel.getAccessories(from: self.room)
+            self.homeStoreViewModel.getCurrentAccessories()
         }
     }
 }

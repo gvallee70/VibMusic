@@ -19,6 +19,12 @@ struct AccessoryView: View {
                 .fill(LinearGradient(gradient: Gradient(colors: [Color.orange, Color.yellow]), startPoint: .topLeading, endPoint: .bottomTrailing))
                 .frame(width: 130, height: 130)
                 .opacity(0.9)
+                .overlay {
+                    if self.homeStoreViewModel.currentStoredAccessories.contains(self.accessory) {
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.green, lineWidth: 5)
+                    }
+                }
             
             VStack {
                 Image(systemName: "lightbulb.fill")
@@ -34,6 +40,15 @@ struct AccessoryView: View {
                     .multilineTextAlignment(.center)
             }
             .padding()
+        }
+        .overlay(alignment: .topTrailing) {
+            if self.homeStoreViewModel.currentStoredAccessories.contains(self.accessory) {
+                Text("Active")
+                    .font(.system(size: 14))
+                    .padding(5)
+                    .background(.green)
+                    .clipShape(Capsule())
+            }
         }
     }
 }

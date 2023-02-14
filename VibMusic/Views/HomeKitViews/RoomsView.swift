@@ -58,7 +58,7 @@ struct RoomsView: View {
                     VStack(alignment: .leading) {
                         Text("Cliquez sur une pièce pour choisir une action.")
                             .padding(.bottom, 2)
-                        Text("Si aucune pièce n'est ajouter aux pièces courantes, toutes les pièces de \(self.home.name) sont considérés comme courante.")
+                        Text("Si aucune pièce n'est ajouter aux pièces actives, toutes les pièces de \(self.home.name) sont considérés comme actives.")
                     }
                     .font(.footnote)
                 }
@@ -69,17 +69,20 @@ struct RoomsView: View {
         .confirmationDialog("Ma pièce", isPresented: self.$showRoomActionDialog) {
             if let selectedRoom = self.selectedRoom {
                 NavigationLink(destination: AccessoriesView(home: self.home, room: selectedRoom)) {
-                    Text("Voir les détails")
+                    Text("Voir les ampoules")
                 }
                 if self.homeStoreViewModel.currentStoredRooms.contains(selectedRoom) {
-                    Button("Retirer des pièces courantes", role: .destructive) {
+                    Button("Retirer des pièces actives", role: .destructive) {
                         self.homeStoreViewModel.removeFromCurrentRooms(selectedRoom)
                     }
                 } else {
                     if self.homeStoreViewModel.currentStoredHome == self.home {
-                        Button("Ajouter aux pièces courantes") {
+                        Button("Ajouter aux pièces actives") {
                             self.homeStoreViewModel.addCurrentRoom(selectedRoom)
                         }
+                    }
+                    Button("Supprimer \(selectedRoom.name) de \(self.home.name)", role: .destructive) {
+                        self.homeStoreViewModel.deleteRoom(selectedRoom, from: self.home)
                     }
                 }
                 

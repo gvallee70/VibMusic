@@ -39,19 +39,7 @@ struct SettingsView: View {
             }
             
             AmplitudeSection(audioKitViewModel: self.audioKitViewModel)
-            .onAppear {
-                self.audioKitViewModel.homeViewModel = self.homeStoreViewModel
-                self.audioKitViewModel.start()
-            }
         }
         .navigationTitle("Paramètres")
     }
-}
-
-extension Binding<Device?>: Equatable {
-    public static func == (lhs: Binding<Value>, rhs: Binding<Value>) -> Bool {
-        return lhs.wrappedValue?.deviceID == rhs.wrappedValue?.deviceID
-    }
-    
-    
 }
