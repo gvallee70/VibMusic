@@ -69,32 +69,26 @@ struct AmbiancesScreen: View {
                             }
                             .padding(10)
                             .foregroundColor(.white)
-                            .simultaneousGesture(TapGesture().onEnded {
+                            .onTapGesture {
                                 if self.isModifyMode && self.selectedAmbiance != ambiance.wrappedValue && self.ambiancesStoreViewModel.storedAmbiances.contains(ambiance.wrappedValue) {
                                     self.ambianceToModify = ambiance.wrappedValue
                                     self.showManageAmbianceSheet.toggle()
                                 } else {
                                     self.selectedAmbiance = ambiance.wrappedValue
                                     self.ambiancesStoreViewModel.storeCurrentAmbiance(ambiance.wrappedValue)
+                                    withAnimation {
+                                        proxy.scrollTo(self.selectedAmbiance?.id)
+                                    }
                                 }
-                            })
+                            }
                     }
                     
                 }
                 .padding(10)
-                .onChange(of: self.selectedAmbiance) { newCurrentAmbiance in
-                    self.iphoneSessionDelegate.sendCurrentAmbianceToWatchApp(newCurrentAmbiance)
-                    
+                .onReceive(self.ambiancesStoreViewModel.$currentAmbiance) { newAmbiance in
+                    self.selectedAmbiance = newAmbiance
                     withAnimation {
-                        proxy.scrollTo(newCurrentAmbiance?.id)
-                    }
-                }
-                .onChange(of: self.iphoneSessionDelegate.currentAmbiance) { newCurrentAmbiance in
-                    self.selectedAmbiance = newCurrentAmbiance
-                    self.ambiancesStoreViewModel.storeCurrentAmbiance(newCurrentAmbiance!)
-                    
-                    withAnimation {
-                        proxy.scrollTo(newCurrentAmbiance?.id)
+                        proxy.scrollTo(newAmbiance?.id)
                     }
                 }
             }
@@ -107,9 +101,6 @@ struct AmbiancesScreen: View {
         })
         .onAppear {
             self.selectedAmbiance = self.ambiancesStoreViewModel.currentAmbiance
-        }
-        .onChange(of: self.ambiancesStoreViewModel.ambiances) { _ in
-            self.iphoneSessionDelegate.sendAmbiancesToWatchApp(ambiances: self.ambiancesStoreViewModel.ambiances)
         }
         .onChange(of: self.showManageAmbianceSheet) { toggleSheet in
             if !toggleSheet {

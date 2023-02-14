@@ -12,7 +12,7 @@ class WatchSessionDelegate: NSObject, WCSessionDelegate, ObservableObject {
     @Published var ambiances = [Ambiance]()
     @Published var currentAmbiance: Ambiance?
     
-    private var session: WCSession = .default
+    @Published var session: WCSession = .default
         
     init(session: WCSession = .default) {
         self.session = session

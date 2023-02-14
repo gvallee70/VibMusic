@@ -8,7 +8,7 @@
 import SwiftUI
 import WatchConnectivity
 
-struct RootView: View {    
+struct RootView: View {
     @ObservedObject var watchSessionDelegate = WatchSessionDelegate()
     @State private var selectedAmbiance: Ambiance?
     
@@ -47,12 +47,12 @@ struct RootView: View {
                             }
                             self.selectedAmbiance = self.watchSessionDelegate.currentAmbiance
                         }
-                        .onChange(of: self.watchSessionDelegate.currentAmbiance) { newCurrentAmbiance in
-                            self.selectedAmbiance = newCurrentAmbiance
-
+                        .onReceive(self.watchSessionDelegate.$currentAmbiance) { newAmbiance in
+                            self.selectedAmbiance = newAmbiance
+                            
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 withAnimation {
-                                    proxy.scrollTo(newCurrentAmbiance?.id)
+                                    proxy.scrollTo(newAmbiance?.id)
                                 }
                             }
                         }

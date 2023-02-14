@@ -322,6 +322,11 @@ class HomeStore: NSObject, ObservableObject {
             self.currentStoredAccessories.append(accessory)
         }
         
+        accessory.services.forEach { service in
+            let powerStateCharacteristic = service.characteristics.first(where: { $0.characteristicType == HMCharacteristicTypePowerState })
+            self.setCharacteristicValue(characteristic: powerStateCharacteristic, value: true)
+        }
+        
         UserDefaults.standard.set(self.currentStoredAccessories.map({ $0.uniqueIdentifier.uuidString }), forKey: "currentAccessoriesUUIDstring")
     }
     

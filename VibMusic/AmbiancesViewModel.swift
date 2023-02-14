@@ -126,7 +126,6 @@ class AmbiancesViewModel: ObservableObject {
         
         do {
             self.currentAmbiance = try JSONDecoder().decode(Ambiance.self, from: data)
-            
         } catch {
             print("Unable to retrieve current ambiance (\(error))")
         }

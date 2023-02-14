@@ -18,17 +18,20 @@ struct RootView: View {
     
     var body: some View {
         NavigationStack(path: self.$path) {
-            TabView {
-                HomeKitTabView()
-                    .tabItem {
-                        Label("HomeKit", systemImage: "homekit")
-                    }
+            VStack {
+                TabView {
+                    HomeKitTabView()
+                        .tabItem {
+                            Label("HomeKit", systemImage: "homekit")
+                        }
 
-                AmbiancesTabView()
-                    .tabItem {
-                        Label("Ambiances", systemImage: "lightbulb.circle.fill")
-                    }
+                    AmbiancesTabView()
+                        .tabItem {
+                            Label("Ambiances", systemImage: "lightbulb.circle.fill")
+                        }
+                }
             }
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: SettingsView()) {

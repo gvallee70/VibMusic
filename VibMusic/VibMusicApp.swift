@@ -21,7 +21,14 @@ struct VibMusicApp: App {
                 .environmentObject(self.homeStoreViewModel)
                 .environmentObject(self.ambiancesStoreViewModel)
                 .environmentObject(self.iphoneSessionDelegate)
-            
+                .onReceive(self.ambiancesStoreViewModel.$currentAmbiance) { newAmbiance in
+                    self.iphoneSessionDelegate.sendCurrentAmbianceToWatchApp(newAmbiance)
+                }
+                .onReceive(self.iphoneSessionDelegate.$currentAmbiance) { newAmbiance in
+                    if let newAmbiance = newAmbiance {
+                        self.ambiancesStoreViewModel.storeCurrentAmbiance(newAmbiance)
+                    }
+                }
             }
     }
 }

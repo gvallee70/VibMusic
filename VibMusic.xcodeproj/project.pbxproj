@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BE13A80D2996A3C600D2533B /* MicOn.json in Resources */ = {isa = PBXBuildFile; fileRef = BE13A80C2996A3C500D2533B /* MicOn.json */; };
 		BE13A80F2996AB3200D2533B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A80E2996AB3200D2533B /* RootView.swift */; };
 		BE13A8172998F86A00D2533B /* VibMusic_CompanionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8162998F86A00D2533B /* VibMusic_CompanionApp.swift */; };
 		BE13A8192998F86A00D2533B /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8182998F86A00D2533B /* RootView.swift */; };
@@ -24,13 +23,14 @@
 		BE13A84C299B10D400D2533B /* AccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A84B299B10D400D2533B /* AccessoryView.swift */; };
 		BE13A84E299B21AD00D2533B /* HomeKitTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A84D299B21AD00D2533B /* HomeKitTabView.swift */; };
 		BE13A850299B228D00D2533B /* AmbiancesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A84F299B228D00D2533B /* AmbiancesTabView.swift */; };
+		BE4B25A6299BBB35001133B7 /* MicOn.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4B25A5299BBB34001133B7 /* MicOn.json */; };
+		BE4B25A8299BBB53001133B7 /* LightbulbOnOff.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4B25A7299BBB53001133B7 /* LightbulbOnOff.json */; };
+		BE4B25AA299BBB6E001133B7 /* NoLightbulbFound.json in Resources */ = {isa = PBXBuildFile; fileRef = BE4B25A9299BBB6E001133B7 /* NoLightbulbFound.json */; };
 		BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A0067294B538D00C97144 /* VibMusicApp.swift */; };
 		BE8A006C294B538F00C97144 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006B294B538F00C97144 /* Assets.xcassets */; };
 		BE8A006F294B538F00C97144 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006E294B538F00C97144 /* Preview Assets.xcassets */; };
 		BEED91592995CD750096EDD5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BEED91582995CD750096EDD5 /* Lottie */; };
 		BEED91602995CEE30096EDD5 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEED915F2995CEE30096EDD5 /* LottieView.swift */; };
-		BEED91622995CFEC0096EDD5 /* NoLightbulbFound.json in Resources */ = {isa = PBXBuildFile; fileRef = BEED91612995CFEC0096EDD5 /* NoLightbulbFound.json */; };
-		BEED91642995E0900096EDD5 /* LightbulbOnOff.json in Resources */ = {isa = PBXBuildFile; fileRef = BEED91632995E0900096EDD5 /* LightbulbOnOff.json */; };
 		BEF75195295371C4005CAB8A /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF75194295371C4005CAB8A /* Tuner.swift */; };
 		BEF7519B29537472005CAB8A /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BEF7519A29537472005CAB8A /* AudioKit */; };
 		BEF7519E2953749C005CAB8A /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = BEF7519D2953749C005CAB8A /* AudioKitEX */; };
@@ -85,7 +85,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BE13A80C2996A3C500D2533B /* MicOn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MicOn.json; path = ../../../../../../../../../../Downloads/MicOn.json; sourceTree = "<group>"; };
 		BE13A80E2996AB3200D2533B /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		BE13A8142998F86A00D2533B /* VibMusic Companion Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VibMusic Companion Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE13A8162998F86A00D2533B /* VibMusic_CompanionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibMusic_CompanionApp.swift; sourceTree = "<group>"; };
@@ -100,13 +99,14 @@
 		BE13A84B299B10D400D2533B /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
 		BE13A84D299B21AD00D2533B /* HomeKitTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeKitTabView.swift; sourceTree = "<group>"; };
 		BE13A84F299B228D00D2533B /* AmbiancesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesTabView.swift; sourceTree = "<group>"; };
+		BE4B25A5299BBB34001133B7 /* MicOn.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MicOn.json; sourceTree = "<group>"; };
+		BE4B25A7299BBB53001133B7 /* LightbulbOnOff.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LightbulbOnOff.json; sourceTree = "<group>"; };
+		BE4B25A9299BBB6E001133B7 /* NoLightbulbFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NoLightbulbFound.json; sourceTree = "<group>"; };
 		BE8A0064294B538D00C97144 /* VibMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VibMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8A0067294B538D00C97144 /* VibMusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibMusicApp.swift; sourceTree = "<group>"; };
 		BE8A006B294B538F00C97144 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE8A006E294B538F00C97144 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BEED915F2995CEE30096EDD5 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		BEED91612995CFEC0096EDD5 /* NoLightbulbFound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = NoLightbulbFound.json; path = ../../../../../../../../../../Downloads/NoLightbulbFound.json; sourceTree = "<group>"; };
-		BEED91632995E0900096EDD5 /* LightbulbOnOff.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = LightbulbOnOff.json; path = ../../../../../../../../../../Downloads/LightbulbOnOff.json; sourceTree = "<group>"; };
 		BEED9165299661DD0096EDD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BEF75194295371C4005CAB8A /* Tuner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
 		BEF751A62953D483005CAB8A /* Ambiance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ambiance.swift; sourceTree = "<group>"; };
@@ -228,8 +228,8 @@
 			children = (
 				BE13A80E2996AB3200D2533B /* RootView.swift */,
 				BE13A84D299B21AD00D2533B /* HomeKitTabView.swift */,
-				BEF751B32954D226005CAB8A /* SettingsView.swift */,
 				BE13A84F299B228D00D2533B /* AmbiancesTabView.swift */,
+				BEF751B32954D226005CAB8A /* SettingsView.swift */,
 				BEED915C2995CE560096EDD5 /* AmbianceViews */,
 				BEED915A2995CDF10096EDD5 /* HomeKitViews */,
 				BE13A847299AE60D00D2533B /* HomeView.swift */,
@@ -262,10 +262,10 @@
 		BEED915E2995CECE0096EDD5 /* Lotties */ = {
 			isa = PBXGroup;
 			children = (
-				BE13A80C2996A3C500D2533B /* MicOn.json */,
+				BE4B25A5299BBB34001133B7 /* MicOn.json */,
+				BE4B25A7299BBB53001133B7 /* LightbulbOnOff.json */,
+				BE4B25A9299BBB6E001133B7 /* NoLightbulbFound.json */,
 				BEED915F2995CEE30096EDD5 /* LottieView.swift */,
-				BEED91632995E0900096EDD5 /* LightbulbOnOff.json */,
-				BEED91612995CFEC0096EDD5 /* NoLightbulbFound.json */,
 			);
 			path = Lotties;
 			sourceTree = "<group>";
@@ -383,11 +383,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE4B25A8299BBB53001133B7 /* LightbulbOnOff.json in Resources */,
+				BE4B25A6299BBB35001133B7 /* MicOn.json in Resources */,
 				BE8A006F294B538F00C97144 /* Preview Assets.xcassets in Resources */,
-				BEED91642995E0900096EDD5 /* LightbulbOnOff.json in Resources */,
 				BE8A006C294B538F00C97144 /* Assets.xcassets in Resources */,
-				BE13A80D2996A3C600D2533B /* MicOn.json in Resources */,
-				BEED91622995CFEC0096EDD5 /* NoLightbulbFound.json in Resources */,
+				BE4B25AA299BBB6E001133B7 /* NoLightbulbFound.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +461,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "VibMusic Companion";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.gwendalvallee.VibMusic;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -491,6 +492,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "VibMusic Companion";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.gwendalvallee.VibMusic;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
