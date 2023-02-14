@@ -77,7 +77,9 @@ struct HomeKitTabView: View {
             if let selectedRoom = self.selectedRoom {
                 if self.homeStoreViewModel.currentStoredRooms.contains(selectedRoom) {
                     Button("Retirer des pièces actives", role: .destructive) {
-                        self.homeStoreViewModel.removeFromCurrentRooms(selectedRoom)
+                        if let currentStoredHome = self.homeStoreViewModel.currentStoredHome {
+                            self.homeStoreViewModel.removeFromCurrentRooms(selectedRoom, home: currentStoredHome)
+                        }
                     }
                 }
                 Button("Annuler", role: .cancel) { }
@@ -89,13 +91,23 @@ struct HomeKitTabView: View {
             if let selectedAccessory = self.selectedAccessory {
                 if self.homeStoreViewModel.currentStoredAccessories.contains(selectedAccessory) {
                     Button("Retirer des ampoules actives", role: .destructive) {
-                        self.homeStoreViewModel.removeFromCurrentAccessories(selectedAccessory)
+                        if let currentStoredHome = self.homeStoreViewModel.currentStoredHome {
+                            self.homeStoreViewModel.removeFromCurrentAccessories(selectedAccessory, home: currentStoredHome)
+                        }
                     }
                 }
                 Button("Annuler", role: .cancel) { }
             }
         } message: {
             Text("Choisir une action pour \(self.selectedAccessory?.name ?? "cette ampoule")")
+        }
+        .onAppear {
+            self.homeStoreViewModel.getCurrentHome()
+            
+            if let currentStoredHome = self.homeStoreViewModel.currentStoredHome {
+                self.homeStoreViewModel.getCurrentRooms(from: currentStoredHome)
+                self.homeStoreViewModel.getCurrentAccessories()
+            }
         }
     }
 }

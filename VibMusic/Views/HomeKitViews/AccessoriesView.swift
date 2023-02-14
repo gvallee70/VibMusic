@@ -27,7 +27,7 @@ struct AccessoriesView: View {
                     Text("Mes ampoules dans \(self.room.name)")
                 }) {
                     LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
-                        ForEach(self.homeStoreViewModel.accessories, id: \.uniqueIdentifier) { accessory in
+                        ForEach(self.homeStoreViewModel.roomAccessories, id: \.uniqueIdentifier) { accessory in
                             AccessoryView(accessory: accessory)
                             .padding(10)
                             .onTapGesture {
@@ -102,12 +102,12 @@ struct AccessoriesView: View {
                 
                 if self.homeStoreViewModel.currentStoredAccessories.contains(selectedAccessory) {
                     Button("Retirer des ampoules actives", role: .destructive) {
-                        self.homeStoreViewModel.removeFromCurrentAccessories(selectedAccessory)
+                        self.homeStoreViewModel.removeFromCurrentAccessories(selectedAccessory, home: self.home)
                     }
                 } else {
                     if self.homeStoreViewModel.currentStoredRooms.contains(self.room) {
                         Button("Ajouter aux ampoules actives") {
-                            self.homeStoreViewModel.addCurrentAccessory(selectedAccessory)
+                            self.homeStoreViewModel.addCurrentAccessory(selectedAccessory, home: self.home)
                         }
                     }
                     Button("Supprimer \(selectedAccessory.name) de \(self.home.name)", role: .destructive) {

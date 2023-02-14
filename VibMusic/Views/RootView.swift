@@ -40,9 +40,7 @@ struct RootView: View {
             .onAppear {
                 self.iphoneSessionDelegate.sendAmbiancesToWatchApp(ambiances: self.ambiancesStoreViewModel.ambiances)
                 self.iphoneSessionDelegate.sendCurrentAmbianceToWatchApp(self.ambiancesStoreViewModel.currentAmbiance)
-                self.homeStoreViewModel.getCurrentHome()
-                self.homeStoreViewModel.getCurrentRooms()
-                self.homeStoreViewModel.getCurrentAccessories()
+            
                 self.ambiancesStoreViewModel.homeStoreViewModel = self.homeStoreViewModel
                 self.audioKitViewModel.homeViewModel = self.homeStoreViewModel
                 self.audioKitViewModel.start()

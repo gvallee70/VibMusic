@@ -73,12 +73,12 @@ struct RoomsView: View {
                 }
                 if self.homeStoreViewModel.currentStoredRooms.contains(selectedRoom) {
                     Button("Retirer des pièces actives", role: .destructive) {
-                        self.homeStoreViewModel.removeFromCurrentRooms(selectedRoom)
+                        self.homeStoreViewModel.removeFromCurrentRooms(selectedRoom, home: self.home)
                     }
                 } else {
                     if self.homeStoreViewModel.currentStoredHome == self.home {
                         Button("Ajouter aux pièces actives") {
-                            self.homeStoreViewModel.addCurrentRoom(selectedRoom)
+                            self.homeStoreViewModel.addCurrentRoom(selectedRoom, home: self.home)
                         }
                     }
                     Button("Supprimer \(selectedRoom.name) de \(self.home.name)", role: .destructive) {
@@ -93,7 +93,7 @@ struct RoomsView: View {
         }
         .onAppear {
             self.homeStoreViewModel.getRooms(from: self.home)
-            self.homeStoreViewModel.getCurrentRooms()
+            self.homeStoreViewModel.getCurrentRooms(from: self.home)
         }
         
     }

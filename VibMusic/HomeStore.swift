@@ -20,6 +20,7 @@ class HomeStore: NSObject, ObservableObject {
     @Published var selectedRoom: HMRoom?
     @Published var currentStoredRooms: [HMRoom] = []
     
+    @Published var roomAccessories: [HMAccessory] = []
     @Published var accessories: [HMAccessory] = []
     @Published var discoveredAccessories: [HMAccessory] = []
     @Published var accessoryToAdd: HMAccessory?
@@ -148,7 +149,9 @@ class HomeStore: NSObject, ObservableObject {
     }
     
     func getAccessories(from room: HMRoom) {
-        self.accessories = room.accessories.filter({
+        self.roomAccessories.removeAll()
+        
+        self.roomAccessories = room.accessories.filter({
             $0.category.categoryType == HMAccessoryCategoryTypeLightbulb
         })
     }
@@ -245,26 +248,29 @@ class HomeStore: NSObject, ObservableObject {
         self.getCurrentHome()
     }
     
-    func addCurrentRoom(_ room: HMRoom) {
+    func addCurrentRoom(_ room: HMRoom, home: HMHome) {
         self.storeCurrentRoom(room)
         room.accessories.forEach { accessory in
-            self.storeCurrentAccessory(accessory)
+            if accessory.category.categoryType == HMAccessoryCategoryTypeLightbulb {
+                print(accessory.name)
+                self.storeCurrentAccessory(accessory)
+            }
         }
-        self.getCurrentRooms()
+        self.getCurrentRooms(from: home)
     }
     
-    func removeFromCurrentRooms(_ room: HMRoom) {
+    func removeFromCurrentRooms(_ room: HMRoom, home: HMHome) {
         self.removeCurrentRoomFromStorage(room)
         self.removeCurrentAccessoriesOfaRoomFromStorage(from: room)
-        self.getCurrentRooms()
+        self.getCurrentRooms(from: home)
     }
     
-    func addCurrentAccessory(_ accessory: HMAccessory) {
+    func addCurrentAccessory(_ accessory: HMAccessory, home: HMHome) {
         self.storeCurrentAccessory(accessory)
         self.getCurrentAccessories()
     }
     
-    func removeFromCurrentAccessories(_ accessory: HMAccessory) {
+    func removeFromCurrentAccessories(_ accessory: HMAccessory, home: HMHome) {
         self.removeCurrentAccessoryFromStorage(accessory)
         self.getCurrentAccessories()
     }
@@ -280,6 +286,7 @@ class HomeStore: NSObject, ObservableObject {
     func getCurrentHome() {
         guard let currentHomeUUIDstring = UserDefaults.standard.string(forKey: "currentHomeUUID") else { return
         }
+        self.homes = self.manager.homes
         self.currentStoredHome = self.homes.first(where: { $0.uniqueIdentifier == UUID(uuidString: currentHomeUUIDstring) })
     }
     
@@ -300,9 +307,11 @@ class HomeStore: NSObject, ObservableObject {
         UserDefaults.standard.removeObject(forKey: "currentRoomsUUIDstring")
     }
     
-    func getCurrentRooms() {
+    func getCurrentRooms(from home: HMHome) {
         guard let currentRoomsUUIDstring = UserDefaults.standard.stringArray(forKey: "currentRoomsUUIDstring") else { return
         }
+        self.rooms = home.rooms
+        self.accessories = home.accessories
         self.currentStoredRooms = self.rooms.filter({
             currentRoomsUUIDstring.contains($0.uniqueIdentifier.uuidString)
         })
@@ -336,6 +345,7 @@ class HomeStore: NSObject, ObservableObject {
     func getCurrentAccessories() {
         guard let currentAccessoriesUUIDstring = UserDefaults.standard.stringArray(forKey: "currentAccessoriesUUIDstring") else { return
         }
+        
         self.currentStoredAccessories = self.accessories.filter({
             currentAccessoriesUUIDstring.contains($0.uniqueIdentifier.uuidString)
         })
