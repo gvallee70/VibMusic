@@ -9,8 +9,8 @@ import SwiftUI
 
 @main
 struct VibMusicApp: App {
-    @ObservedObject var homeStoreViewModel = HomeStore()
-    @ObservedObject var audioKitViewModel = TunerConductor()
+    @ObservedObject var homeStoreViewModel = HomeStoreViewModel()
+    @ObservedObject var audioKitViewModel = AudioKitViewModel()
     @ObservedObject var ambiancesStoreViewModel = AmbiancesViewModel()
     @ObservedObject var iphoneSessionDelegate = iPhoneSessionDelegate()
 

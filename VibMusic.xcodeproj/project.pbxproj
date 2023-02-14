@@ -17,7 +17,7 @@
 		BE13A83F2998FED800D2533B /* WatchSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A83E2998FED800D2533B /* WatchSessionDelegate.swift */; };
 		BE13A84029993BBF00D2533B /* Ambiance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751A62953D483005CAB8A /* Ambiance.swift */; };
 		BE13A842299955BB00D2533B /* AmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BE29561F37005CAB8A /* AmbianceView.swift */; };
-		BE13A8462999B93400D2533B /* RoomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8452999B93400D2533B /* RoomsView.swift */; };
+		BE13A8462999B93400D2533B /* RoomsListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8452999B93400D2533B /* RoomsListScreen.swift */; };
 		BE13A848299AE60E00D2533B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A847299AE60D00D2533B /* HomeView.swift */; };
 		BE13A84A299B064300D2533B /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A849299B064300D2533B /* RoomView.swift */; };
 		BE13A84C299B10D400D2533B /* AccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A84B299B10D400D2533B /* AccessoryView.swift */; };
@@ -31,20 +31,19 @@
 		BE8A006F294B538F00C97144 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006E294B538F00C97144 /* Preview Assets.xcassets */; };
 		BEED91592995CD750096EDD5 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = BEED91582995CD750096EDD5 /* Lottie */; };
 		BEED91602995CEE30096EDD5 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEED915F2995CEE30096EDD5 /* LottieView.swift */; };
-		BEF75195295371C4005CAB8A /* Tuner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF75194295371C4005CAB8A /* Tuner.swift */; };
+		BEF75195295371C4005CAB8A /* AudioKitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF75194295371C4005CAB8A /* AudioKitViewModel.swift */; };
 		BEF7519B29537472005CAB8A /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BEF7519A29537472005CAB8A /* AudioKit */; };
 		BEF7519E2953749C005CAB8A /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = BEF7519D2953749C005CAB8A /* AudioKitEX */; };
 		BEF751A1295374AE005CAB8A /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = BEF751A0295374AE005CAB8A /* AudioKitUI */; };
 		BEF751A4295374C0005CAB8A /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BEF751A3295374C0005CAB8A /* SoundpipeAudioKit */; };
 		BEF751A72953D483005CAB8A /* Ambiance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751A62953D483005CAB8A /* Ambiance.swift */; };
-		BEF751AA2953EB73005CAB8A /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751A92953EB73005CAB8A /* HomeStore.swift */; };
-		BEF751AC2953EBB3005CAB8A /* HomesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751AB2953EBB3005CAB8A /* HomesView.swift */; };
-		BEF751AE2953EC7E005CAB8A /* AccessoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751AD2953EC7E005CAB8A /* AccessoriesView.swift */; };
-		BEF751B02953ECEA005CAB8A /* CharacteristicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */; };
-		BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B12953ED9A005CAB8A /* ServicesView.swift */; };
+		BEF751AA2953EB73005CAB8A /* HomeStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751A92953EB73005CAB8A /* HomeStoreViewModel.swift */; };
+		BEF751AC2953EBB3005CAB8A /* HomesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751AB2953EBB3005CAB8A /* HomesListScreen.swift */; };
+		BEF751AE2953EC7E005CAB8A /* AccessoriesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751AD2953EC7E005CAB8A /* AccessoriesListScreen.swift */; };
+		BEF751B02953ECEA005CAB8A /* ManageCharacteristicsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751AF2953ECEA005CAB8A /* ManageCharacteristicsScreen.swift */; };
 		BEF751B42954D227005CAB8A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751B32954D226005CAB8A /* SettingsView.swift */; };
-		BEF751BB29554B37005CAB8A /* AmplitudeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */; };
-		BEF751BD2956174A005CAB8A /* AmbiancesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BC29561749005CAB8A /* AmbiancesScreen.swift */; };
+		BEF751BB29554B37005CAB8A /* AmplitudeSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BA29554B36005CAB8A /* AmplitudeSectionView.swift */; };
+		BEF751BD2956174A005CAB8A /* AmbiancesListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BC29561749005CAB8A /* AmbiancesListScreen.swift */; };
 		BEF751BF29561F37005CAB8A /* AmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BE29561F37005CAB8A /* AmbianceView.swift */; };
 		BEF751C129561FE1005CAB8A /* AmbiancesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */; };
 		BEF751C329565057005CAB8A /* ManageAmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C229565057005CAB8A /* ManageAmbianceView.swift */; };
@@ -93,7 +92,7 @@
 		BE13A81D2998F86B00D2533B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BE13A8262998FA3B00D2533B /* iPhoneSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneSessionDelegate.swift; sourceTree = "<group>"; };
 		BE13A83E2998FED800D2533B /* WatchSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionDelegate.swift; sourceTree = "<group>"; };
-		BE13A8452999B93400D2533B /* RoomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsView.swift; sourceTree = "<group>"; };
+		BE13A8452999B93400D2533B /* RoomsListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsListScreen.swift; sourceTree = "<group>"; };
 		BE13A847299AE60D00D2533B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BE13A849299B064300D2533B /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
 		BE13A84B299B10D400D2533B /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
@@ -108,17 +107,16 @@
 		BE8A006E294B538F00C97144 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BEED915F2995CEE30096EDD5 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		BEED9165299661DD0096EDD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		BEF75194295371C4005CAB8A /* Tuner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tuner.swift; sourceTree = "<group>"; };
+		BEF75194295371C4005CAB8A /* AudioKitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioKitViewModel.swift; sourceTree = "<group>"; };
 		BEF751A62953D483005CAB8A /* Ambiance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ambiance.swift; sourceTree = "<group>"; };
 		BEF751A82953E2A9005CAB8A /* VibMusic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VibMusic.entitlements; sourceTree = "<group>"; };
-		BEF751A92953EB73005CAB8A /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
-		BEF751AB2953EBB3005CAB8A /* HomesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomesView.swift; sourceTree = "<group>"; };
-		BEF751AD2953EC7E005CAB8A /* AccessoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoriesView.swift; sourceTree = "<group>"; };
-		BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicsView.swift; sourceTree = "<group>"; };
-		BEF751B12953ED9A005CAB8A /* ServicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
+		BEF751A92953EB73005CAB8A /* HomeStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStoreViewModel.swift; sourceTree = "<group>"; };
+		BEF751AB2953EBB3005CAB8A /* HomesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomesListScreen.swift; sourceTree = "<group>"; };
+		BEF751AD2953EC7E005CAB8A /* AccessoriesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoriesListScreen.swift; sourceTree = "<group>"; };
+		BEF751AF2953ECEA005CAB8A /* ManageCharacteristicsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCharacteristicsScreen.swift; sourceTree = "<group>"; };
 		BEF751B32954D226005CAB8A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeSection.swift; sourceTree = "<group>"; };
-		BEF751BC29561749005CAB8A /* AmbiancesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesScreen.swift; sourceTree = "<group>"; };
+		BEF751BA29554B36005CAB8A /* AmplitudeSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplitudeSectionView.swift; sourceTree = "<group>"; };
+		BEF751BC29561749005CAB8A /* AmbiancesListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesListScreen.swift; sourceTree = "<group>"; };
 		BEF751BE29561F37005CAB8A /* AmbianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbianceView.swift; sourceTree = "<group>"; };
 		BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmbiancesViewModel.swift; sourceTree = "<group>"; };
 		BEF751C229565057005CAB8A /* ManageAmbianceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAmbianceView.swift; sourceTree = "<group>"; };
@@ -153,8 +151,8 @@
 				BE13A8162998F86A00D2533B /* VibMusic_CompanionApp.swift */,
 				BE13A8182998F86A00D2533B /* RootView.swift */,
 				BE13A81A2998F86B00D2533B /* Assets.xcassets */,
+				BEA56B88299C456500DB5888 /* WatchConnectivity */,
 				BE13A81C2998F86B00D2533B /* Preview Content */,
-				BE13A83E2998FED800D2533B /* WatchSessionDelegate.swift */,
 			);
 			path = "VibMusic Companion Watch App";
 			sourceTree = "<group>";
@@ -191,12 +189,11 @@
 				BEED9165299661DD0096EDD5 /* Info.plist */,
 				BEF751A82953E2A9005CAB8A /* VibMusic.entitlements */,
 				BE8A0067294B538D00C97144 /* VibMusicApp.swift */,
-				BE13A8262998FA3B00D2533B /* iPhoneSessionDelegate.swift */,
-				BEED915B2995CE430096EDD5 /* Views */,
-				BEF751A92953EB73005CAB8A /* HomeStore.swift */,
-				BEF75194295371C4005CAB8A /* Tuner.swift */,
-				BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */,
-				BEF751A52953D478005CAB8A /* Models */,
+				BEA56B84299C41F300DB5888 /* RootViews */,
+				BEA56B7E299C419800DB5888 /* Ambiances */,
+				BEA56B7D299C418C00DB5888 /* AudioKit */,
+				BEA56B7C299C416B00DB5888 /* HomeKit */,
+				BEA56B86299C424500DB5888 /* WatchConnectivity */,
 				BEED915D2995CEB80096EDD5 /* Assets */,
 				BE8A006D294B538F00C97144 /* Preview Content */,
 			);
@@ -211,43 +208,123 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		BEED915A2995CDF10096EDD5 /* HomeKitViews */ = {
+		BEA56B7B299C414F00DB5888 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				BEF751AB2953EBB3005CAB8A /* HomesView.swift */,
-				BE13A8452999B93400D2533B /* RoomsView.swift */,
-				BEF751AD2953EC7E005CAB8A /* AccessoriesView.swift */,
-				BEF751B12953ED9A005CAB8A /* ServicesView.swift */,
-				BEF751AF2953ECEA005CAB8A /* CharacteristicsView.swift */,
+				BEF751A92953EB73005CAB8A /* HomeStoreViewModel.swift */,
 			);
-			path = HomeKitViews;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		BEED915B2995CE430096EDD5 /* Views */ = {
+		BEA56B7C299C416B00DB5888 /* HomeKit */ = {
 			isa = PBXGroup;
 			children = (
-				BE13A80E2996AB3200D2533B /* RootView.swift */,
-				BE13A84D299B21AD00D2533B /* HomeKitTabView.swift */,
-				BE13A84F299B228D00D2533B /* AmbiancesTabView.swift */,
-				BEF751B32954D226005CAB8A /* SettingsView.swift */,
-				BEED915C2995CE560096EDD5 /* AmbianceViews */,
-				BEED915A2995CDF10096EDD5 /* HomeKitViews */,
-				BE13A847299AE60D00D2533B /* HomeView.swift */,
-				BE13A849299B064300D2533B /* RoomView.swift */,
-				BE13A84B299B10D400D2533B /* AccessoryView.swift */,
+				BEA56B83299C41DA00DB5888 /* Views */,
+				BEA56B7B299C414F00DB5888 /* ViewModel */,
+			);
+			path = HomeKit;
+			sourceTree = "<group>";
+		};
+		BEA56B7D299C418C00DB5888 /* AudioKit */ = {
+			isa = PBXGroup;
+			children = (
+				BEA56B82299C41D100DB5888 /* Views */,
+				BEA56B80299C41AB00DB5888 /* ViewModel */,
+			);
+			path = AudioKit;
+			sourceTree = "<group>";
+		};
+		BEA56B7E299C419800DB5888 /* Ambiances */ = {
+			isa = PBXGroup;
+			children = (
+				BEA56B81299C41C400DB5888 /* Views */,
+				BEF751A52953D478005CAB8A /* Models */,
+				BEA56B7F299C41A500DB5888 /* ViewModel */,
+			);
+			path = Ambiances;
+			sourceTree = "<group>";
+		};
+		BEA56B7F299C41A500DB5888 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BEA56B80299C41AB00DB5888 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BEF75194295371C4005CAB8A /* AudioKitViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BEA56B81299C41C400DB5888 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BEF751BE29561F37005CAB8A /* AmbianceView.swift */,
+				BEF751BC29561749005CAB8A /* AmbiancesListScreen.swift */,
+				BEF751C229565057005CAB8A /* ManageAmbianceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		BEED915C2995CE560096EDD5 /* AmbianceViews */ = {
+		BEA56B82299C41D100DB5888 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BEF751BE29561F37005CAB8A /* AmbianceView.swift */,
-				BEF751BC29561749005CAB8A /* AmbiancesScreen.swift */,
-				BEF751BA29554B36005CAB8A /* AmplitudeSection.swift */,
-				BEF751C229565057005CAB8A /* ManageAmbianceView.swift */,
+				BEF751BA29554B36005CAB8A /* AmplitudeSectionView.swift */,
 			);
-			path = AmbianceViews;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BEA56B83299C41DA00DB5888 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BE13A847299AE60D00D2533B /* HomeView.swift */,
+				BEF751AB2953EBB3005CAB8A /* HomesListScreen.swift */,
+				BE13A849299B064300D2533B /* RoomView.swift */,
+				BE13A8452999B93400D2533B /* RoomsListScreen.swift */,
+				BE13A84B299B10D400D2533B /* AccessoryView.swift */,
+				BEF751AD2953EC7E005CAB8A /* AccessoriesListScreen.swift */,
+				BEF751AF2953ECEA005CAB8A /* ManageCharacteristicsScreen.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BEA56B84299C41F300DB5888 /* RootViews */ = {
+			isa = PBXGroup;
+			children = (
+				BE13A80E2996AB3200D2533B /* RootView.swift */,
+				BEF751B32954D226005CAB8A /* SettingsView.swift */,
+				BEA56B85299C420A00DB5888 /* TabViews */,
+			);
+			path = RootViews;
+			sourceTree = "<group>";
+		};
+		BEA56B85299C420A00DB5888 /* TabViews */ = {
+			isa = PBXGroup;
+			children = (
+				BE13A84D299B21AD00D2533B /* HomeKitTabView.swift */,
+				BE13A84F299B228D00D2533B /* AmbiancesTabView.swift */,
+			);
+			path = TabViews;
+			sourceTree = "<group>";
+		};
+		BEA56B86299C424500DB5888 /* WatchConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				BE13A8262998FA3B00D2533B /* iPhoneSessionDelegate.swift */,
+			);
+			path = WatchConnectivity;
+			sourceTree = "<group>";
+		};
+		BEA56B88299C456500DB5888 /* WatchConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				BE13A83E2998FED800D2533B /* WatchSessionDelegate.swift */,
+			);
+			path = WatchConnectivity;
 			sourceTree = "<group>";
 		};
 		BEED915D2995CEB80096EDD5 /* Assets */ = {
@@ -412,26 +489,25 @@
 			files = (
 				BE13A850299B228D00D2533B /* AmbiancesTabView.swift in Sources */,
 				BEF751C129561FE1005CAB8A /* AmbiancesViewModel.swift in Sources */,
-				BEF751AA2953EB73005CAB8A /* HomeStore.swift in Sources */,
+				BEF751AA2953EB73005CAB8A /* HomeStoreViewModel.swift in Sources */,
 				BEED91602995CEE30096EDD5 /* LottieView.swift in Sources */,
 				BEF751C329565057005CAB8A /* ManageAmbianceView.swift in Sources */,
 				BE13A84C299B10D400D2533B /* AccessoryView.swift in Sources */,
-				BEF75195295371C4005CAB8A /* Tuner.swift in Sources */,
+				BEF75195295371C4005CAB8A /* AudioKitViewModel.swift in Sources */,
 				BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */,
-				BEF751BD2956174A005CAB8A /* AmbiancesScreen.swift in Sources */,
+				BEF751BD2956174A005CAB8A /* AmbiancesListScreen.swift in Sources */,
 				BE13A84E299B21AD00D2533B /* HomeKitTabView.swift in Sources */,
-				BEF751AE2953EC7E005CAB8A /* AccessoriesView.swift in Sources */,
+				BEF751AE2953EC7E005CAB8A /* AccessoriesListScreen.swift in Sources */,
 				BE13A80F2996AB3200D2533B /* RootView.swift in Sources */,
-				BE13A8462999B93400D2533B /* RoomsView.swift in Sources */,
-				BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */,
+				BE13A8462999B93400D2533B /* RoomsListScreen.swift in Sources */,
 				BE13A8272998FA3B00D2533B /* iPhoneSessionDelegate.swift in Sources */,
 				BE13A848299AE60E00D2533B /* HomeView.swift in Sources */,
 				BEF751B42954D227005CAB8A /* SettingsView.swift in Sources */,
-				BEF751BB29554B37005CAB8A /* AmplitudeSection.swift in Sources */,
+				BEF751BB29554B37005CAB8A /* AmplitudeSectionView.swift in Sources */,
 				BEF751BF29561F37005CAB8A /* AmbianceView.swift in Sources */,
-				BEF751AC2953EBB3005CAB8A /* HomesView.swift in Sources */,
+				BEF751AC2953EBB3005CAB8A /* HomesListScreen.swift in Sources */,
 				BE13A84A299B064300D2533B /* RoomView.swift in Sources */,
-				BEF751B02953ECEA005CAB8A /* CharacteristicsView.swift in Sources */,
+				BEF751B02953ECEA005CAB8A /* ManageCharacteristicsScreen.swift in Sources */,
 				BEF751A72953D483005CAB8A /* Ambiance.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

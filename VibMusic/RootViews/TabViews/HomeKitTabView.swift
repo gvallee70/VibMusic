@@ -9,7 +9,7 @@ import SwiftUI
 import HomeKit
 
 struct HomeKitTabView: View {
-    @EnvironmentObject var homeStoreViewModel: HomeStore
+    @EnvironmentObject var homeStoreViewModel: HomeStoreViewModel
     
     @State private var showRoomActionDialog = false
     @State private var showAccessoryActionDialog = false
@@ -40,7 +40,7 @@ struct HomeKitTabView: View {
                         }
                     }
                     
-                    NavigationLink(destination: RoomsView(home: currentStoredHome)) {
+                    NavigationLink(destination: RoomsListScreen(home: currentStoredHome)) {
                         Button {} label: {
                             Text("Gérer les pièces pour \(currentStoredHome.name)")
                         }
@@ -66,7 +66,7 @@ struct HomeKitTabView: View {
             } else {
                 Text("Vous n'avez pas de domicile actif.")
                     .font(.title)
-                NavigationLink(destination: HomesView()) {
+                NavigationLink(destination: HomesListScreen()) {
                     Button {} label: {
                         Text("Gérer mes domiciles")
                     }
@@ -76,7 +76,7 @@ struct HomeKitTabView: View {
         .confirmationDialog("Ma pièce", isPresented: self.$showRoomActionDialog) {
             if let selectedRoom = self.selectedRoom {
                 if let currentStoredHome = self.homeStoreViewModel.currentStoredHome {
-                    NavigationLink(destination: AccessoriesView(home: currentStoredHome, room: selectedRoom)) {
+                    NavigationLink(destination: AccessoriesListScreen(home: currentStoredHome, room: selectedRoom)) {
                         Text("Voir les ampoules")
                     }
                 }
@@ -95,7 +95,7 @@ struct HomeKitTabView: View {
         .confirmationDialog("Mon ampoule", isPresented: self.$showAccessoryActionDialog) {
             if let selectedAccessory = self.selectedAccessory {
                 if let lightbulbService = selectedAccessory.services.first(where: { $0.serviceType == HMServiceTypeLightbulb }) {
-                    NavigationLink(destination: CharacteristicsView(service: lightbulbService)) {
+                    NavigationLink(destination: ManageCharacteristicsScreen(service: lightbulbService)) {
                         Text("Modifier les caractéristiques")
                     }
                 }

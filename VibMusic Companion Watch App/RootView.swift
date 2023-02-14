@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  RootView.swift
 //  VibMusic Companion Watch App
 //
 //  Created by Gwendal on 12/02/2023.
@@ -12,6 +12,7 @@ struct RootView: View {
     @ObservedObject var watchSessionDelegate = WatchSessionDelegate()
     @State private var selectedAmbiance: Ambiance?
     @State var ambiances = [Ambiance]()
+    
     var body: some View {
         VStack {
             if self.watchSessionDelegate.ambiances.isEmpty {

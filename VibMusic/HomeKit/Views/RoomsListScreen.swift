@@ -1,5 +1,5 @@
 //
-//  RoomsView.swift
+//  RoomsListScreen.swift
 //  VibMusic
 //
 //  Created by Gwendal on 13/02/2023.
@@ -8,8 +8,8 @@
 import SwiftUI
 import HomeKit
 
-struct RoomsView: View {
-    @EnvironmentObject var homeStoreViewModel: HomeStore
+struct RoomsListScreen: View {
+    @EnvironmentObject var homeStoreViewModel: HomeStoreViewModel
 
     @State var home: HMHome
     @State private var showAddRoomAlert = false
@@ -66,9 +66,16 @@ struct RoomsView: View {
             
         }
         .navigationTitle("Mes pièces")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gear")
+                }
+            }
+        }
         .confirmationDialog("Ma pièce", isPresented: self.$showRoomActionDialog) {
             if let selectedRoom = self.selectedRoom {
-                NavigationLink(destination: AccessoriesView(home: self.home, room: selectedRoom)) {
+                NavigationLink(destination: AccessoriesListScreen(home: self.home, room: selectedRoom)) {
                     Text("Voir les ampoules")
                 }
                 if self.homeStoreViewModel.currentStoredRooms.contains(selectedRoom) {

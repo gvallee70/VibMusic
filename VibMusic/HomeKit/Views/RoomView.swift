@@ -1,38 +1,38 @@
 //
-//  PlusCircleView.swift
+//  RoomView.swift
 //  VibMusic
 //
-//  Created by Gwendal on 13/02/2023.
+//  Created by Gwendal on 14/02/2023.
 //
 
 import SwiftUI
 import HomeKit
 
-struct HomeView: View {
-    @EnvironmentObject var homeStoreViewModel: HomeStore
+struct RoomView: View {
+    @EnvironmentObject var homeStoreViewModel: HomeStoreViewModel
 
-    @State var home: HMHome
+    @State var room: HMRoom
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color.orange, Color.pink]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                .frame(width: 130, height: 130)
+                .fill(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.purple]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                .frame(maxWidth: 130, maxHeight: 130)
                 .opacity(0.9)
                 .overlay {
-                    if self.homeStoreViewModel.currentStoredHome == self.home {
+                    if self.homeStoreViewModel.currentStoredRooms.contains(self.room) {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.green, lineWidth: 5)
                     }
                 }
             
             VStack {
-                Image(systemName: "house.fill")
+                Image(systemName: "house.circle")
                     .resizable()
                     .frame(width: 55, height: 55)
                     .padding(.bottom, 2)
                 
-                Text(self.home.name)
+                Text(self.room.name)
                     .bold()
                     .font(.headline)
                     .frame(maxWidth: 110)
@@ -41,7 +41,7 @@ struct HomeView: View {
             .padding()
         }
         .overlay(alignment: .topTrailing) {
-            if self.homeStoreViewModel.currentStoredHome == self.home {
+            if self.homeStoreViewModel.currentStoredRooms.contains(self.room) {
                 Text("Active")
                     .font(.system(size: 14))
                     .padding(5)

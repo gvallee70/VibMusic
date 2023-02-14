@@ -1,5 +1,5 @@
 //
-//  AmbiancesView.swift
+//  AmbiancesListScreen.swift
 //  VibMusic
 //
 //  Created by Gwendal on 23/12/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AmbiancesScreen: View {
+struct AmbiancesListScreen: View {
     @EnvironmentObject var ambiancesStoreViewModel: AmbiancesViewModel
     @EnvironmentObject var iphoneSessionDelegate: iPhoneSessionDelegate
 
@@ -95,6 +95,13 @@ struct AmbiancesScreen: View {
             }
         }
         .listRowBackground(Color.clear)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gear")
+                }
+            }
+        }
         .navigationTitle("Mes ambiances")
         .scrollIndicators(.hidden)
         .sheet(isPresented: self.$showManageAmbianceSheet, content: {

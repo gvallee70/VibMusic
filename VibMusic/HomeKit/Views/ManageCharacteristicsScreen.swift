@@ -1,5 +1,5 @@
 //
-//  CharacteristicsView.swift
+//  ManageCharacteristicsScreen.swift
 //  VibMusic
 //
 //  Created by Gwendal on 22/12/2022.
@@ -8,11 +8,11 @@ import SwiftUI
 import HomeKit
 import AudioKitUI
 
-struct CharacteristicsView: View {
+struct ManageCharacteristicsScreen: View {
     @Environment(\.scenePhase) var scenePhase
 
-    @EnvironmentObject var homeStoreViewModel: HomeStore
-    @EnvironmentObject var audioKitViewModel: TunerConductor
+    @EnvironmentObject var homeStoreViewModel: HomeStoreViewModel
+    @EnvironmentObject var audioKitViewModel: AudioKitViewModel
     
     @State var service: HMService
 
@@ -96,13 +96,20 @@ struct CharacteristicsView: View {
                 }
             }
             
-            AmplitudeSection(audioKitViewModel: self.audioKitViewModel)
+            AmplitudeSectionView(audioKitViewModel: self.audioKitViewModel)
                 .onAppear {
-                    self.audioKitViewModel.homeViewModel = self.homeStoreViewModel
+                    self.audioKitViewModel.homeStoreViewModel = self.homeStoreViewModel
                     self.audioKitViewModel.start()
                 }
         }
         .navigationTitle("Paramètres du service")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gear")
+                }
+            }
+        }
         .onAppear {
             self.homeStoreViewModel.getCharacteristics(from: self.service)
             self.homeStoreViewModel.readCharacteristicValues()

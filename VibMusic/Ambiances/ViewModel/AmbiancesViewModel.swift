@@ -14,7 +14,7 @@ class AmbiancesViewModel: ObservableObject {
     @Published var storedAmbiances: [Ambiance] = []
     @Published var currentAmbiance: Ambiance?
     
-    @Published var homeStoreViewModel: HomeStore?
+    @Published var homeStoreViewModel: HomeStoreViewModel?
 
     init() {
         self.getAmbiances()

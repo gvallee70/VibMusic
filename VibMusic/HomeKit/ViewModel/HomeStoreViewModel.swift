@@ -9,9 +9,7 @@ import SwiftUI
 import HomeKit
 import Combine
 
-class HomeStore: NSObject, ObservableObject {
-    
-    
+class HomeStoreViewModel: NSObject, ObservableObject {
     @Published var homes: [HMHome] = []
     @Published var selectedHome: HMHome?
     @Published var currentStoredHome: HMHome?
@@ -358,14 +356,14 @@ class HomeStore: NSObject, ObservableObject {
 
 }
 
-extension HomeStore: HMHomeManagerDelegate {
+extension HomeStoreViewModel: HMHomeManagerDelegate {
     func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
         print("DEBUG: Updated Homes!")
         self.homes = self.manager.homes
     }
 }
 
-extension HomeStore: HMAccessoryBrowserDelegate {
+extension HomeStoreViewModel: HMAccessoryBrowserDelegate {
     func accessoryBrowser(_ browser: HMAccessoryBrowser, didFindNewAccessory accessory: HMAccessory) {
         
         if accessory.category.categoryType == HMAccessoryCategoryTypeLightbulb {

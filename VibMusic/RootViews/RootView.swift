@@ -9,8 +9,8 @@ import SwiftUI
 import HomeKit
 
 struct RootView: View {
-    @EnvironmentObject var homeStoreViewModel: HomeStore
-    @EnvironmentObject var audioKitViewModel: TunerConductor
+    @EnvironmentObject var homeStoreViewModel: HomeStoreViewModel
+    @EnvironmentObject var audioKitViewModel: AudioKitViewModel
     @EnvironmentObject var ambiancesStoreViewModel: AmbiancesViewModel
     @EnvironmentObject var iphoneSessionDelegate: iPhoneSessionDelegate
 
@@ -31,7 +31,6 @@ struct RootView: View {
                         }
                 }
             }
-            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: SettingsView()) {
@@ -39,13 +38,13 @@ struct RootView: View {
                     }
                 }
             }
-            .navigationTitle("Bienvenue")
+            .navigationTitle("Vib'Music App")
             .onAppear {
                 self.iphoneSessionDelegate.sendAmbiancesToWatchApp(ambiances: self.ambiancesStoreViewModel.ambiances)
                 self.iphoneSessionDelegate.sendCurrentAmbianceToWatchApp(self.ambiancesStoreViewModel.currentAmbiance)
             
                 self.ambiancesStoreViewModel.homeStoreViewModel = self.homeStoreViewModel
-                self.audioKitViewModel.homeViewModel = self.homeStoreViewModel
+                self.audioKitViewModel.homeStoreViewModel = self.homeStoreViewModel
                 self.audioKitViewModel.start()
                 
                 if let currentStoredHome = self.homeStoreViewModel.currentStoredHome {

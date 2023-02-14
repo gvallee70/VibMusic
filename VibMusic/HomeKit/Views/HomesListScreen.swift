@@ -1,5 +1,5 @@
 //
-//  HomesView.swift
+//  HomesListScreen.swift
 //  VibMusic
 //
 //  Created by Gwendal on 22/12/2022.
@@ -8,8 +8,8 @@
 import SwiftUI
 import HomeKit
 
-struct HomesView: View {
-    @EnvironmentObject var homeStoreViewModel: HomeStore
+struct HomesListScreen: View {
+    @EnvironmentObject var homeStoreViewModel: HomeStoreViewModel
 
     @State private var showAddHomeAlert = false
     @State private var homeName = ""
@@ -59,9 +59,16 @@ struct HomesView: View {
             }
         }
         .navigationTitle("Mes domiciles")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gear")
+                }
+            }
+        }
         .confirmationDialog("Mon domicile", isPresented: self.$showHomeActionDialog) {
             if let selectedHome = self.selectedHome {
-                NavigationLink(destination: RoomsView(home: selectedHome)) {
+                NavigationLink(destination: RoomsListScreen(home: selectedHome)) {
                     Text("Voir le détails des pièces")
                 }
                 if self.selectedHome != self.homeStoreViewModel.currentStoredHome {

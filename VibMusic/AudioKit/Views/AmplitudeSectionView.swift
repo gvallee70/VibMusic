@@ -8,8 +8,8 @@
 import SwiftUI
 import AudioKitUI
 
-struct AmplitudeSection: View {
-    @ObservedObject var audioKitViewModel: TunerConductor
+struct AmplitudeSectionView: View {
+    @ObservedObject var audioKitViewModel: AudioKitViewModel
     
     var body: some View {
         Section(header: HStack {
@@ -33,6 +33,6 @@ struct AmplitudeSection: View {
 
 struct AmplitudeFooter_Previews: PreviewProvider {
     static var previews: some View {
-        AmplitudeSection(audioKitViewModel: TunerConductor())
+        AmplitudeSectionView(audioKitViewModel: AudioKitViewModel())
     }
 }

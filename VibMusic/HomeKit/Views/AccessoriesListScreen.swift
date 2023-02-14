@@ -1,5 +1,5 @@
 //
-//  AccessoriesView.swift
+//  AccessoriesListScreen.swift
 //  VibMusic
 //
 //  Created by Gwendal on 22/12/2022.
@@ -8,10 +8,10 @@
 import SwiftUI
 import HomeKit
 
-struct AccessoriesView: View {
+struct AccessoriesListScreen: View {
     @Environment(\.colorScheme) var colorScheme
 
-    @EnvironmentObject var homeStoreViewModel: HomeStore
+    @EnvironmentObject var homeStoreViewModel: HomeStoreViewModel
     
     @State var home: HMHome
     @State var room: HMRoom
@@ -92,10 +92,17 @@ struct AccessoriesView: View {
             }
         }
         .navigationTitle("\(self.room.name) \(self.homeStoreViewModel.currentStoredRooms.contains(self.room) ? "(active)" : "")")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gear")
+                }
+            }
+        }
         .confirmationDialog("Mon ampoule", isPresented: self.$showAccessoryActionDialog) {
             if let selectedAccessory = self.selectedAccessory {
                 if let lightbulbService = selectedAccessory.services.first(where: { $0.serviceType == HMServiceTypeLightbulb }) {
-                    NavigationLink(destination: CharacteristicsView(service: lightbulbService)) {
+                    NavigationLink(destination: ManageCharacteristicsScreen(service: lightbulbService)) {
                         Text("Modifier les caractéristiques")
                     }
                 }

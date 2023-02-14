@@ -18,9 +18,9 @@ struct TunerData {
     var amplitude: Float = 0.0
 }
 
-class TunerConductor: ObservableObject, HasAudioEngine {
+class AudioKitViewModel: ObservableObject, HasAudioEngine {
     @Published var data = TunerData()
-    @Published var homeViewModel: HomeStore?
+    @Published var homeStoreViewModel: HomeStoreViewModel?
     
     let engine = AudioEngine()
     let initialDevice: Device?
@@ -70,13 +70,12 @@ class TunerConductor: ObservableObject, HasAudioEngine {
     }
     
     func update(_ pitch: AUValue, _ amp: AUValue) {
-        // Reduces sensitivity to background noise to prevent random / fluctuating data.
         guard amp > 0.1 else { return }
 
         data.pitch = pitch
         data.amplitude = amp
         
-        guard let homeViewModel = self.homeViewModel else {
+        guard let homeViewModel = self.homeStoreViewModel else {
             return
         }
         
@@ -89,6 +88,8 @@ class TunerConductor: ObservableObject, HasAudioEngine {
                 homeViewModel.getAllLightbulbsServices(from: homeViewModel.currentStoredAccessories)
             }
             
+            
+            //if sound detection, update brightness of lightbulb depending of the ambiant sound
             if UserDefaults.standard.bool(forKey: "soundDetectionIsOn") {
                 homeViewModel.lightbulbsServices.forEach({ service in
                     service.characteristics.forEach { characteristic in
@@ -100,6 +101,5 @@ class TunerConductor: ObservableObject, HasAudioEngine {
 
             }
         }
-        print(data.amplitude)
     }
 }
