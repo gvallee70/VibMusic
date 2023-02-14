@@ -34,7 +34,7 @@ struct SettingsView: View {
                 self.soundDetectionIsOn = UserDefaults.standard.bool(forKey: "soundDetectionIsOn")
             }
             .onChange(of: soundDetectionIsOn) { newValue in
-                UserDefaults.standard.set(soundDetectionIsOn, forKey: "soundDetectionIsOn")
+                UserDefaults.standard.set(newValue, forKey: "soundDetectionIsOn")
             }
             
             AmplitudeSectionView(audioKitViewModel: self.audioKitViewModel)

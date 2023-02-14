@@ -80,15 +80,8 @@ class AudioKitViewModel: ObservableObject, HasAudioEngine {
         }
         
         if let currentStoredHome = homeViewModel.currentStoredHome {
-            if homeViewModel.currentStoredRooms.isEmpty {
-                homeViewModel.getAllLightbulbsServicesForAllRooms(from: currentStoredHome)
-            } else if homeViewModel.currentStoredAccessories.isEmpty {
-                homeViewModel.getAllLightbulbsServices(from: homeViewModel.currentStoredRooms)
-            } else {
-                homeViewModel.getAllLightbulbsServices(from: homeViewModel.currentStoredAccessories)
-            }
-            
-            
+            self.homeStoreViewModel?.getLightbulbsServicesToUpdate(from: currentStoredHome)
+    
             //if sound detection, update brightness of lightbulb depending of the ambiant sound
             if UserDefaults.standard.bool(forKey: "soundDetectionIsOn") {
                 homeViewModel.lightbulbsServices.forEach({ service in
@@ -101,5 +94,7 @@ class AudioKitViewModel: ObservableObject, HasAudioEngine {
 
             }
         }
+        
+        print("Amplitude from microphone: \(data.amplitude)")
     }
 }

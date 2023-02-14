@@ -166,7 +166,7 @@ class HomeStoreViewModel: NSObject, ObservableObject {
         }
     }
     
-    func getAllLightbulbsServices(from rooms: [HMRoom]) {
+    private func getAllLightbulbsServices(from rooms: [HMRoom]) {
         self.lightbulbsServices.removeAll()
         
         rooms.forEach { room in
@@ -178,13 +178,24 @@ class HomeStoreViewModel: NSObject, ObservableObject {
         }
     }
     
-    func getAllLightbulbsServices(from accessories: [HMAccessory]) {
+    private func getAllLightbulbsServices(from accessories: [HMAccessory]) {
         self.lightbulbsServices.removeAll()
         
         accessories.forEach { accessory in
             if let lightbulbService = accessory.services.first(where: {$0.serviceType == HMServiceTypeLightbulb}) {
                 self.lightbulbsServices.append(lightbulbService)
             }
+        }
+    }
+    
+    
+    func getLightbulbsServicesToUpdate(from home: HMHome) {
+        if self.currentStoredRooms.isEmpty {
+            self.getAllLightbulbsServicesForAllRooms(from: home)
+        } else if self.currentStoredAccessories.isEmpty {
+            self.getAllLightbulbsServices(from: self.currentStoredRooms)
+        } else {
+            self.getAllLightbulbsServices(from: self.currentStoredAccessories)
         }
     }
     
@@ -220,7 +231,6 @@ class HomeStoreViewModel: NSObject, ObservableObject {
         readingData = true
     
         characteristic.readValue(completionHandler: {_ in
-            print("DEBUG: reading characteristic value: \(characteristic.localizedDescription)")
             if characteristic.characteristicType == HMCharacteristicTypePowerState {
                 self.powerState = characteristic.value as? Bool ?? false
             }
@@ -250,7 +260,6 @@ class HomeStoreViewModel: NSObject, ObservableObject {
         self.storeCurrentRoom(room)
         room.accessories.forEach { accessory in
             if accessory.category.categoryType == HMAccessoryCategoryTypeLightbulb {
-                print(accessory.name)
                 self.storeCurrentAccessory(accessory)
             }
         }
@@ -358,7 +367,6 @@ class HomeStoreViewModel: NSObject, ObservableObject {
 
 extension HomeStoreViewModel: HMHomeManagerDelegate {
     func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
-        print("DEBUG: Updated Homes!")
         self.homes = self.manager.homes
     }
 }

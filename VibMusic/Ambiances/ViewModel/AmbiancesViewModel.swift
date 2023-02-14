@@ -51,13 +51,7 @@ class AmbiancesViewModel: ObservableObject {
             }
             
             if let currentStoredHome = homeStoreViewModel.currentStoredHome {
-                if homeStoreViewModel.currentStoredRooms.isEmpty {
-                    homeStoreViewModel.getAllLightbulbsServicesForAllRooms(from: currentStoredHome)
-                } else if homeStoreViewModel.currentStoredAccessories.isEmpty {
-                    homeStoreViewModel.getAllLightbulbsServices(from: homeStoreViewModel.currentStoredRooms)
-                } else {
-                    homeStoreViewModel.getAllLightbulbsServices(from: homeStoreViewModel.currentStoredAccessories)
-                }
+                self.homeStoreViewModel?.getLightbulbsServicesToUpdate(from: currentStoredHome)
                 
                 homeStoreViewModel.lightbulbsServices.forEach({ service in
                     service.characteristics.forEach { characteristic in
