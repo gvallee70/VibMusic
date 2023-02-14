@@ -19,7 +19,6 @@ struct RootView: View {
     var body: some View {
         NavigationStack(path: self.$path) {
             VStack {
-                Text("Hello world")
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

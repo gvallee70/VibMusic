@@ -20,6 +20,9 @@
 		BE13A84129993E1500D2533B /* AmbiancesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751C029561FE1005CAB8A /* AmbiancesViewModel.swift */; };
 		BE13A842299955BB00D2533B /* AmbianceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF751BE29561F37005CAB8A /* AmbianceView.swift */; };
 		BE13A8462999B93400D2533B /* RoomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A8452999B93400D2533B /* RoomsView.swift */; };
+		BE13A848299AE60E00D2533B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A847299AE60D00D2533B /* HomeView.swift */; };
+		BE13A84A299B064300D2533B /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A849299B064300D2533B /* RoomView.swift */; };
+		BE13A84C299B10D400D2533B /* AccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE13A84B299B10D400D2533B /* AccessoryView.swift */; };
 		BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8A0067294B538D00C97144 /* VibMusicApp.swift */; };
 		BE8A006C294B538F00C97144 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006B294B538F00C97144 /* Assets.xcassets */; };
 		BE8A006F294B538F00C97144 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8A006E294B538F00C97144 /* Preview Assets.xcassets */; };
@@ -91,6 +94,9 @@
 		BE13A8262998FA3B00D2533B /* iPhoneSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iPhoneSessionDelegate.swift; sourceTree = "<group>"; };
 		BE13A83E2998FED800D2533B /* WatchSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSessionDelegate.swift; sourceTree = "<group>"; };
 		BE13A8452999B93400D2533B /* RoomsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsView.swift; sourceTree = "<group>"; };
+		BE13A847299AE60D00D2533B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BE13A849299B064300D2533B /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		BE13A84B299B10D400D2533B /* AccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryView.swift; sourceTree = "<group>"; };
 		BE8A0064294B538D00C97144 /* VibMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VibMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8A0067294B538D00C97144 /* VibMusicApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibMusicApp.swift; sourceTree = "<group>"; };
 		BE8A006B294B538F00C97144 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -221,6 +227,9 @@
 				BEF751B32954D226005CAB8A /* SettingsView.swift */,
 				BEED915C2995CE560096EDD5 /* AmbianceViews */,
 				BEED915A2995CDF10096EDD5 /* HomeKitViews */,
+				BE13A847299AE60D00D2533B /* HomeView.swift */,
+				BE13A849299B064300D2533B /* RoomView.swift */,
+				BE13A84B299B10D400D2533B /* AccessoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -401,6 +410,7 @@
 				BEF751AA2953EB73005CAB8A /* HomeStore.swift in Sources */,
 				BEED91602995CEE30096EDD5 /* LottieView.swift in Sources */,
 				BEF751C329565057005CAB8A /* ManageAmbianceView.swift in Sources */,
+				BE13A84C299B10D400D2533B /* AccessoryView.swift in Sources */,
 				BEF75195295371C4005CAB8A /* Tuner.swift in Sources */,
 				BE8A0068294B538D00C97144 /* VibMusicApp.swift in Sources */,
 				BEF751BD2956174A005CAB8A /* AmbiancesScreen.swift in Sources */,
@@ -409,10 +419,12 @@
 				BE13A8462999B93400D2533B /* RoomsView.swift in Sources */,
 				BEF751B22953ED9A005CAB8A /* ServicesView.swift in Sources */,
 				BE13A8272998FA3B00D2533B /* iPhoneSessionDelegate.swift in Sources */,
+				BE13A848299AE60E00D2533B /* HomeView.swift in Sources */,
 				BEF751B42954D227005CAB8A /* SettingsView.swift in Sources */,
 				BEF751BB29554B37005CAB8A /* AmplitudeSection.swift in Sources */,
 				BEF751BF29561F37005CAB8A /* AmbianceView.swift in Sources */,
 				BEF751AC2953EBB3005CAB8A /* HomesView.swift in Sources */,
+				BE13A84A299B064300D2533B /* RoomView.swift in Sources */,
 				BEF751B02953ECEA005CAB8A /* CharacteristicsView.swift in Sources */,
 				BEF751A72953D483005CAB8A /* Ambiance.swift in Sources */,
 			);

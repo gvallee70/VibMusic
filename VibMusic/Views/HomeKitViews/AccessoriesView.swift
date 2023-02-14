@@ -24,9 +24,19 @@ struct AccessoriesView: View {
                 Section(header: HStack {
                     Text("Mes ampoules dans \(self.room.name)")
                 }) {
-                    ForEach(self.homeStoreViewModel.accessories, id: \.uniqueIdentifier) { accessory in
-                        NavigationLink(destination: ServicesView(accessory: accessory)) {
-                            Text(accessory.name)
+                    LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2)) {
+                        ForEach(self.homeStoreViewModel.accessories, id: \.uniqueIdentifier) { accessory in
+                            ZStack {
+                                if let lightbulbService = accessory.services.first(where: { $0.serviceType == HMServiceTypeLightbulb }) {
+                                    NavigationLink(destination: CharacteristicsView(service: lightbulbService)) {
+                                        EmptyView()
+                                    }
+                                    .opacity(0)
+                               
+                                    AccessoryView(accessory: accessory)
+                                    .padding(10)
+                                }
+                            }
                         }
                     }
                 }
@@ -84,7 +94,7 @@ struct AccessoriesView: View {
                 .listRowBackground(Color.clear)
             }
         }
-        .navigationTitle(self.room.name)
+        .navigationTitle("\(self.room.name) \(self.homeStoreViewModel.currentStoredRooms.contains(self.room) ? "(active)" : "")")
         .onAppear {
             self.homeStoreViewModel.getAccessories(from: self.room)
         }

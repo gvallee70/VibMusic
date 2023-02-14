@@ -14,9 +14,11 @@ class HomeStore: NSObject, ObservableObject {
     
     @Published var homes: [HMHome] = []
     @Published var selectedHome: HMHome?
+    @Published var currentStoredHome: HMHome?
 
-    @Published var selectedRoom: HMRoom?
     @Published var rooms: [HMRoom] = []
+    @Published var selectedRoom: HMRoom?
+    @Published var currentStoredRooms: [HMRoom] = []
     
     @Published var accessories: [HMAccessory] = []
     @Published var discoveredAccessories: [HMAccessory] = []
@@ -156,9 +158,62 @@ class HomeStore: NSObject, ObservableObject {
         })
     }
     
+    
+    
+    func setCurrentHome(_ home: HMHome) {
+        self.resetCurrentRoomsFromStorage()
+        self.storeCurrentHome(home)
+        self.getCurrentHome()
+    }
+    
+    func addCurrentRoom(_ room: HMRoom) {
+        self.storeCurrentRoom(room)
+        self.getCurrentRooms()
+    }
+    
+    func removeFromCurrentRooms(_ room: HMRoom) {
+        self.removeCurrentRoomFromStorage(room)
+        self.getCurrentRooms()
+    }
+    
+    //---------------- STORAGE ------------------
+    
+    private func storeCurrentHome(_ home: HMHome) {
+        UserDefaults.standard.set(home.uniqueIdentifier.uuidString, forKey: "currentHomeUUID")
+    }
+    
+    func getCurrentHome() {
+        guard let currentHomeUUIDstring = UserDefaults.standard.string(forKey: "currentHomeUUID") else { return
+        }
+        self.currentStoredHome = self.homes.first(where: { $0.uniqueIdentifier == UUID(uuidString: currentHomeUUIDstring) })
+    }
+    
+    private func storeCurrentRoom(_ room: HMRoom) {
+        self.currentStoredRooms.append(room)
+        
+        UserDefaults.standard.set(self.currentStoredRooms.map({ $0.uniqueIdentifier.uuidString }), forKey: "currentRoomsUUIDstring")
+    }
+    
+    private func removeCurrentRoomFromStorage(_ room: HMRoom) {
+        self.currentStoredRooms.removeAll(where: { $0.uniqueIdentifier == room.uniqueIdentifier })
+        
+        UserDefaults.standard.set(self.currentStoredRooms.map({ $0.uniqueIdentifier.uuidString }), forKey: "currentRoomsUUIDstring")
+    }
+    
+    private func resetCurrentRoomsFromStorage() {
+        self.currentStoredRooms.removeAll()
+        UserDefaults.standard.removeObject(forKey: "currentRoomsUUIDstring")
+    }
+    
+    func getCurrentRooms() {
+        guard let currentRoomsUUIDstring = UserDefaults.standard.stringArray(forKey: "currentRoomsUUIDstring") else { return
+        }
+        self.currentStoredRooms = self.rooms.filter({
+            currentRoomsUUIDstring.contains($0.uniqueIdentifier.uuidString)
+        })
+    }
 
 }
-
 
 extension HomeStore: HMHomeManagerDelegate {
     func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
