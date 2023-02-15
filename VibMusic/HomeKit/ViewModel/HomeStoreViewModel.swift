@@ -121,6 +121,7 @@ class HomeStoreViewModel: NSObject, ObservableObject {
     
     func findNewAccessories() {
         self.discoveredAccessories.removeAll()
+        self.accessoryToAdd = nil
         
         self.accessoryBrowser = .init()
         self.accessoryBrowser.delegate = self
