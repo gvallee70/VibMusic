@@ -70,8 +70,8 @@ struct AccessoriesListScreen: View {
                 }) {
                     ForEach(self.homeStoreViewModel.discoveredAccessories, id: \.uniqueIdentifier) { accessory in
                         Button {
-                            self.homeStoreViewModel.addAccessory(accessory, to: self.home, in: self.room)
                             self.searchCount = 0
+                            self.homeStoreViewModel.addAccessory(accessory, to: self.home, in: self.room)
                         } label: {
                             Text(accessory.name)
                                 .foregroundColor(self.colorScheme == .dark ? .white : .black)
@@ -80,9 +80,9 @@ struct AccessoriesListScreen: View {
                 }
             }
             
-            if (self.homeStoreViewModel.discoveredAccessories.isEmpty && self.searchCount > 0 && !self.isSearchingForNewAccessories) || self.homeStoreViewModel.accessories.isEmpty {
+            if (self.homeStoreViewModel.discoveredAccessories.isEmpty && self.searchCount > 0 && !self.isSearchingForNewAccessories) || self.homeStoreViewModel.roomAccessories.isEmpty {
                 VStack(alignment: .center) {
-                    Text("Aucune ampoule trouvée")
+                    Text("Aucune ampoule \(self.homeStoreViewModel.roomAccessories.isEmpty ?  "pour \(self.room.name)" : "trouvé")")
                         .font(.title)
                     LottieView(filename: "NoLightbulbFound")
                 }

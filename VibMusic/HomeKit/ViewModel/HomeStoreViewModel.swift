@@ -11,19 +11,19 @@ import Combine
 
 class HomeStoreViewModel: NSObject, ObservableObject {
     @Published var homes: [HMHome] = []
-    @Published var selectedHome: HMHome?
     @Published var currentStoredHome: HMHome?
+    private var selectedHome: HMHome?
 
     @Published var rooms: [HMRoom] = []
-    @Published var selectedRoom: HMRoom?
     @Published var currentStoredRooms: [HMRoom] = []
-    
+    private var selectedRoom: HMRoom?
+
     @Published var roomAccessories: [HMAccessory] = []
     @Published var accessories: [HMAccessory] = []
     @Published var discoveredAccessories: [HMAccessory] = []
-    @Published var accessoryToAdd: HMAccessory?
     @Published var currentStoredAccessories: [HMAccessory] = []
-    
+    private var accessoryToAdd: HMAccessory?
+
     @Published var lightbulbsServices: [HMService] = []
     @Published var services: [HMService] = []
     @Published var characteristics: [HMCharacteristic] = []
@@ -75,17 +75,15 @@ class HomeStoreViewModel: NSObject, ObservableObject {
     }
     
     func addAccessory(_ accessory: HMAccessory, to home: HMHome, in room: HMRoom?) {
-        Task {
-            self.selectedHome = home
-            
-            if let room = room {
-                self.selectedRoom = room
-            }
-            
-            self.accessoryToAdd = accessory
+        self.selectedHome = home
+        
+        if let room = room {
+            self.selectedRoom = room
         }
         
         self.discoveredAccessories.removeAll()
+        self.accessoryToAdd = accessory
+        
         self.accessoryBrowser.startSearchingForNewAccessories()
     }
     
@@ -374,11 +372,11 @@ extension HomeStoreViewModel: HMHomeManagerDelegate {
 extension HomeStoreViewModel: HMAccessoryBrowserDelegate {
     func accessoryBrowser(_ browser: HMAccessoryBrowser, didFindNewAccessory accessory: HMAccessory) {
         
-        if accessory.category.categoryType == HMAccessoryCategoryTypeLightbulb {
+        if accessory.category.categoryType == HMAccessoryCategoryTypeLightbulb && !self.discoveredAccessories.contains(accessory) {
             self.discoveredAccessories.append(accessory)
         }
     
-        if self.accessoryToAdd?.uniqueIdentifier == accessory.uniqueIdentifier {
+        if self.accessoryToAdd?.name == accessory.name {
             guard let selectedHome = self.selectedHome else {
                 print("ERROR: No selected home!")
                 return
