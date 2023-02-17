@@ -26,7 +26,7 @@ struct HomesListScreen: View {
                     Text("Ajouter un domicile")
                 }
             }
-            .alert("Ajouter une pièce", isPresented: self.$showAddHomeAlert) {
+            .alert("Ajouter une maison", isPresented: self.$showAddHomeAlert) {
                 TextField("Nom", text: self.$homeName)
                 
                 Button("Ajouter", action: {
